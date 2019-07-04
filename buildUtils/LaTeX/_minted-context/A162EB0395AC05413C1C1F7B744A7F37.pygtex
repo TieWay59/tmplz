@@ -1,0 +1,98 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct} \PYG{n}{Face}\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+    \PYG{n}{Vector3} \PYG{n+nf}{normal}\PYG{p}{(}\PYG{n}{Vector} \PYG{o}{*}\PYG{n}{P}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{Cross}\PYG{p}{(}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]]}\PYG{o}{\PYGZhy{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]],}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]]}\PYG{o}{\PYGZhy{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n+nf}{cansee}\PYG{p}{(}\PYG{n}{Point} \PYG{o}{*}\PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{)}\PYG{k}{const}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{Dot}\PYG{p}{(}\PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]],}\PYG{n}{normal}\PYG{p}{(}\PYG{n}{P}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{?}\PYG{l+m+mi}{1} \PYG{o}{:} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{vector} \PYG{o}{\PYGZlt{}}\PYG{n}{Face}\PYG{o}{\PYGZgt{}} \PYG{n}{CH3D}\PYG{p}{(}\PYG{n}{Point3}\PYG{o}{*} \PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{vector} \PYG{o}{\PYGZlt{}}\PYG{n}{Face}\PYG{o}{\PYGZgt{}} \PYG{n}{cur}\PYG{p}{;}
+    \PYG{n}{cur}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Face}\PYG{p}{)\PYGZob{}\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}\PYGZcb{});}
+    \PYG{n}{cur}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Face}\PYG{p}{)\PYGZob{}\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{}\PYGZcb{});}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{3}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Face}\PYG{o}{\PYGZgt{}} \PYG{n}{next}\PYG{p}{;}
+        \PYG{c+c1}{//计算每条边“左面”的可见性}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{cur}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Face} \PYG{o}{\PYGZam{}}\PYG{n}{f} \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+            \PYG{k+kt}{int} \PYG{n}{res} \PYG{o}{=} \PYG{n}{f}\PYG{p}{.}\PYG{n}{cansee}\PYG{p}{(}\PYG{n}{P}\PYG{p}{,}\PYG{n}{i}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{res}\PYG{p}{)} \PYG{n}{next}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{f}\PYG{p}{);}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{;} \PYG{o}{++}\PYG{n}{k}\PYG{p}{)}
+                \PYG{n}{vis}\PYG{p}{[}\PYG{n}{f}\PYG{p}{.}\PYG{n}{v}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]][}\PYG{n}{f}\PYG{p}{.}\PYG{n}{v}\PYG{p}{[(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{3}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{res}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{cur}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{;} \PYG{o}{++}\PYG{n}{k}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k+kt}{int} \PYG{n}{a}  \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{v}\PYG{p}{[}\PYG{n}{k}\PYG{p}{],}\PYG{n}{b} \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{v}\PYG{p}{[(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{3}\PYG{p}{];}
+                \PYG{k}{if}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{a}\PYG{p}{][}\PYG{n}{b}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{b}\PYG{p}{][}\PYG{n}{a}\PYG{p}{]}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{a}\PYG{p}{][}\PYG{n}{b}\PYG{p}{])}\PYG{c+c1}{//(a,b) 是分界线，左边对P[i] 可见}
+                 \PYG{n}{next}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Face}\PYG{p}{)\PYGZob{}\PYGZob{}}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{i}\PYG{p}{\PYGZcb{}\PYGZcb{});}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{cnr} \PYG{o}{=} \PYG{n}{next}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{cur}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{double} \PYG{n}{rand01}\PYG{p}{()} \PYG{p}{\PYGZob{}}\PYG{k}{return} \PYG{n}{rand}\PYG{p}{()} \PYG{o}{/} \PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{)} \PYG{n}{RAND\PYGZus{}MAX}\PYG{p}{;\PYGZcb{}}\PYG{c+c1}{//0\PYGZhy{}1 的随机数}
+\PYG{k+kt}{double} \PYG{n}{randeps}\PYG{p}{()} \PYG{p}{\PYGZob{}}\PYG{k}{return} \PYG{p}{(}\PYG{n}{rand01}\PYG{p}{()}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)} \PYG{o}{*} \PYG{n}{eps}\PYG{p}{;\PYGZcb{}}
+\PYG{n}{Point3} \PYG{n}{add\PYGZus{}noise}\PYG{p}{(}\PYG{n}{Point3} \PYG{n}{p}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{Point3}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{randeps}\PYG{p}{(),}\PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{o}{+}\PYG{n}{randeps}\PYG{p}{(),}\PYG{n}{p}\PYG{p}{.}\PYG{n}{z}\PYG{o}{+}\PYG{n}{randeps}\PYG{p}{());}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{//....................................................................}
+\PYG{k}{struct} \PYG{n}{Face}\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+    \PYG{n}{Vector3} \PYG{n+nf}{normal}\PYG{p}{(}\PYG{n}{Vector} \PYG{o}{*}\PYG{n}{P}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{Cross}\PYG{p}{(}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]]}\PYG{o}{\PYGZhy{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]],}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]]}\PYG{o}{\PYGZhy{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]]);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n+nf}{cansee}\PYG{p}{(}\PYG{n}{Point} \PYG{o}{*}\PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{)}\PYG{k}{const}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{Dot}\PYG{p}{(}\PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{v}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]],}\PYG{n}{normal}\PYG{p}{(}\PYG{n}{P}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{?}\PYG{l+m+mi}{1} \PYG{o}{:} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{vector} \PYG{o}{\PYGZlt{}}\PYG{n}{Face}\PYG{o}{\PYGZgt{}} \PYG{n}{CH3D}\PYG{p}{(}\PYG{n}{Point3}\PYG{o}{*} \PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{vector} \PYG{o}{\PYGZlt{}}\PYG{n}{Face}\PYG{o}{\PYGZgt{}} \PYG{n}{cur}\PYG{p}{;}
+    \PYG{n}{cur}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Face}\PYG{p}{)\PYGZob{}\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{\PYGZcb{}\PYGZcb{});}
+    \PYG{n}{cur}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Face}\PYG{p}{)\PYGZob{}\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{}\PYGZcb{});}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{3}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Face}\PYG{o}{\PYGZgt{}} \PYG{n}{next}\PYG{p}{;}
+        \PYG{c+c1}{//计算每条边“左面”的可见性}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{cur}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Face} \PYG{o}{\PYGZam{}}\PYG{n}{f} \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+            \PYG{k+kt}{int} \PYG{n}{res} \PYG{o}{=} \PYG{n}{f}\PYG{p}{.}\PYG{n}{cansee}\PYG{p}{(}\PYG{n}{P}\PYG{p}{,}\PYG{n}{i}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{res}\PYG{p}{)} \PYG{n}{next}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{f}\PYG{p}{);}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{;} \PYG{o}{++}\PYG{n}{k}\PYG{p}{)}
+                \PYG{n}{vis}\PYG{p}{[}\PYG{n}{f}\PYG{p}{.}\PYG{n}{v}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]][}\PYG{n}{f}\PYG{p}{.}\PYG{n}{v}\PYG{p}{[(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{3}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{res}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{cur}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{;} \PYG{o}{++}\PYG{n}{k}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k+kt}{int} \PYG{n}{a}  \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{v}\PYG{p}{[}\PYG{n}{k}\PYG{p}{],}\PYG{n}{b} \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{v}\PYG{p}{[(}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{3}\PYG{p}{];}
+                \PYG{k}{if}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{a}\PYG{p}{][}\PYG{n}{b}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{b}\PYG{p}{][}\PYG{n}{a}\PYG{p}{]}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{a}\PYG{p}{][}\PYG{n}{b}\PYG{p}{])}\PYG{c+c1}{//(a,b) 是分界线，左边对P[i] 可见}
+                 \PYG{n}{next}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Face}\PYG{p}{)\PYGZob{}\PYGZob{}}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{i}\PYG{p}{\PYGZcb{}\PYGZcb{});}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{cnr} \PYG{o}{=} \PYG{n}{next}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{cur}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{double} \PYG{n}{rand01}\PYG{p}{()} \PYG{p}{\PYGZob{}}\PYG{k}{return} \PYG{n}{rand}\PYG{p}{()} \PYG{o}{/} \PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{)} \PYG{n}{RAND\PYGZus{}MAX}\PYG{p}{;\PYGZcb{}}\PYG{c+c1}{//0\PYGZhy{}1 的随机数}
+\PYG{k+kt}{double} \PYG{n}{randeps}\PYG{p}{()} \PYG{p}{\PYGZob{}}\PYG{k}{return} \PYG{p}{(}\PYG{n}{rand01}\PYG{p}{()}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{)} \PYG{o}{*} \PYG{n}{eps}\PYG{p}{;\PYGZcb{}}
+\PYG{n}{Point3} \PYG{n}{add\PYGZus{}noise}\PYG{p}{(}\PYG{n}{Point3} \PYG{n}{p}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{Point3}\PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{randeps}\PYG{p}{(),}\PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{o}{+}\PYG{n}{randeps}\PYG{p}{(),}\PYG{n}{p}\PYG{p}{.}\PYG{n}{z}\PYG{o}{+}\PYG{n}{randeps}\PYG{p}{());}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

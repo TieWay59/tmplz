@@ -1,0 +1,1032 @@
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2019.7.2)  3 JUL 2019 21:59
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**d:/tmplz/buildUtils/LaTeX/context
+(d:/tmplz/buildUtils/LaTeX/context.tex
+LaTeX2e <2018-12-01>
+(d:/texlive/2019/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(d:/texlive/2019/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (d:/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2018/04/16 v5.8 Page Geometry
+ (d:/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+) (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+) (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (d:/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+) (./zh_CN-Adobefonts_external.sty
+Package: zh_CN-Adobefonts_external 2015/05/25 zh_CN-Adobefonts_external Package
+ (d:/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec.sty (d:/texlive/2019/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (d:/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2019-04-06 L3 programming layer (loader) 
+ (d:/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2019-04-06 L3 programming layer (code)
+\c_max_int=\count91
+\l_tmpa_int=\count92
+\l_tmpb_int=\count93
+\g_tmpa_int=\count94
+\g_tmpb_int=\count95
+\g__kernel_prg_map_int=\count96
+\c__ior_term_ior=\count97
+\c_log_iow=\count98
+\l_iow_line_count_int=\count99
+\l__iow_line_target_int=\count100
+\l__iow_one_indent_int=\count101
+\l__iow_indent_int=\count102
+\c_zero_dim=\dimen111
+\c_max_dim=\dimen112
+\l_tmpa_dim=\dimen113
+\l_tmpb_dim=\dimen114
+\g_tmpa_dim=\dimen115
+\g_tmpb_dim=\dimen116
+\c_zero_skip=\skip43
+\c_max_skip=\skip44
+\l_tmpa_skip=\skip45
+\l_tmpb_skip=\skip46
+\g_tmpa_skip=\skip47
+\g_tmpb_skip=\skip48
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count103
+\l__intarray_loop_int=\count104
+\c__intarray_sp_dim=\dimen117
+\g__intarray_font_int=\count105
+\c__fp_leading_shift_int=\count106
+\c__fp_middle_shift_int=\count107
+\c__fp_trailing_shift_int=\count108
+\c__fp_big_leading_shift_int=\count109
+\c__fp_big_middle_shift_int=\count110
+\c__fp_big_trailing_shift_int=\count111
+\c__fp_Bigg_leading_shift_int=\count112
+\c__fp_Bigg_middle_shift_int=\count113
+\c__fp_Bigg_trailing_shift_int=\count114
+\g__fp_array_int=\count115
+\l__fp_array_loop_int=\count116
+\l__sort_length_int=\count117
+\l__sort_min_int=\count118
+\l__sort_top_int=\count119
+\l__sort_max_int=\count120
+\l__sort_true_max_int=\count121
+\l__sort_block_int=\count122
+\l__sort_begin_int=\count123
+\l__sort_end_int=\count124
+\l__sort_A_int=\count125
+\l__sort_B_int=\count126
+\l__sort_C_int=\count127
+\l__tl_analysis_normal_int=\count128
+\l__tl_analysis_index_int=\count129
+\l__tl_analysis_nesting_int=\count130
+\l__tl_analysis_type_int=\count131
+\l__regex_internal_a_int=\count132
+\l__regex_internal_b_int=\count133
+\l__regex_internal_c_int=\count134
+\l__regex_balance_int=\count135
+\l__regex_group_level_int=\count136
+\l__regex_mode_int=\count137
+\c__regex_cs_in_class_mode_int=\count138
+\c__regex_cs_mode_int=\count139
+\l__regex_catcodes_int=\count140
+\l__regex_default_catcodes_int=\count141
+\c__regex_catcode_L_int=\count142
+\c__regex_catcode_O_int=\count143
+\c__regex_catcode_A_int=\count144
+\c__regex_all_catcodes_int=\count145
+\l__regex_show_lines_int=\count146
+\l__regex_min_state_int=\count147
+\l__regex_max_state_int=\count148
+\l__regex_left_state_int=\count149
+\l__regex_right_state_int=\count150
+\l__regex_capturing_group_int=\count151
+\l__regex_min_pos_int=\count152
+\l__regex_max_pos_int=\count153
+\l__regex_curr_pos_int=\count154
+\l__regex_start_pos_int=\count155
+\l__regex_success_pos_int=\count156
+\l__regex_curr_char_int=\count157
+\l__regex_curr_catcode_int=\count158
+\l__regex_last_char_int=\count159
+\l__regex_case_changed_char_int=\count160
+\l__regex_curr_state_int=\count161
+\l__regex_step_int=\count162
+\l__regex_min_active_int=\count163
+\l__regex_max_active_int=\count164
+\l__regex_replacement_csnames_int=\count165
+\l__regex_match_count_int=\count166
+\l__regex_min_submatch_int=\count167
+\l__regex_submatch_int=\count168
+\l__regex_zeroth_submatch_int=\count169
+\g__regex_trace_regex_int=\count170
+\c_empty_box=\box27
+\l_tmpa_box=\box28
+\l_tmpb_box=\box29
+\g_tmpa_box=\box30
+\g_tmpb_box=\box31
+\l__box_top_dim=\dimen118
+\l__box_bottom_dim=\dimen119
+\l__box_left_dim=\dimen120
+\l__box_right_dim=\dimen121
+\l__box_top_new_dim=\dimen122
+\l__box_bottom_new_dim=\dimen123
+\l__box_left_new_dim=\dimen124
+\l__box_right_new_dim=\dimen125
+\l__box_internal_box=\box32
+\l__coffin_internal_box=\box33
+\l__coffin_internal_dim=\dimen126
+\l__coffin_offset_x_dim=\dimen127
+\l__coffin_offset_y_dim=\dimen128
+\l__coffin_x_dim=\dimen129
+\l__coffin_y_dim=\dimen130
+\l__coffin_x_prime_dim=\dimen131
+\l__coffin_y_prime_dim=\dimen132
+\c_empty_coffin=\box34
+\l__coffin_aligned_coffin=\box35
+\l__coffin_aligned_internal_coffin=\box36
+\l_tmpa_coffin=\box37
+\l_tmpb_coffin=\box38
+\g_tmpa_coffin=\box39
+\g_tmpb_coffin=\box40
+\l__coffin_bounding_shift_dim=\dimen133
+\l__coffin_left_corner_dim=\dimen134
+\l__coffin_right_corner_dim=\dimen135
+\l__coffin_bottom_corner_dim=\dimen136
+\l__coffin_top_corner_dim=\dimen137
+\l__coffin_scaled_total_height_dim=\dimen138
+\l__coffin_scaled_width_dim=\dimen139
+\c__coffin_empty_coffin=\box41
+\l__coffin_display_coffin=\box42
+\l__coffin_display_coord_coffin=\box43
+\l__coffin_display_pole_coffin=\box44
+\l__coffin_display_offset_dim=\dimen140
+\l__coffin_display_x_dim=\dimen141
+\l__coffin_display_y_dim=\dimen142
+\g__file_internal_ior=\read1
+\l__seq_internal_a_int=\count171
+\l__seq_internal_b_int=\count172
+\c__deprecation_minus_one=\count173
+) (d:/texlive/2019/texmf-dist/tex/latex/l3kernel/l3xdvipdfmx.def
+File: l3xdvipdfmx.def 2019-04-06 v L3 Experimental driver: xdvipdfmx
+\g__driver_image_int=\count174
+\g__driver_pdf_object_int=\count175
+))
+Package: xparse 2019-03-05 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count176
+\g__xparse_grabber_int=\count177
+\l__xparse_m_args_int=\count178
+\l__xparse_v_nesting_int=\count179
+)
+Package: fontspec 2019/03/15 v2.7c Font selection for XeLaTeX and LuaLaTeX
+ (d:/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2019/03/15 v2.7c Font selection for XeLaTeX and LuaLaTeX
+\l__fontspec_script_int=\count180
+\l__fontspec_language_int=\count181
+\l__fontspec_strnum_int=\count182
+\l__fontspec_tmp_int=\count183
+\l__fontspec_tmpa_int=\count184
+\l__fontspec_tmpb_int=\count185
+\l__fontspec_tmpc_int=\count186
+\l__fontspec_em_int=\count187
+\l__fontspec_emdef_int=\count188
+\l__fontspec_strong_int=\count189
+\l__fontspec_strongdef_int=\count190
+\l__fontspec_tmpa_dim=\dimen143
+\l__fontspec_tmpb_dim=\dimen144
+\l__fontspec_tmpc_dim=\dimen145
+ (d:/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+ (d:/texlive/2019/texmf-dist/tex/latex/base/tuenc.def
+File: tuenc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TU on input line 82.
+)) (d:/texlive/2019/texmf-dist/tex/latex/fontspec/fontspec.cfg)
+LaTeX Info: Redefining \itshape on input line 4051.
+LaTeX Info: Redefining \slshape on input line 4056.
+LaTeX Info: Redefining \scshape on input line 4061.
+LaTeX Info: Redefining \upshape on input line 4066.
+LaTeX Info: Redefining \em on input line 4096.
+LaTeX Info: Redefining \emph on input line 4121.
+)) (d:/texlive/2019/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+Package: xeCJK 2019/04/07 v3.7.2 Typesetting CJK scripts with XeLaTeX
+ (d:/texlive/2019/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+Package: xtemplate 2019-03-05 L3 Experimental prototype document functions
+\l__xtemplate_tmp_dim=\dimen146
+\l__xtemplate_tmp_int=\count191
+\l__xtemplate_tmp_muskip=\muskip16
+\l__xtemplate_tmp_skip=\skip49
+) (d:/texlive/2019/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2019-03-05 LaTeX2e option processing using LaTeX3 keys
+)
+\l__xeCJK_tmp_int=\count192
+\l__xeCJK_tmp_box=\box45
+\l__xeCJK_tmp_dim=\dimen147
+\l__xeCJK_tmp_skip=\skip50
+\g__xeCJK_space_factor_int=\count193
+\l__xeCJK_begin_int=\count194
+\l__xeCJK_end_int=\count195
+\c__xeCJK_CJK_class_int=\XeTeXcharclass1
+\c__xeCJK_FullLeft_class_int=\XeTeXcharclass2
+\c__xeCJK_FullRight_class_int=\XeTeXcharclass3
+\c__xeCJK_HalfLeft_class_int=\XeTeXcharclass4
+\c__xeCJK_HalfRight_class_int=\XeTeXcharclass5
+\c__xeCJK_NormalSpace_class_int=\XeTeXcharclass6
+\c__xeCJK_CM_class_int=\XeTeXcharclass7
+\c__xeCJK_HangulJamo_class_int=\XeTeXcharclass8
+\l__xeCJK_last_skip=\skip51
+\g__xeCJK_node_int=\count196
+\c__xeCJK_CJK_node_dim=\dimen148
+\c__xeCJK_CJK-space_node_dim=\dimen149
+\c__xeCJK_default_node_dim=\dimen150
+\c__xeCJK_default-space_node_dim=\dimen151
+\c__xeCJK_CJK-widow_node_dim=\dimen152
+\c__xeCJK_normalspace_node_dim=\dimen153
+\l__xeCJK_ccglue_skip=\skip52
+\l__xeCJK_ecglue_skip=\skip53
+\l__xeCJK_punct_kern_skip=\skip54
+\l__xeCJK_last_penalty_int=\count197
+\l__xeCJK_last_bound_dim=\dimen154
+\l__xeCJK_last_kern_dim=\dimen155
+\l__xeCJK_widow_penalty_int=\count198
+
+Package xtemplate Info: Declaring object type 'xeCJK/punctuation' taking 0
+(xtemplate)             argument(s) on line 2352.
+
+\l__xeCJK_fixed_punct_width_dim=\dimen156
+\l__xeCJK_mixed_punct_width_dim=\dimen157
+\l__xeCJK_middle_punct_width_dim=\dimen158
+\l__xeCJK_fixed_margin_width_dim=\dimen159
+\l__xeCJK_mixed_margin_width_dim=\dimen160
+\l__xeCJK_middle_margin_width_dim=\dimen161
+\l__xeCJK_bound_punct_width_dim=\dimen162
+\l__xeCJK_bound_margin_width_dim=\dimen163
+\l__xeCJK_margin_minimum_dim=\dimen164
+\l__xeCJK_kerning_total_width_dim=\dimen165
+\l__xeCJK_same_align_margin_dim=\dimen166
+\l__xeCJK_different_align_margin_dim=\dimen167
+\l__xeCJK_kerning_margin_width_dim=\dimen168
+\l__xeCJK_kerning_margin_minimum_dim=\dimen169
+\l__xeCJK_bound_dim=\dimen170
+\l__xeCJK_reverse_bound_dim=\dimen171
+\l__xeCJK_minimum_bound_dim=\dimen172
+\l__xeCJK_kerning_margin_dim=\dimen173
+\l__xeCJK_original_margin_dim=\dimen174
+\g__xeCJK_family_int=\count199
+\l__xeCJK_fam_int=\count266
+\g__xeCJK_fam_allocation_int=\count267
+\l__xeCJK_verb_case_int=\count268
+\l__xeCJK_verb_exspace_skip=\skip55
+ (d:/texlive/2019/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
+File: xeCJK.cfg 2019/04/07 v3.7.2 Configuration file for xeCJK package
+))
+
+Package fontspec Info: Font family 'AdobeSongStd-Light.otf(0)' created for
+(fontspec)             font 'AdobeSongStd-Light.otf' with options [Path =
+(fontspec)             fonts/zh_CN-Adobe/,Mapping=tex-text,Script={CJK},SmallCapsFont={AdobeHeitiStd-Regular.otf},BoldFont={AdobeHeitiStd-Regular.otf},ItalicFont={AdobeKaitiStd-Regular.otf}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeSongStd-Light.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeHeitiStd-Regular.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+(fontspec)             - 'bold' (bx/n) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeHeitiStd-Regular.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (bx/sc) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeHeitiStd-Regular.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeKaitiStd-Regular.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+(fontspec)             - 'italic small caps'  (m/itsc) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeHeitiStd-Regular.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+
+) (d:/texlive/2019/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+ (d:/texlive/2019/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+) (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+) (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)))) (d:/texlive/2019/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+ (d:/texlive/2019/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (d:/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count269
+) (d:/texlive/2019/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2019/01/15
+ Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+\FV@CodeLineNo=\count270
+\FV@InFile=\read2
+\FV@TabBox=\box46
+\c@FancyVerbLine=\count271
+\FV@StepNumber=\count272
+\FV@OutFile=\write3
+) (d:/texlive/2019/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+ (d:/texlive/2019/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+ (d:/texlive/2019/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)) (d:/texlive/2019/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+Invalid UTF-8 byte or sequence at line 296 replaced by U+FFFD.
+\linenopenalty=\count273
+\output=\toks16
+\linenoprevgraf=\count274
+\linenumbersep=\dimen175
+\linenumberwidth=\dimen176
+\c@linenumber=\count275
+\c@pagewiselinenumber=\count276
+\c@LN@truepage=\count277
+\c@internallinenumber=\count278
+\c@internallinenumbers=\count279
+\quotelinenumbersep=\dimen177
+\bframerule=\dimen178
+\bframesep=\dimen179
+\bframebox=\box47
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count280
+\c@FV@TrueTabCounter=\count281
+\FV@TabBox@Group=\box48
+\FV@TmpLength=\skip56
+\c@FV@HighlightLinesStart=\count282
+\c@FV@HighlightLinesStop=\count283
+\FV@LoopCount=\count284
+\FV@NCharsBox=\box49
+\FV@BreakIndent=\dimen180
+\FV@BreakIndentNChars=\count285
+\FV@BreakSymbolSepLeft=\dimen181
+\FV@BreakSymbolSepLeftNChars=\count286
+\FV@BreakSymbolSepRight=\dimen182
+\FV@BreakSymbolSepRightNChars=\count287
+\FV@BreakSymbolIndentLeft=\dimen183
+\FV@BreakSymbolIndentLeftNChars=\count288
+\FV@BreakSymbolIndentRight=\dimen184
+\FV@BreakSymbolIndentRightNChars=\count289
+\c@FancyVerbLineBreakLast=\count290
+\FV@LineBox=\box50
+\FV@LineIndentBox=\box51
+\FV@LineWidth=\dimen185
+) (d:/texlive/2019/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count291
+\calc@Bcount=\count292
+\calc@Adimen=\dimen186
+\calc@Bdimen=\dimen187
+\calc@Askip=\skip57
+\calc@Bskip=\skip58
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count293
+\calc@Cskip=\skip59
+) (d:/texlive/2019/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 67.
+) (d:/texlive/2019/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: pdfTeX >= 1.30 not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+) (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/catchfile.sty
+Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
+)) (d:/texlive/2019/texmf-dist/tex/generic/xstring/xstring.sty (d:/texlive/2019/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count294
+Invalid UTF-8 byte or sequence at line 35 replaced by U+FFFD.
+\decimalpart=\count295
+Invalid UTF-8 byte or sequence at line 79 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 79 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 83 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 86 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 102 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 114 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 120 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 125 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 147 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 147 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 147 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 182 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 182 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 182 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 183 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 184 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 185 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 185 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 185 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 189 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 189 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 190 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 190 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 193 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 208 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 208 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 208 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 208 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 208 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 208 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 221 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 241 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 241 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 241 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 241 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 266 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 284 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 295 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 300 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 300 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 301 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 302 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 303 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 332 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 332 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 332 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 332 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 333 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 334 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 334 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 334 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 406 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 409 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 410 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 428 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 434 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 457 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 457 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 464 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 464 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 466 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 466 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 541 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 541 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 541 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 586 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 586 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 588 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 588 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 595 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 597 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 599 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 602 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 605 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 605 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 610 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 615 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 632 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 633 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 635 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 637 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 647 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 653 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 678 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 700 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 705 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 715 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 715 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 715 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 719 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 732 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 732 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 741 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 741 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 742 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 762 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 773 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 773 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 774 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 774 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 774 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 797 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 797 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 810 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 824 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 824 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 831 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 838 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 838 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 846 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 846 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 861 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 862 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 864 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 864 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 908 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 909 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 909 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 934 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 936 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 936 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 940 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 940 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 962 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 962 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 964 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 965 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 1006 replaced by U+FFFD.
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+) (d:/texlive/2019/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip60
+\fb@frw=\dimen188
+\fb@frh=\dimen189
+\FrameRule=\dimen190
+\FrameSep=\dimen191
+) (d:/texlive/2019/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count296
+\float@exts=\toks17
+\float@box=\box52
+\@float@everytoks=\toks18
+\@floatcapt=\box53
+)
+\minted@appexistsfile=\read3
+\minted@bgbox=\box54
+\minted@code=\write4
+\c@minted@FancyVerbLineTemp=\count297
+\c@minted@pygmentizecounter=\count298
+\@float@every@listing=\toks19
+\c@listing=\count299
+)
+runsystem(if not exist _minted-context mkdir _minted-context)...executed.
+
+ (d:/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+) (d:/texlive/2019/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen192
+\Hy@linkcounter=\count300
+\Hy@pagecounter=\count301
+ (d:/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count302
+ (d:/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4393.
+Package hyperref Info: Hyper figures OFF on input line 4519.
+Package hyperref Info: Link nesting OFF on input line 4524.
+Package hyperref Info: Hyper index ON on input line 4527.
+Package hyperref Info: Plain pages OFF on input line 4534.
+Package hyperref Info: Backreferencing OFF on input line 4539.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4772.
+\c@Hy@tempcnt=\count303
+ (d:/texlive/2019/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5125.
+\XeTeXLinkMargin=\dimen193
+\Fld@menulength=\count304
+\Field@Width=\dimen194
+\Fld@charsize=\dimen195
+Package hyperref Info: Hyper figures OFF on input line 6380.
+Package hyperref Info: Link nesting OFF on input line 6385.
+Package hyperref Info: Hyper index ON on input line 6388.
+Package hyperref Info: backreferencing OFF on input line 6395.
+Package hyperref Info: Link coloring ON on input line 6398.
+Package hyperref Info: Link coloring with OCG OFF on input line 6405.
+Package hyperref Info: PDF/A mode OFF on input line 6410.
+LaTeX Info: Redefining \ref on input line 6450.
+LaTeX Info: Redefining \pageref on input line 6454.
+\Hy@abspage=\count305
+\c@Item=\count306
+\c@Hfootnote=\count307
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+ (d:/texlive/2019/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2018/11/30 v6.88e Hyperref driver for XeTeX
+ (d:/texlive/2019/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2018/11/30 v6.88e Hyperref: PDF Unicode definition (HO)
+) (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/stringenc.sty
+Package: stringenc 2016/05/16 v1.11 Convert strings between diff. encodings (HO)
+)
+\pdfm@box=\box55
+\c@Hy@AnnotLevel=\count308
+\HyField@AnnotCount=\count309
+\Fld@listcount=\count310
+\c@bookmark@seq@number=\count311
+ (d:/texlive/2019/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
+)
+\Hy@SectionHShift=\skip61
+) (d:/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (d:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+ (d:/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > context.aex <nul: /p x=^%~$PATH:i>> context.aex)...executed.
+
+runsystem(del context.aex)...executed.
+
+ (./context.aux)
+\openout1 = `context.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 11.
+ (d:/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(51.21495pt, 495.07797pt, 51.21495pt)
+* v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=495.07797pt
+* \textheight=759.6886pt
+* \oddsidemargin=-21.05504pt
+* \evensidemargin=-21.05504pt
+* \topmargin=-66.59087pt
+* \headheight=15.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 11.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 11.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 11.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 11.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 11.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 11.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 11.
+LaTeX Font Info:    Redeclaring math accent \check on input line 11.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 11.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 11.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 11.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 11.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 11.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 11.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 11.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 11.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 11.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 11.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 11.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 11.
+\AtBeginShipoutBox=\box56
+Package hyperref Info: Link coloring ON on input line 11.
+(d:/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count312
+)
+LaTeX Info: Redefining \ref on input line 11.
+LaTeX Info: Redefining \pageref on input line 11.
+LaTeX Info: Redefining \nameref on input line 11.
+ (./context.out) (./context.out)
+\@outlinefile=\write5
+\openout5 = `context.out'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+ (d:/texlive/2019/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
+File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
+) [1
+
+] (./context.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 2.
+ [2] [3])
+\tf@toc=\write6
+\openout6 = `context.toc'.
+
+ [4] (./_minted-context/default-pyg-prefix.pygstyle) (./_minted-context/default.pygstyle) (./_minted-context/1DA52DA54BF80AB844D38361635F2D13.pygtex
+
+Package fontspec Info: Font family 'AdobeFangsongStd-Regular.otf(0)' created
+(fontspec)             for font 'AdobeFangsongStd-Regular.otf' with options
+(fontspec)             [Path =
+(fontspec)             fonts/zh_CN-Adobe/,Mapping=tex-text,Script={CJK}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[fonts/zh_CN-Adobe/AdobeFangsongStd-Regular.otf]/OT:script=hani;language=DFLT;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+ [5]) (./_minted-context/3D1B6FCA542031CAAFD50DB6A1CA7292.pygtex) (./_minted-context/2073B76978FD3160EAD1951A535B714C.pygtex [6] [7]
+Overfull \hbox (39.55566pt too wide) in paragraph at lines 94--94
+[]\TU/lmtt/m/n/10.95 1000000000[],[]10000000000LL[],[]100000000000LL[],[]1000000000000LL[],[]10000000000000LL[],|  
+ []
+
+
+Overfull \hbox (74.04816pt too wide) in paragraph at lines 95--95
+[]\TU/lmtt/m/n/10.95 100000000000000LL[],[]1000000000000000LL[],[]10000000000000000LL[],[]100000000000000000LL[]};|  
+ []
+
+[8]) (./_minted-context/D3483F4A362FC15740CBAA34212FDD4C.pygtex) (./_minted-context/3DBF63A40911AAE06E22F5833C1B96BE.pygtex
+
+LaTeX Font Warning: Font shape `TU/AdobeFangsongStd-Regular.otf(0)/m/it' undefined
+(Font)              using `TU/AdobeFangsongStd-Regular.otf(0)/m/n' instead on input line 2.
+
+) (./_minted-context/563FD1BC44BF232D99BCC3CF8E2B38DE.pygtex) (./_minted-context/490907A3DE0DA084E4ACA963B26C4C84.pygtex [9]) (./_minted-context/D1E96291451ABC20C1D3146A60FC07EB.pygtex [10] [11]
+Overfull \hbox (85.54565pt too wide) in paragraph at lines 123--123
+\TU/lmtt/m/n/10.95 t1[]=[]hl(dist(ch[i],ch[i[]+[][]1[]]),dist(ch[i[]+[][]1[]],ch[p]),dist(ch[p],ch[i]))[]*[][]2.0[][]/[]dist(ch[i],ch[i[]+[][]1[]]);|  
+ []
+
+) (./_minted-context/BBBBD398AB65185BB392A9543680A484.pygtex [12] [13]) (./_minted-context/BA8B43F55663C994A847B9B4BCAB4FC7.pygtex [14] [15] [16]) (./_minted-context/9C2FC1BA94CD46E0EA72F34C9C2C292D.pygtex) (./_minted-context/5C095728D6E425F084CFC726EBEDF10B.pygtex [17]) (./_minted-context/A67CCF3D7F8DA43F2A849C19AC2B407B.pygtex [18] [19] [20] [21]) (./_minted-context/67C2A8D07D372F39F2C6B9C0490191D1.pygtex) (./_minted-context/ECB890F7F65A05D580B731395E5B0A20.pygtex [22]) (./_minted-context/AF3F946447CE847B0499A1990B7F653E.pygtex [23] [24] [25]) (./_minted-context/A162EB0395AC05413C1C1F7B744A7F37.pygtex [26]) (./_minted-context/8EDEC5F7020D4560FD9FE2E24F9842F6.pygtex [27]) (./_minted-context/B3B2AF996AA326A48FEA0B847773C9D2.pygtex [28]) (./_minted-context/03F0E621638353C969222ECA2FDBF199.pygtex) (./_minted-context/278B61C024C26C015950323A280768EE.pygtex [29] [30]) (./_minted-context/8B5FEED99702A30529C05F4142304C08.pygtex [31] [32] [33] [34]) (./_minted-context/48AF97ED522FE051C9D2B9A19C960204.pygtex [35]) (./_minted-context/4FA0005BE4499762DBC2A7F7BF0DB4AA.pygtex [36] [37] [38]) (./_minted-context/8241800F09C7234DD60C65BF4D4DED76.pygtex [39]) (./_minted-context/5AD8CF974D97ADF0B1179089E62A146C.pygtex [40]) (./_minted-context/A7A2DD9B3F251AAB3C2DFE24822D77AE.pygtex [41]) (./_minted-context/90911DFCDD8AACFC3F2278DF668B9ED6.pygtex [42]) (./_minted-context/79B7196F780AA6F803767D7A91C7DD4C.pygtex [43] [44]) (./_minted-context/8C3AC03ADB2775B56C66BBA7807467A9.pygtex [45] [46] [47]) (./_minted-context/D56591397AA6D9BBDFEC8981984C7C3E.pygtex [48] [49]) (./_minted-context/0EE247F20588A3FCEABB36189D0AB7D9.pygtex [50] [51]) (./_minted-context/06E7D6A2DE6F70BBE29C2AFD29DB1022.pygtex [52] [53]) (./_minted-context/7A61954E225A97BC4259D147224C9424.pygtex [54]) (./_minted-context/617EBCE89B9A36D3F66AB9028EA2B032.pygtex [55] [56]) (./_minted-context/B461183BBFE5F58E17B6B1CFF467DCED.pygtex [57]) (./_minted-context/128E6174027889C3BD8250E8D83261EB.pygtex [58]) (./_minted-context/31DCD4ABFC72BC180FCC5F1043D09735.pygtex [59] [60] [61]) (./_minted-context/C43A1A7A5209A0EF78EFAFB5044FC535.pygtex [62] [63] [64]) (./_minted-context/C8A38251556F5F0CB1C0FC94A708DDB3.pygtex [65] [66] [67]) (./_minted-context/73A5B20555DA4BC35B501B5C12D2A7BE.pygtex [68] [69]) (./_minted-context/2419C01BCB967A42900C8FFE6792951C.pygtex [70]) (./_minted-context/861B9FE79BE7D0F1FA99BC5A43ECBF51.pygtex [71]) (./_minted-context/C6BBB971182CC1FC2B471341178F75E4.pygtex [72]) (./_minted-context/501EB8C37A51671B0D88891A35D0CFA8.pygtex [73] [74]) (./_minted-context/2E7765E2F8D09E443311FC587157BC27.pygtex) (./_minted-context/DD2EAE2E2019A60E7B0D875F78D7C090.pygtex [75] [76]
+Overfull \hbox (68.29921pt too wide) in paragraph at lines 96--96
+\TU/lmtt/m/it/10.95 v.push_back({2,3,4,5,7,9,12,15,19,24,31,40,52,67,86,110,141,181,233,300,386,496,637}); 
+ []
+
+) (./_minted-context/12ACF12E052E95CB590FF8AD13BBA612.pygtex [77]) (./_minted-context/3CE740D5A2F100838EE5F0C947018994.pygtex [78]) (./_minted-context/82400785CA283EE858A7BBE92E78724E.pygtex [79] [80]) (./_minted-context/32C142B638D9405B121B244B114E17E8.pygtex [81] [82]) (./_minted-context/01DE82447FBCD2AC4230F1B16FFA266B.pygtex [83]) (./_minted-context/807B984F130925F26ECEDD18A6293E09.pygtex [84]) (./_minted-context/577B9B5ED23FD1AA2117681586A41029.pygtex) (./_minted-context/1CFB48C594934520133F37373B78D8CB.pygtex [85] [86]) (./_minted-context/1E4DC128E666550C97A925EAC682DF59.pygtex) (./_minted-context/99060584D6BDBDF34E6E808CAA5C81CA.pygtex [87]) (./_minted-context/C337F1E03276AE010C985A704B05458E.pygtex [88] [89] [90] [91]) (./_minted-context/61C864972D84C8D76D1548FCA60FFEA5.pygtex [92]) (./_minted-context/57F3D5DCEB523AF57F8FE325344AEA15.pygtex [93]) (./_minted-context/7C261463F348559F059B42370FC4AD3F.pygtex) (./_minted-context/1DCCFFEE3AC4D6BE358C75602ECA13E6.pygtex [94]) (./_minted-context/E31660F7FD3CB893AEEB46DCE20CA3F5.pygtex [95]) (./_minted-context/719228306C7CB31DB9B4D827074D4466.pygtex) (./_minted-context/59BA7053582A7D41B2782407E66C2B96.pygtex [96]) (./_minted-context/682595E0A3023C8F09912BE54C914AFA.pygtex [97]) (./_minted-context/E053F3F88C395AFC3497C886F081705D.pygtex [98]) (./_minted-context/979DD29D10C20D68D4C3008DB124D5B4.pygtex) (./_minted-context/83F440C0A001E17472DA4269DA00AC71.pygtex [99] [100] [101]) (./_minted-context/23DB0B734E976C450D9D2D602CF851AD.pygtex) (./_minted-context/2050596A3AD394D524188A1958A76699.pygtex [102] [103] [104] [105] [106] [107]) (./_minted-context/192B004B85EC282C9E15FC5B6B64AFCC.pygtex [108]) (./_minted-context/AB0C5E556E6431F88B04C09D84C1B86B.pygtex [109] [110]) (./_minted-context/D9B3B4ED7D2D0C8F755551DD9DABDDFB.pygtex) (./_minted-context/AFCFEE042358AD59147727DFD08C88CE.pygtex [111]
+Missing character: There is no ≡ in font [lmmono10-italic]:!
+Missing character: There is no ≡ in font [lmmono10-italic]:!
+Missing character: There is no ≡ in font [lmmono10-italic]:!
+Missing character: There is no ≡ in font [lmmono10-italic]:!
+ [112]) (./_minted-context/972CFF43E946D6A1843693144E3568F4.pygtex [113]) (./_minted-context/0590D44328C3460A788BE031160143C5.pygtex) (./_minted-context/D87F52FD9CAD5A57A7235B3310C80144.pygtex [114]) (./_minted-context/BE3B3C5D6695F68C86AFF8D6A51C8DE7.pygtex) (./_minted-context/AD67336C30617F27255D047BADB93112.pygtex [115] [116]) (./_minted-context/6EB9E8B2DB0317C5F146409A0055AAB2.pygtex [117] [118]) (./_minted-context/89DCDC53A1F9A9CF8ADE4B673DA0FFC7.pygtex [119] [120]) (./_minted-context/A2BC40E3A398BA8CC8D8C173713F1148.pygtex [121]) (./_minted-context/8986DB0D2AB9BFFFBAD63AE706DDE69E.pygtex [122]) (./_minted-context/EE664C4366EF6979C8114C11D012C17F.pygtex [123] [124]) (./_minted-context/F2CAF06787E69FE148C1891588D276CD.pygtex [125]) (./_minted-context/ECC5625C422909174655AE5689062DD2.pygtex [126]) (./_minted-context/2827B88C26F33E3BDDC1A40B7BA68872.pygtex [127] [128] [129]) (./_minted-context/D5876806B0371643E8F3327772569BA0.pygtex [130] [131] [132]) (./_minted-context/5BD99B85DE591CFDC9626210A83D11DC.pygtex [133]) (./_minted-context/E200589B951281986173E0839F0F609E.pygtex [134]) (./_minted-context/B2A0156A883CEDB06A313A7DC733AD0E.pygtex [135]) (./_minted-context/06054904F77E50F681CFA3002957203E.pygtex [136]) (./_minted-context/D42F678476E78BD69EBEA6336F425C9C.pygtex [137] [138]) (./_minted-context/8A57235363EB42D7CF795D7AEA611941.pygtex [139]) (./_minted-context/9C5AC3C058F859D34174AD9A83AFDDF0.pygtex [140]) (./_minted-context/15DF0E40825DF272981B85307CC70C6E.pygtex [141]) (./_minted-context/E73A0CE016D65DF7958D11059785B48D.pygtex) (./_minted-context/10059D54F60BB3954F0981D822901937.pygtex [142]) (./_minted-context/CBC9622F2CDEBD0FDEB47BDA8FF286E4.pygtex [143]) (./_minted-context/EE930DDB6C5E857BA7F3B9359844617C.pygtex [144] [145]) (./_minted-context/C206D615BD6202A18624FFDF97F28229.pygtex [146] [147]) (./_minted-context/E61B041C8CCE92C2831214A9A1C290C8.pygtex [148] [149]
+Overfull \hbox (45.30441pt too wide) in paragraph at lines 133--133
+\TU/lmtt/m/n/10.95 printf([]"%d[][]\TU/lmtt/b/n/10.95 \n[][]\TU/lmtt/m/n/10.95 "[],Hash[query(op[i].l[]-[][]1[],op[i].r,T[op[i].l[]-[][]1[]],T[op[i].r],[]1[],m,op[i].k)]);|  
+ []
+
+[150]) (./_minted-context/6AC0F8DDD892D015F89E7C02D4A29225.pygtex [151]
+Missing character: There is no ≤ in font [lmmono10-italic]:!
+Missing character: There is no ≤ in font [lmmono10-italic]:!
+Missing character: There is no ≤ in font [lmmono10-italic]:!
+Missing character: There is no ≤ in font [lmmono10-italic]:!
+ [152] [153] [154]) (./_minted-context/1158519654B1ECCA81E150965A86D154.pygtex [155]) (./_minted-context/13FFF49F87BD6B60B25477B66EE65B5C.pygtex [156] [157]) (./_minted-context/E6DB8DC30603D153E9DB547CA97F953F.pygtex [158]
+Overfull \hbox (315.4956pt too wide) in paragraph at lines 64--64
+\TU/lmtt/m/n/10.95 (((t3.get(r)[]+[]t1.get(r)[]*[]fb[r][]+[]t2.get(r)[]*[]fb[r[]+[][]1[]][]-[]t3.get(l[]-[][]1[])[]-[]t1.get(l[]-[][]1[])[]*[]fb[l[]-[][]1[]][]-[]t2.get(l[]-[][]1[])[]*[]fb[l][]+[]s[r][]-[]s[l[]-[][]1[]])[]%[]mod[]+[]mod)[]%[]mod));|  
+ []
+
+[159] [160] [161]) (./_minted-context/995BB32228B0913914B58DCB7C202B1B.pygtex [162] [163]) (./_minted-context/9F4C37D79AAFED1396164EAA422443FA.pygtex [164] [165] [166] [167])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 270.
+ [168]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 270.
+ (./context.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 270.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 270.
+Package rerunfilecheck Info: File `context.out' has not changed.
+(rerunfilecheck)             Checksum: AA9084E985CFA706EC1D1800EA680858.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 25770 strings out of 492922
+ 540791 string characters out of 6136752
+ 668937 words of memory out of 5000000
+ 29290 multiletter control sequences out of 15000+600000
+ 536558 words of font info for 63 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 48i,10n,75p,1284b,605s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on context.pdf (168 pages).

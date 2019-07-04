@@ -1,0 +1,62 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{prim 算法是进行加点，使用于稠密图，可以选择用堆或者不用}
+\PYG{c+cm}{不用堆 O（V*V);}
+\PYG{c+cm}{用堆   O(E * log(V));}
+\PYG{c+cm}{https://vjudge.net/problem/HDU\PYGZhy{}1863}
+\PYG{c+cm}{*/}
+
+
+\PYG{k}{typedef} \PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{P}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{LEN} \PYG{o}{=} \PYG{l+m+mf}{2e6}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{Away}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//记录从当前已选结点到j节点的路径的最小值}
+\PYG{k+kt}{bool}  \PYG{n}{vis}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,}\PYG{n}{M}\PYG{p}{;}\PYG{c+c1}{//N 道路数目, M村庄个数}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{P}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}} \PYG{n}{vec}\PYG{p}{(}\PYG{n}{LEN}\PYG{p}{);}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+        \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{M}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{N}\PYG{p}{;}
+
+        \PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,}\PYG{n}{to}\PYG{p}{,}\PYG{n}{weight}\PYG{p}{;}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{N}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{from}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{to}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{weight}\PYG{p}{);}
+            \PYG{n}{vec}\PYG{p}{[}\PYG{n}{from}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{P}\PYG{p}{(}\PYG{n}{weight}\PYG{p}{,}\PYG{n}{to}\PYG{p}{));}
+            \PYG{n}{vec}\PYG{p}{[}\PYG{n}{to}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{P}\PYG{p}{(}\PYG{n}{weight}\PYG{p}{,}\PYG{n}{from}\PYG{p}{));}
+        \PYG{p}{\PYGZcb{}}\PYG{c+c1}{// 添加边}
+        
+        
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{M}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{n}{Away}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}\PYG{c+c1}{//初始化Away数组}
+        \PYG{n}{Away}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{Left} \PYG{o}{=} \PYG{n}{M}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{All\PYGZus{}cost} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{priority\PYGZus{}queue}\PYG{o}{\PYGZlt{}}\PYG{n}{P}\PYG{p}{,}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{P}\PYG{o}{\PYGZgt{}}\PYG{p}{,}\PYG{n}{greater}\PYG{o}{\PYGZlt{}}\PYG{n}{P}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}} \PYG{n}{q}\PYG{p}{;}\PYG{c+c1}{// 小顶堆}
+        \PYG{n}{q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{P}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{));}
+        \PYG{k}{while}\PYG{p}{(}\PYG{o}{!}\PYG{n}{q}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{()}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{Left}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{P} \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{q}\PYG{p}{.}\PYG{n}{top}\PYG{p}{();}\PYG{n}{q}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+            \PYG{k+kt}{int} \PYG{n}{To} \PYG{o}{=} \PYG{n}{tmp}\PYG{p}{.}\PYG{n}{second}\PYG{p}{;}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{To}\PYG{p}{])}
+                \PYG{k}{continue}\PYG{p}{;}
+            \PYG{n}{vis}\PYG{p}{[}\PYG{n}{To}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+            \PYG{n}{Left}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+            \PYG{n}{All\PYGZus{}cost} \PYG{o}{+=} \PYG{n}{tmp}\PYG{p}{.}\PYG{n}{first}\PYG{p}{;}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int}  \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{vec}\PYG{p}{[}\PYG{n}{To}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}\PYG{c+c1}{// 更新Away 数组}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{P} \PYG{o}{\PYGZam{}}\PYG{n}{t} \PYG{o}{=} \PYG{n}{vec}\PYG{p}{[}\PYG{n}{To}\PYG{p}{][}\PYG{n}{i}\PYG{p}{];}
+                \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{t}\PYG{p}{.}\PYG{n}{second}\PYG{p}{]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{Away}\PYG{p}{[}\PYG{n}{t}\PYG{p}{.}\PYG{n}{second}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{t}\PYG{p}{.}\PYG{n}{first}\PYG{p}{)}
+                \PYG{p}{\PYGZob{}} 
+                    \PYG{n}{Away}\PYG{p}{[}\PYG{n}{t}\PYG{p}{.}\PYG{n}{second}\PYG{p}{]} \PYG{o}{=} \PYG{n}{t}\PYG{p}{.}\PYG{n}{first}\PYG{p}{;}
+                    \PYG{n}{q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{t}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        
+            \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{All\PYGZus{}cost}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+      
+   
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

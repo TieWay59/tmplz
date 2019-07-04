@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// 通过中序遍历和后序遍历建立二叉树}
+\PYG{c+c1}{//https://vjudge.net/problem/UVA\PYGZhy{}548}
+
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e5}\PYG{o}{+}\PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{INF} \PYG{o}{=} \PYG{l+m+mf}{1e8}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{in\PYGZus{}order}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{post\PYGZus{}order}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{l}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{r}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n+nf}{read\PYGZus{}order}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{*}\PYG{n}{a}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{string} \PYG{n}{s}\PYG{p}{;}
+    \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{n}{s}\PYG{p}{))} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+    \PYG{n}{stringstream} \PYG{n}{ss}\PYG{p}{(}\PYG{n}{s}\PYG{p}{);}
+    \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{ss} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{v}\PYG{p}{)}
+        \PYG{n}{a}\PYG{p}{[}\PYG{n}{n}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{n} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{build\PYGZus{}tree}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{L1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{R1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{L2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{R2}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{L1} \PYG{o}{\PYGZgt{}} \PYG{n}{R1}\PYG{p}{)}
+        \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{root} \PYG{o}{=} \PYG{n}{post\PYGZus{}order}\PYG{p}{[}\PYG{n}{R2}\PYG{p}{];}
+    \PYG{k+kt}{int} \PYG{n}{p} \PYG{o}{=} \PYG{n}{L1}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{in\PYGZus{}order}\PYG{p}{[}\PYG{n}{p}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{root}\PYG{p}{)}
+        \PYG{n}{p}\PYG{o}{++}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{cnt} \PYG{o}{=} \PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{L1}\PYG{p}{;}
+    \PYG{n}{l}\PYG{p}{[}\PYG{n}{root}\PYG{p}{]} \PYG{o}{=} \PYG{n}{build\PYGZus{}tree}\PYG{p}{(}\PYG{n}{L1}\PYG{p}{,}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{L2}\PYG{p}{,}\PYG{n}{L2}\PYG{o}{+}\PYG{n}{cnt}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{n}{r}\PYG{p}{[}\PYG{n}{root}\PYG{p}{]} \PYG{o}{=} \PYG{n}{build\PYGZus{}tree}\PYG{p}{(}\PYG{n}{p}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{R1}\PYG{p}{,}\PYG{n}{L2}\PYG{o}{+}\PYG{n}{cnt}\PYG{p}{,}\PYG{n}{R2}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{k}{return} \PYG{n}{root}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n}{best}\PYG{p}{,}\PYG{n}{bestsum}\PYG{p}{;}
+\PYG{k+kt}{void} \PYG{n+nf}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{l}\PYG{p}{[}\PYG{n}{a}\PYG{p}{]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{r}\PYG{p}{[}\PYG{n}{a}\PYG{p}{])}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{b} \PYG{o}{+=} \PYG{n}{a}\PYG{p}{;}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{bestsum} \PYG{o}{\PYGZgt{}} \PYG{n}{b}\PYG{o}{||}\PYG{p}{(}\PYG{n}{bestsum} \PYG{o}{==} \PYG{n}{b}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{best} \PYG{o}{\PYGZgt{}} \PYG{n}{a}\PYG{p}{))}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{best} \PYG{o}{=} \PYG{n}{a}\PYG{p}{;}
+            \PYG{n}{bestsum} \PYG{o}{=} \PYG{n}{b}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{l}\PYG{p}{[}\PYG{n}{a}\PYG{p}{])} \PYG{n}{dfs}\PYG{p}{(}\PYG{n}{l}\PYG{p}{[}\PYG{n}{a}\PYG{p}{],}\PYG{n}{b}\PYG{o}{+}\PYG{n}{a}\PYG{p}{);}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{r}\PYG{p}{[}\PYG{n}{a}\PYG{p}{])} \PYG{n}{dfs}\PYG{p}{(}\PYG{n}{r}\PYG{p}{[}\PYG{n}{a}\PYG{p}{],}\PYG{n}{b}\PYG{o}{+}\PYG{n}{a}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{read\PYGZus{}order}\PYG{p}{(}\PYG{n}{in\PYGZus{}order}\PYG{p}{))}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{read\PYGZus{}order}\PYG{p}{(}\PYG{n}{post\PYGZus{}order}\PYG{p}{);}
+        \PYG{n}{build\PYGZus{}tree}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{c+c1}{//        cout\PYGZlt{}\PYGZlt{}0\PYGZlt{}\PYGZlt{}endl;}
+        \PYG{n}{bestsum} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}
+        \PYG{n}{dfs}\PYG{p}{(}\PYG{n}{post\PYGZus{}order}\PYG{p}{[}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{l+m+mi}{0}\PYG{p}{);}
+        \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{best}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

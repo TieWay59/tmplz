@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}define mem(ar,num) memset(ar,num,sizeof(ar))}
+\PYG{c+cp}{\PYGZsh{}define me(ar) memset(ar,0,sizeof(ar))}
+\PYG{c+cp}{\PYGZsh{}define lowbit(x) (x\PYGZam{}(\PYGZhy{}x))}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{LL}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{ULL}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int}    \PYG{n}{prime} \PYG{o}{=} \PYG{l+m+mi}{999983}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int}    \PYG{n}{INF} \PYG{o}{=} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{LL}     \PYG{n}{INFF} \PYG{o}{=}\PYG{l+m+mh}{0x7FFFFFFFFFFFFFFF}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{pi} \PYG{o}{=} \PYG{n}{acos}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{);}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{inf} \PYG{o}{=} \PYG{l+m+mf}{1e18}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{eps} \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}6}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{LL} \PYG{n}{mod} \PYG{o}{=} \PYG{l+m+mi}{20071027} \PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{[}\PYG{l+m+mi}{1100}\PYG{p}{];}
+\PYG{k+kt}{char} \PYG{n}{ch}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{];}
+\PYG{k+kt}{void} \PYG{n+nf}{getFail}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{*}\PYG{n}{f}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{m} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{P}\PYG{p}{);}
+    \PYG{n}{f}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{f}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+        \PYG{n}{f}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{?} \PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{o}{:} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+    \PYG{p}{\PYGZcb{}}
+
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{find}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{T}\PYG{p}{,}\PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{*} \PYG{n}{f}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{T}\PYG{p}{),}\PYG{n}{m} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{P}\PYG{p}{);}
+    \PYG{n}{getFail}\PYG{p}{(}\PYG{n}{P}\PYG{p}{,}\PYG{n}{f}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=}  \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{j}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{T}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{n}{T}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{n}{j}\PYG{o}{++}\PYG{p}{;}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{j} \PYG{o}{==} \PYG{n}{m}\PYG{p}{)} \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{ch}\PYG{p}{;}
+    \PYG{n}{getFail}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{,}\PYG{n}{f}\PYG{p}{);}
+    \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{n}{f}\PYG{p}{[}\PYG{n}{strlen}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]);}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

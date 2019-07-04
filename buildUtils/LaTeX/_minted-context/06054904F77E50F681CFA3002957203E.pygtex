@@ -1,0 +1,84 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{SIGMA\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{26}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{MAXNODE} \PYG{o}{=} \PYG{l+m+mi}{11000}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{MAXS} \PYG{o}{=} \PYG{l+m+mi}{150} \PYG{o}{+} \PYG{l+m+mi}{10}\PYG{p}{;}
+
+
+\PYG{k}{struct} \PYG{n}{AhoCorasickAutomata} \PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{MAXNODE}\PYG{p}{][}\PYG{n}{SIGMA\PYGZus{}SIZE}\PYG{p}{];}
+  \PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{[}\PYG{n}{MAXNODE}\PYG{p}{];}    \PYG{c+c1}{// fail函数}
+  \PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{[}\PYG{n}{MAXNODE}\PYG{p}{];}  \PYG{c+c1}{// 每个字符串的结尾结点都有一个非0的val}
+  \PYG{k+kt}{int} \PYG{n}{last}\PYG{p}{[}\PYG{n}{MAXNODE}\PYG{p}{];} \PYG{c+c1}{// 输出链表的下一个结点}
+  \PYG{k+kt}{int} \PYG{n}{sz}\PYG{p}{;}
+
+  \PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{sz} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{n}{memset}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]));}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{c+c1}{// 字符c的编号}
+  \PYG{k+kt}{int} \PYG{n+nf}{idx}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{c}\PYG{o}{\PYGZhy{}}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{c+c1}{// 插入字符串。v必须非0}
+  \PYG{k+kt}{void} \PYG{n+nf}{insert}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{s}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{s}\PYG{p}{);}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{n}{idx}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+      \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+        \PYG{n}{memset}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{],} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{]));}
+        \PYG{n}{val}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sz}\PYG{o}{++}\PYG{p}{;}
+      \PYG{p}{\PYGZcb{}}
+      \PYG{n}{u} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{val}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{c+c1}{// 递归打印以结点j结尾的所有字符串}
+  \PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{n}{print}\PYG{p}{(}\PYG{n}{last}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{c+c1}{// 在T中找模板}
+  \PYG{k+kt}{int} \PYG{n+nf}{find}\PYG{p}{(}\PYG{k+kt}{char}\PYG{o}{*} \PYG{n}{T}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{T}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// 当前结点编号，初始为根结点}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// 文本串当前指针}
+      \PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{n}{idx}\PYG{p}{(}\PYG{n}{T}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+      \PYG{k}{while}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{j}\PYG{p}{][}\PYG{n}{c}\PYG{p}{])} \PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];} \PYG{c+c1}{// 顺着细边走，直到可以匹配}
+      \PYG{n}{j} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{j}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+      \PYG{k}{if}\PYG{p}{(}\PYG{n}{val}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{n}{print}\PYG{p}{(}\PYG{n}{j}\PYG{p}{);}
+      \PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{last}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{n}{print}\PYG{p}{(}\PYG{n}{last}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);} \PYG{c+c1}{// 找到了！}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{c+c1}{// 计算fail函数}
+  \PYG{k+kt}{void} \PYG{n+nf}{getFail}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{queue}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{q}\PYG{p}{;}
+    \PYG{n}{f}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{c+c1}{// 初始化队列}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{c} \PYG{o}{\PYGZlt{}} \PYG{n}{SIGMA\PYGZus{}SIZE}\PYG{p}{;} \PYG{n}{c}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+      \PYG{k}{if}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n}{f}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);} \PYG{n}{last}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{c+c1}{// 按BFS顺序计算fail}
+    \PYG{k}{while}\PYG{p}{(}\PYG{o}{!}\PYG{n}{q}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())} \PYG{p}{\PYGZob{}}
+      \PYG{k+kt}{int} \PYG{n}{r} \PYG{o}{=} \PYG{n}{q}\PYG{p}{.}\PYG{n}{front}\PYG{p}{();} \PYG{n}{q}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+      \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{c} \PYG{o}{\PYGZlt{}} \PYG{n}{SIGMA\PYGZus{}SIZE}\PYG{p}{;} \PYG{n}{c}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{r}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+        \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{u}\PYG{p}{)} \PYG{k}{continue}\PYG{p}{;}
+        \PYG{n}{q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+        \PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{r}\PYG{p}{];}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{v} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{v}\PYG{p}{][}\PYG{n}{c}\PYG{p}{])} \PYG{n}{v} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{v}\PYG{p}{];}
+        \PYG{n}{f}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{v}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+        \PYG{n}{last}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{val}\PYG{p}{[}\PYG{n}{f}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]]} \PYG{o}{?} \PYG{n}{f}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{:} \PYG{n}{last}\PYG{p}{[}\PYG{n}{f}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]];}
+      \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

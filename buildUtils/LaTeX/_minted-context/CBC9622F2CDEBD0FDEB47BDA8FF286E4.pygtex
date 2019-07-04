@@ -1,0 +1,83 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//......................................................离线树状数组}
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{LEN} \PYG{o}{=} \PYG{l+m+mf}{2e5}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//树状数组}
+\PYG{k+kt}{int} \PYG{n}{ans}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//答案数组}
+\PYG{k+kt}{int} \PYG{n}{ar}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{last}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//last[i]上一个与ar[i]相等的元素的位置}
+\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{ma}\PYG{p}{;}\PYG{c+c1}{//存储每一个数对应的最后的位置}
+\PYG{k}{struct} \PYG{n}{Q}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,}\PYG{n}{r}\PYG{p}{,}\PYG{n}{ID}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{Q} \PYG{n}{q}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{bool} \PYG{k}{operator} \PYG{o}{\PYGZlt{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Q} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{,}\PYG{k}{const} \PYG{n}{Q} \PYG{o}{\PYGZam{}}\PYG{n}{b}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{a}\PYG{p}{.}\PYG{n}{r} \PYG{o}{\PYGZlt{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{r}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n}{modify}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{tree}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{d}\PYG{p}{;}
+        \PYG{n}{x} \PYG{o}{+=} \PYG{n}{lowbit}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n}{Query}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{sum} \PYG{o}{+=} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];}
+        \PYG{n}{x} \PYG{o}{\PYGZhy{}=} \PYG{n}{lowbit}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+
+    \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{n}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{m}\PYG{p}{;}
+
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+        \PYG{n}{last}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ma}\PYG{p}{[}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]];}
+        \PYG{n}{ma}\PYG{p}{[}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{q}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{l}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{q}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{r}\PYG{p}{);}
+        \PYG{n}{q}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{ID} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{sort}\PYG{p}{(}\PYG{n}{q}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{q}\PYG{o}{+}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{index} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{c+cm}{/*树状数组的目的是进行快速求和, 我们可以假设求和的数组是C*/}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{last}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{n}{modify}\PYG{p}{(}\PYG{n}{last}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{c+c1}{//将上一个与这个元素相同的元素的位置+1,代表有一组}
+        \PYG{k+kt}{int} \PYG{n}{p} \PYG{o}{=} \PYG{n}{last}\PYG{p}{[}\PYG{n}{last}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]];}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{p} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{modify}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{);}\PYG{c+cm}{/*如果有三个或者多个该元素,则需要\PYGZhy{}2,把+1抵消,并且把之前 p 和 last[i] 这个组合抵消*/}
+            \PYG{k+kt}{int} \PYG{n}{pp} \PYG{o}{=} \PYG{n}{last}\PYG{p}{[}\PYG{n}{p}\PYG{p}{];}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{pp} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)}\PYG{c+c1}{//消除\PYGZhy{}2的影响}
+                \PYG{n}{modify}\PYG{p}{(}\PYG{n}{pp}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{c+c1}{// 分析后得知C[i]只有三种可能的值,0,\PYGZhy{}1,1,}
+
+
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{index} \PYG{o}{\PYGZlt{}=} \PYG{n}{m}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{q}\PYG{p}{[}\PYG{n}{index}\PYG{p}{].}\PYG{n}{r} \PYG{o}{==} \PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+
+            \PYG{n}{ans}\PYG{p}{[}\PYG{n}{q}\PYG{p}{[}\PYG{n}{index}\PYG{p}{].}\PYG{n}{ID}\PYG{p}{]} \PYG{o}{=}   \PYG{n}{Query}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{Query}\PYG{p}{(}\PYG{n}{q}\PYG{p}{[}\PYG{n}{index}\PYG{p}{].}\PYG{n}{l}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{c+cm}{/*这个时候Query(i)就代表从1到i有多少个恰好两次的不同数,Query(q[index].l\PYGZhy{}1)则不是*/}
+            \PYG{n}{index} \PYG{o}{++}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

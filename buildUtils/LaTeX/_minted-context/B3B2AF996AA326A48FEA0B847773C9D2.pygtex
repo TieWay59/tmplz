@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//https://ac.nowcoder.com/acm/contest/223/C}
+\PYG{c+c1}{//C	区区区间间间}
+\PYG{c+c1}{//\PYGZdl{}\PYGZdl{} v\PYGZus{}\PYGZob{}l,r\PYGZcb{} = max(a\PYGZus{}i\PYGZhy{}a\PYGZus{}j) (l \PYGZlt{}= i,j \PYGZlt{}= r)\PYGZdl{}\PYGZdl{}}
+\PYG{c+c1}{//\PYGZdl{}\PYGZdl{} \PYGZbs{}sum\PYGZus{}\PYGZob{}i\PYGZcb{}\PYGZca{}\PYGZob{}n\PYGZcb{} \PYGZbs{}sum\PYGZus{}\PYGZob{}j+1\PYGZcb{}\PYGZca{}\PYGZob{}n\PYGZcb{} v\PYGZus{}\PYGZob{}i,j\PYGZcb{}\PYGZdl{}\PYGZdl{}}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e5}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{s}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}\PYG{c+c1}{// 单调栈}
+\PYG{c+c1}{// 第一遍求在这个区间里面最大}
+\PYG{k+kt}{int} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{,}\PYG{n}{n}\PYG{p}{;}
+    \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+        \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{);}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k+kt}{int} \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]])} \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{,}\PYG{n}{t}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+            \PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{];}
+            \PYG{n}{s}\PYG{p}{[}\PYG{o}{++}\PYG{n}{t}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+            \PYG{c+c1}{// cout\PYGZlt{}\PYGZlt{}pre[i]\PYGZlt{}\PYGZlt{}\PYGZdq{} \PYGZdq{};}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+            \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{t}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+        \PYG{n}{LL} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{ans} \PYG{o}{+=} \PYG{l+m+mi}{1ll}\PYG{o}{*}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{p}{(}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]])} \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{,}\PYG{n}{t}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+            \PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{];}
+            \PYG{n}{s}\PYG{p}{[}\PYG{o}{++}\PYG{n}{t}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+         \PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+            \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{s}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{t}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{ans} \PYG{o}{\PYGZhy{}=} \PYG{l+m+mi}{1ll}\PYG{o}{*}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{p}{(}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}lld}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

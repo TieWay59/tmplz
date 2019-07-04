@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*在一个二维平面中，有n个灯亮着并告诉你坐标，}
+\PYG{c+cm}{每回合需要找到一个矩形，这个矩形xy坐标最大的那个角落的点必须是亮着的灯，}
+\PYG{c+cm}{然后我们把四个角落的灯状态反转，不能操作为败}
+\PYG{c+cm}{*/}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}map\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}stack\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}queue\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{k}{typedef} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{ll}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e6} \PYG{o}{+} \PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{seed} \PYG{o}{=} \PYG{l+m+mi}{131}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{ll} \PYG{n}{MOD} \PYG{o}{=} \PYG{l+m+mf}{1e9} \PYG{o}{+} \PYG{l+m+mi}{7}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{INF} \PYG{o}{=} \PYG{l+m+mh}{0x3f3f3f3f}\PYG{p}{;}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{][}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{};}
+\PYG{k+kt}{int} \PYG{n+nf}{Nim\PYGZus{}Mul\PYGZus{}Power}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{n}{m}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{];}
+    \PYG{k+kt}{int} \PYG{n}{a} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(;} \PYG{p}{;} \PYG{n}{a}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZgt{}=} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{a}\PYG{p}{))} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{x} \PYG{o}{\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{))))}
+            \PYG{k}{break}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{m} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{a}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{p} \PYG{o}{=} \PYG{n}{x} \PYG{o}{/} \PYG{n}{m}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{n}{y} \PYG{o}{/} \PYG{n}{m}\PYG{p}{,} \PYG{n}{t} \PYG{o}{=} \PYG{n}{y} \PYG{o}{\PYGZpc{}} \PYG{n}{m}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{d1} \PYG{o}{=} \PYG{n}{Nim\PYGZus{}Mul\PYGZus{}Power}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{s}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{d2} \PYG{o}{=} \PYG{n}{Nim\PYGZus{}Mul\PYGZus{}Power}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{t}\PYG{p}{);}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{m} \PYG{o}{*} \PYG{p}{(}\PYG{n}{d1} \PYG{o}{\PYGZca{}} \PYG{n}{d2}\PYG{p}{))} \PYG{o}{\PYGZca{}} \PYG{n}{Nim\PYGZus{}Mul\PYGZus{}Power}\PYG{p}{(}\PYG{n}{m} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{d1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}} \PYG{n}{y}\PYG{p}{)} \PYG{k}{return} \PYG{n}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{x}\PYG{p}{);}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{n}{m}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{];}
+    \PYG{k+kt}{int} \PYG{n}{a} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(;} \PYG{p}{;} \PYG{n}{a}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZgt{}=} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{a}\PYG{p}{))} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{x} \PYG{o}{\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{n}{a} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{))))}
+            \PYG{k}{break}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{m} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{a}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{p} \PYG{o}{=} \PYG{n}{x} \PYG{o}{/} \PYG{n}{m}\PYG{p}{,} \PYG{n}{q} \PYG{o}{=} \PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n}{m}\PYG{p}{,} \PYG{n}{s} \PYG{o}{=} \PYG{n}{y} \PYG{o}{/} \PYG{n}{m}\PYG{p}{,} \PYG{n}{t} \PYG{o}{=} \PYG{n}{y} \PYG{o}{\PYGZpc{}} \PYG{n}{m}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{c1} \PYG{o}{=} \PYG{n}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{s}\PYG{p}{),} \PYG{n}{c2} \PYG{o}{=} \PYG{n}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{t}\PYG{p}{)} \PYG{o}{\PYGZca{}} \PYG{n}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{s}\PYG{p}{),} \PYG{n}{c3} \PYG{o}{=} \PYG{n}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{n}{q}\PYG{p}{,} \PYG{n}{t}\PYG{p}{);}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{m} \PYG{o}{*} \PYG{p}{(}\PYG{n}{c1} \PYG{o}{\PYGZca{}} \PYG{n}{c2}\PYG{p}{))} \PYG{o}{\PYGZca{}} \PYG{n}{c3} \PYG{o}{\PYGZca{}} \PYG{n}{Nim\PYGZus{}Mul\PYGZus{}Power}\PYG{p}{(}\PYG{n}{m} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{c1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}
+    \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{T}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{ans}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+        \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{;}
+        \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{);}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZpc{}d\PYGZdq{}}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{y}\PYG{p}{);}
+            \PYG{n}{ans} \PYG{o}{\PYGZca{}=} \PYG{n}{Nim\PYGZus{}Mul}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{)}
+            \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Have a try, lxhgww.}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+        \PYG{k}{else}
+            \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Don\PYGZsq{}t waste your time.}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

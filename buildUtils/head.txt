@@ -1,0 +1,17 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[a4paper,left=18mm,right=18mm,top=15mm,bottom=15mm]{geometry} 
+\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
+\usepackage{minted}    % 代码高亮
+\usepackage[colorlinks]{hyperref}  % 目录可跳转
+\setlength{\headheight}{15pt}
+
+\author{TieWay59}   
+\title{Algorithm Codelet}
+\date{\today} 
+\begin{document} 
+\maketitle % 封面
+\newpage % 换页
+\tableofcontents % 目录
+\newpage
+
+%%%%%%正文开始%%%%%%

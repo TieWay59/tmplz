@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Args:}
+\PYG{c+cm}{ *   s[]: string}
+\PYG{c+cm}{ * Return:}
+\PYG{c+cm}{ *   fail[]: failure function}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n}{fail}\PYG{p}{[}\PYG{n}{N}\PYG{p}{];}
+\PYG{k+kt}{void} \PYG{n+nf}{getfail}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{s}\PYG{p}{[])}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{fail}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k+kt}{int} \PYG{n}{p} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];} \PYG{n}{i} \PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{p}\PYG{o}{!=\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{!=}\PYG{n}{s}\PYG{p}{[}\PYG{n}{p}\PYG{p}{])}  \PYG{n}{p} \PYG{o}{=} \PYG{n}{fail}\PYG{p}{[}\PYG{n}{p}\PYG{p}{];}
+    \PYG{n}{fail}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{o}{++}\PYG{n}{p}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

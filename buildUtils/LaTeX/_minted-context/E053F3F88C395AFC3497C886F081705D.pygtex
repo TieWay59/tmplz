@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}\PYGZsh{}\PYGZsh{}\PYGZsh{} 欧拉函数打表}
+\PYG{n}{O}\PYG{p}{(}\PYG{n}{nlog}\PYG{p}{(}\PYG{n}{n}\PYG{p}{))} 
+\PYG{err}{```}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e6}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{init2}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+    	\PYG{k}{if}\PYG{p}{(}\PYG{n}{i} \PYG{o}{==} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])\PYGZob{}}
+    	   \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{i}\PYG{p}{)} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{/}\PYG{n}{i}\PYG{o}{*}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+    	\PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{err}{```}
+ \PYG{err}{线性筛} \PYG{n}{O}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
+\PYG{err}{```}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e6}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k+kt}{bool} \PYG{n}{check}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{MAXN}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{N} \PYG{o}{=} \PYG{n}{maxn}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{n}{memset}\PYG{p}{(}\PYG{n}{check}\PYG{p}{,}\PYG{n+nb}{false}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{check}\PYG{p}{));}
+    \PYG{n}{phi}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{tot} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+    	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{check}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])\PYGZob{}}
+    		\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{tot}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+    		\PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+    	\PYG{p}{\PYGZcb{}}
+    	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{tot}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)\PYGZob{}}
+    		\PYG{k}{if}\PYG{p}{(}\PYG{n}{i}\PYG{o}{*}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{N}\PYG{p}{)} \PYG{k}{break}\PYG{p}{;}
+    		\PYG{n}{check}\PYG{p}{[}\PYG{n}{i}\PYG{o}{*}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+    		\PYG{k}{if}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZpc{}}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+    			\PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{o}{*}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+    			\PYG{k}{break}\PYG{p}{;}
+    		\PYG{p}{\PYGZcb{}}
+    		\PYG{k}{else}\PYG{p}{\PYGZob{}}
+    			\PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{o}{*}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{phi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{p}{(}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+    		\PYG{p}{\PYGZcb{}}
+    	\PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+
+\PYG{p}{\PYGZcb{}}
+\PYG{err}{```}
+\end{Verbatim}

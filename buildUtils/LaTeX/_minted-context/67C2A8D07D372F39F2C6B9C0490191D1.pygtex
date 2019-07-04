@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int} \PYG{n+nf}{getLineCircleIntersection}\PYG{p}{(}\PYG{n}{Point} \PYG{n}{A}\PYG{p}{,} \PYG{n}{Point} \PYG{n}{B}\PYG{p}{,} \PYG{n}{Point} \PYG{n}{C}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{r}\PYG{p}{,} \PYG{k+kt}{double}\PYG{o}{\PYGZam{}} \PYG{n}{t1}\PYG{p}{,} \PYG{k+kt}{double}\PYG{o}{\PYGZam{}} \PYG{n}{t2}\PYG{p}{,}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Point}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZam{}}\PYG{n}{sol}\PYG{p}{)\PYGZob{}}
+  \PYG{c+c1}{// 初始方程：(A.x + t(B.x \PYGZhy{} A.x) \PYGZhy{} C.x)\PYGZca{}2 + (A.y + t(B.y \PYGZhy{} A.y) \PYGZhy{} C.y)\PYGZca{}2 = r\PYGZca{}2}
+  \PYG{c+c1}{// 整理得：(at + b)\PYGZca{}2 + (ct + d)\PYGZca{}2 = r\PYGZca{}2}
+  \PYG{k+kt}{double} \PYG{n}{a} \PYG{o}{=} \PYG{n}{B}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{A}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{b} \PYG{o}{=} \PYG{n}{A}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{C}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{c} \PYG{o}{=} \PYG{n}{B}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{A}\PYG{p}{.}\PYG{n}{y}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{d} \PYG{o}{=} \PYG{n}{A}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{C}\PYG{p}{.}\PYG{n}{y}\PYG{p}{;}
+  \PYG{c+c1}{// 展开得：(a\PYGZca{}2 + c\PYGZca{}2)t\PYGZca{}2 + 2(ab + cd)t + b\PYGZca{}2 + d\PYGZca{}2 \PYGZhy{} r\PYGZca{}2 = 0，即et\PYGZca{}2 + ft + g = 0}
+  \PYG{k+kt}{double} \PYG{n}{e} \PYG{o}{=} \PYG{n}{a} \PYG{o}{*} \PYG{n}{a} \PYG{o}{+} \PYG{n}{c} \PYG{o}{*} \PYG{n}{c}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{f} \PYG{o}{=} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{p}{(}\PYG{n}{a} \PYG{o}{*} \PYG{n}{b} \PYG{o}{+} \PYG{n}{c} \PYG{o}{*} \PYG{n}{d}\PYG{p}{);}
+  \PYG{k+kt}{double} \PYG{n}{g} \PYG{o}{=} \PYG{n}{b} \PYG{o}{*} \PYG{n}{b} \PYG{o}{+} \PYG{n}{d} \PYG{o}{*} \PYG{n}{d} \PYG{o}{\PYGZhy{}} \PYG{n}{r} \PYG{o}{*} \PYG{n}{r}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{delta} \PYG{o}{=} \PYG{n}{f} \PYG{o}{*} \PYG{n}{f} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{4} \PYG{o}{*} \PYG{n}{e} \PYG{o}{*} \PYG{n}{g}\PYG{p}{;} \PYG{c+c1}{// 判别式}
+  \PYG{k}{if}\PYG{p}{(}\PYG{n}{dcmp}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{// 相离}
+  \PYG{k}{if}\PYG{p}{(}\PYG{n}{dcmp}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{// 相切}
+    \PYG{n}{t1} \PYG{o}{=} \PYG{n}{t2} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{f} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{e}\PYG{p}{);}
+    \PYG{n}{sol}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{A}\PYG{o}{+}\PYG{p}{(}\PYG{n}{B}\PYG{o}{\PYGZhy{}}\PYG{n}{A}\PYG{p}{)}\PYG{o}{*}\PYG{n}{t1}\PYG{p}{);}
+    \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{n}{t1} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{f} \PYG{o}{\PYGZhy{}} \PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{))} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{e}\PYG{p}{);}
+  \PYG{n}{t2} \PYG{o}{=} \PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{f} \PYG{o}{+} \PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{))} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{e}\PYG{p}{);}
+   \PYG{n}{sol}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{A}\PYG{o}{+}\PYG{p}{(}\PYG{n}{B}\PYG{o}{\PYGZhy{}}\PYG{n}{A}\PYG{p}{)}\PYG{o}{*}\PYG{n}{t1}\PYG{p}{);}
+   \PYG{n}{sol}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{A}\PYG{o}{+}\PYG{p}{(}\PYG{n}{B}\PYG{o}{\PYGZhy{}}\PYG{n}{A}\PYG{p}{)}\PYG{o}{*}\PYG{n}{t2}\PYG{p}{);}
+  \PYG{k}{return} \PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

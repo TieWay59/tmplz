@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{namespace} \PYG{n}{io} \PYG{p}{\PYGZob{}}
+    \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{L} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{20} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k+kt}{char} \PYG{n}{ibuf}\PYG{p}{[}\PYG{n}{L}\PYG{p}{],} \PYG{o}{*}\PYG{n}{iS}\PYG{p}{,} \PYG{o}{*}\PYG{n}{iT}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{obuf}\PYG{p}{[}\PYG{n}{L}\PYG{p}{],} \PYG{o}{*}\PYG{n}{oS} \PYG{o}{=} \PYG{n}{obuf}\PYG{p}{,} \PYG{o}{*}\PYG{n}{oT} \PYG{o}{=} \PYG{n}{obuf} \PYG{o}{+} \PYG{n}{L} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{qu}\PYG{p}{[}\PYG{l+m+mi}{55}\PYG{p}{];} \PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{,} \PYG{n}{qr}\PYG{p}{;}
+\PYG{c+cp}{\PYGZsh{}ifdef whzzt}
+    \PYG{c+cp}{\PYGZsh{}define gc() getchar()}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{c+cp}{\PYGZsh{}define gc() (iS == iT ? (iT = (iS = ibuf) + fread (ibuf, 1, L, stdin), iS == iT ? EOF : *iS ++) : *iS ++)}
+\PYG{c+cp}{\PYGZsh{}endif}
+    \PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{I}\PYG{o}{\PYGZgt{}}
+    \PYG{k+kr}{inline} \PYG{k+kt}{void} \PYG{n}{gi} \PYG{p}{(}\PYG{n}{I} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{for} \PYG{p}{(}\PYG{n}{f} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{c} \PYG{o}{=} \PYG{n}{gc}\PYG{p}{();} \PYG{n}{c} \PYG{o}{\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{||} \PYG{n}{c} \PYG{o}{\PYGZgt{}} \PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{;} \PYG{n}{c} \PYG{o}{=} \PYG{n}{gc}\PYG{p}{())} \PYG{k}{if} \PYG{p}{(}\PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{)} \PYG{n}{f} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+        \PYG{k}{for} \PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{c} \PYG{o}{\PYGZlt{}=} \PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{c} \PYG{o}{\PYGZgt{}=} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;} \PYG{n}{c} \PYG{o}{=} \PYG{n}{gc}\PYG{p}{())} \PYG{n}{x} \PYG{o}{=} \PYG{n}{x} \PYG{o}{*} \PYG{l+m+mi}{10} \PYG{o}{+} \PYG{p}{(}\PYG{n}{c} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{15}\PYG{p}{);} \PYG{n}{x} \PYG{o}{*=} \PYG{n}{f}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kr}{inline} \PYG{k+kt}{void} \PYG{n}{flush} \PYG{p}{()} \PYG{p}{\PYGZob{}}
+        \PYG{n}{fwrite} \PYG{p}{(}\PYG{n}{obuf}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{oS} \PYG{o}{\PYGZhy{}} \PYG{n}{obuf}\PYG{p}{,} \PYG{n}{stdout}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kr}{inline} \PYG{k+kt}{void} \PYG{n}{putc} \PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{o}{*}\PYG{n}{oS} \PYG{o}{++} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{oS} \PYG{o}{==} \PYG{n}{oT}\PYG{p}{)} \PYG{n}{flush} \PYG{p}{(),} \PYG{n}{oS} \PYG{o}{=} \PYG{n}{obuf}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{I}\PYG{o}{\PYGZgt{}}
+    \PYG{k+kt}{void} \PYG{n}{print} \PYG{p}{(}\PYG{n}{I} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{x}\PYG{p}{)} \PYG{n}{putc} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{);} \PYG{k}{if} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{putc} \PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{),} \PYG{n}{x} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{;}
+        \PYG{k}{while} \PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{n}{qu}\PYG{p}{[}\PYG{o}{++} \PYG{n}{qr}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10} \PYG{o}{+} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{,} \PYG{n}{x} \PYG{o}{/=} \PYG{l+m+mi}{10}\PYG{p}{;}
+        \PYG{k}{while} \PYG{p}{(}\PYG{n}{qr}\PYG{p}{)} \PYG{n}{putc} \PYG{p}{(}\PYG{n}{qu}\PYG{p}{[}\PYG{n}{qr} \PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{]);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{struct} \PYG{n}{io\PYGZus{}ff} \PYG{p}{\PYGZob{}} \PYG{o}{\PYGZti{}}\PYG{n}{io\PYGZus{}ff}\PYG{p}{()} \PYG{p}{\PYGZob{}} \PYG{n}{flush}\PYG{p}{();} \PYG{p}{\PYGZcb{}} \PYG{p}{\PYGZcb{}} \PYG{n}{\PYGZus{}io\PYGZus{}ff\PYGZus{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k}{using} \PYG{n}{io} \PYG{o}{::} \PYG{n}{gi}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{io} \PYG{o}{::} \PYG{n}{putc}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{io} \PYG{o}{::} \PYG{n}{print}\PYG{p}{;}
+\end{Verbatim}

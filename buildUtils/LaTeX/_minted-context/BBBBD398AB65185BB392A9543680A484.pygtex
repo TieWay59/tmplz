@@ -1,0 +1,105 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{typedef} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Point}\PYG{o}{\PYGZgt{}} \PYG{n}{Polygon}\PYG{p}{;}
+\PYG{k+kt}{double} \PYG{n+nf}{PolygonArea}\PYG{p}{(}\PYG{n}{Polygon} \PYG{n}{poly}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{double} \PYG{n}{area} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{poly}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+        \PYG{n}{area} \PYG{o}{+=} \PYG{n}{Cross}\PYG{p}{(}\PYG{n}{poly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{poly}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{poly}\PYG{p}{[(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{n}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{poly}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]);}
+    \PYG{k}{return} \PYG{n}{area}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{struct} \PYG{n}{Edge}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,} \PYG{n}{to}\PYG{p}{;} \PYG{c+c1}{// 起点，终点，左边的面编号}
+    \PYG{k+kt}{double} \PYG{n}{ang}\PYG{p}{;}
+    \PYG{n}{Edge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{,}\PYG{k+kt}{double} \PYG{n}{a}\PYG{p}{)}\PYG{o}{:}\PYG{n}{from}\PYG{p}{(}\PYG{n}{f}\PYG{p}{),}\PYG{n}{to}\PYG{p}{(}\PYG{n}{t}\PYG{p}{),}\PYG{n}{ang}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mi}{10000} \PYG{o}{+} \PYG{l+m+mi}{10}\PYG{p}{;} \PYG{c+c1}{// 最大边数}
+
+\PYG{c+c1}{// 平面直线图（PSGL）实现}
+\PYG{k}{struct} \PYG{n}{PSLG}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{m}\PYG{p}{,} \PYG{n}{face\PYGZus{}cnt}\PYG{p}{;}\PYG{c+c1}{//face\PYGZus{}cnt 面数}
+    \PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{y}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+    \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Edge}\PYG{o}{\PYGZgt{}} \PYG{n}{edges}\PYG{p}{;}\PYG{c+c1}{//储存边}
+    \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}\PYG{c+c1}{//指向边}
+    \PYG{k+kt}{int} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{];}  \PYG{c+c1}{// 每条边是否已经访问过}
+    \PYG{k+kt}{int} \PYG{n}{left}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{];} \PYG{c+c1}{// 左面的编号}
+    \PYG{k+kt}{int} \PYG{n}{prev}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{];} \PYG{c+c1}{// 相同起点的上一条边（即顺时针旋转碰到的下一条边）的编号}
+
+    \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Polygon}\PYG{o}{\PYGZgt{}} \PYG{n}{faces}\PYG{p}{;}\PYG{c+c1}{//faces 储存面}
+    \PYG{k+kt}{double} \PYG{n}{area}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];} \PYG{c+c1}{// 每个polygon的面积}
+
+    \PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+            \PYG{n}{G}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+        \PYG{n}{edges}\PYG{p}{.}\PYG{n}{clear}\PYG{p}{();}
+        \PYG{n}{faces}\PYG{p}{.}\PYG{n}{clear}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{c+c1}{// 有向线段from\PYGZhy{}\PYGZgt{}to的极角}
+    \PYG{k+kt}{double} \PYG{n+nf}{getAngle}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{to}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{atan2}\PYG{p}{(}\PYG{n}{y}\PYG{p}{[}\PYG{n}{to}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{y}\PYG{p}{[}\PYG{n}{from}\PYG{p}{],} \PYG{n}{x}\PYG{p}{[}\PYG{n}{to}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{[}\PYG{n}{from}\PYG{p}{]);}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k+kt}{void} \PYG{n+nf}{AddEdge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{to}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{edges}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Edge}\PYG{p}{)\PYGZob{}} \PYG{n}{from}\PYG{p}{,} \PYG{n}{to}\PYG{p}{,} \PYG{n}{getAngle}\PYG{p}{(}\PYG{n}{from}\PYG{p}{,} \PYG{n}{to}\PYG{p}{)\PYGZcb{});}
+        \PYG{n}{edges}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{((}\PYG{n}{Edge}\PYG{p}{)\PYGZob{}} \PYG{n}{to}\PYG{p}{,} \PYG{n}{from}\PYG{p}{,} \PYG{n}{getAngle}\PYG{p}{(}\PYG{n}{to}\PYG{p}{,} \PYG{n}{from}\PYG{p}{)\PYGZcb{});}
+        \PYG{n}{m} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}
+        \PYG{n}{G}\PYG{p}{[}\PYG{n}{from}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{);}
+        \PYG{n}{G}\PYG{p}{[}\PYG{n}{to}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{c+c1}{// 找出faces并计算面积}
+    \PYG{k+kt}{void} \PYG{n+nf}{Build}\PYG{p}{()}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{u}\PYG{o}{++}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{// 给从u出发的各条边按极角排序}
+            \PYG{k+kt}{int} \PYG{n}{d} \PYG{o}{=} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{d}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+                \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{d}\PYG{p}{;} \PYG{n}{j}\PYG{o}{++}\PYG{p}{)} \PYG{c+c1}{// 这里偷个懒，假设从每个点出发的线段不会太多}
+                    \PYG{k}{if}\PYG{p}{(}\PYG{n}{edges}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]].}\PYG{n}{ang} \PYG{o}{\PYGZgt{}} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]].}\PYG{n}{ang}\PYG{p}{)}
+                        \PYG{n}{swap}\PYG{p}{(}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{],} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]);}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{d}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+                \PYG{n}{prev}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{d}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{];}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{n}{memset}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{));}
+        \PYG{n}{face\PYGZus{}cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{u}\PYG{o}{++}\PYG{p}{)}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k+kt}{int} \PYG{n}{e} \PYG{o}{=} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{];}
+                \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{e}\PYG{p}{])}   \PYG{c+c1}{// 逆时针找圈}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{face\PYGZus{}cnt}\PYG{o}{++}\PYG{p}{;}
+                    \PYG{n}{Polygon} \PYG{n}{poly}\PYG{p}{;}
+                    \PYG{k}{for}\PYG{p}{(;;)}
+                    \PYG{p}{\PYGZob{}}
+                        \PYG{n}{vis}\PYG{p}{[}\PYG{n}{e}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+                        \PYG{n}{left}\PYG{p}{[}\PYG{n}{e}\PYG{p}{]} \PYG{o}{=} \PYG{n}{face\PYGZus{}cnt}\PYG{p}{;}
+                        \PYG{k+kt}{int} \PYG{n}{from} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{e}\PYG{p}{].}\PYG{n}{from}\PYG{p}{;}
+                        \PYG{n}{poly}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{Point}\PYG{p}{(}\PYG{n}{x}\PYG{p}{[}\PYG{n}{from}\PYG{p}{],} \PYG{n}{y}\PYG{p}{[}\PYG{n}{from}\PYG{p}{]));}
+                        \PYG{n}{e} \PYG{o}{=} \PYG{n}{prev}\PYG{p}{[}\PYG{n}{e}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{1}\PYG{p}{];}
+                        \PYG{k}{if}\PYG{p}{(}\PYG{n}{e} \PYG{o}{==} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{])}
+                            \PYG{k}{break}\PYG{p}{;}
+                        \PYG{n}{assert}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{e}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{);}
+                    \PYG{p}{\PYGZcb{}}
+                    \PYG{n}{faces}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{poly}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{faces}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{area}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{PolygonArea}\PYG{p}{(}\PYG{n}{faces}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

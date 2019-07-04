@@ -1,0 +1,41 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * 1 call init()}
+\PYG{c+cm}{ * 2 call add(x) to add every character in order}
+\PYG{c+cm}{ *}
+\PYG{c+cm}{ * Args:}
+\PYG{c+cm}{ * Return:}
+\PYG{c+cm}{ *   an automaton}
+\PYG{c+cm}{ *   link: link path pointer}
+\PYG{c+cm}{ *    len: maximum length}
+\PYG{c+cm}{ */}
+\PYG{k}{struct} \PYG{n}{node}\PYG{p}{\PYGZob{}}
+  \PYG{n}{node}\PYG{o}{*} \PYG{n}{chd}\PYG{p}{[}\PYG{l+m+mi}{26}\PYG{p}{],} \PYG{o}{*}\PYG{n}{link}\PYG{p}{;}
+  \PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{o}{*}\PYG{n}{N}\PYG{p}{],} \PYG{o}{*}\PYG{n}{head}\PYG{p}{,} \PYG{o}{*}\PYG{n}{last}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{top}\PYG{p}{;}
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{memset}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{a}\PYG{p}{));}
+  \PYG{n}{top} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{n}{head} \PYG{o}{=} \PYG{n}{last} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{add}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{node} \PYG{o}{*}\PYG{n}{p} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{o}{++}\PYG{n}{top}\PYG{p}{],} \PYG{o}{*}\PYG{n}{mid}\PYG{p}{;} 
+  \PYG{n}{p}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{len} \PYG{o}{=} \PYG{n}{last}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{len} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{n}{mid} \PYG{o}{=} \PYG{n}{last}\PYG{p}{,} \PYG{n}{last} \PYG{o}{=} \PYG{n}{p}\PYG{p}{;}
+  \PYG{k}{for} \PYG{p}{(;} \PYG{n}{mid} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];} \PYG{n}{mid} \PYG{o}{=} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{link}\PYG{p}{)}  \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{p}\PYG{p}{;}
+  \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{mid}\PYG{p}{)}  \PYG{n}{p}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{link} \PYG{o}{=} \PYG{n}{head}\PYG{p}{;}
+  \PYG{k}{else}\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{len} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{o}{==} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{len}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{n}{p}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{link} \PYG{o}{=} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];}
+    \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+      \PYG{n}{node} \PYG{o}{*}\PYG{n}{q} \PYG{o}{=} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{],} \PYG{o}{*}\PYG{n}{r} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{o}{++}\PYG{n}{top}\PYG{p}{];}
+      \PYG{o}{*}\PYG{n}{r} \PYG{o}{=} \PYG{o}{*}\PYG{n}{q}\PYG{p}{,} \PYG{n}{q}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{link} \PYG{o}{=} \PYG{n}{p}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{link} \PYG{o}{=} \PYG{n}{r}\PYG{p}{;}
+      \PYG{n}{r}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{len} \PYG{o}{=} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{len} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+      \PYG{k}{for} \PYG{p}{(;} \PYG{n}{mid} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{==} \PYG{n}{q}\PYG{p}{;} \PYG{n}{mid} \PYG{o}{=} \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{link}\PYG{p}{)}  \PYG{n}{mid}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{chd}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{r}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,66 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ffs} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{Returns} \PYG{n}{one} \PYG{n}{plus} \PYG{n}{the} \PYG{n}{index} \PYG{n}{of} \PYG{n}{the} \PYG{n}{least} \PYG{n}{significant} \PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{bit} \PYG{n}{of} \PYG{n}{x}\PYG{p}{,} \PYG{n}{or} \PYG{k}{if} \PYG{n}{x} \PYG{n}{is} \PYG{n}{zero}\PYG{p}{,} \PYG{n}{returns} \PYG{n}{zero}\PYG{p}{.}
+\PYG{err}{返回右起第一个‘}\PYG{l+m+mi}{1}\PYG{err}{’的位置。}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}clz} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{Returns} \PYG{n}{the} \PYG{n}{number} \PYG{n}{of} \PYG{n}{leading} \PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{n}{bits} \PYG{n}{in} \PYG{n}{x}\PYG{p}{,} \PYG{n}{starting} \PYG{n}{at} \PYG{n}{the} \PYG{n}{most} \PYG{n}{significant} \PYG{n}{bit} \PYG{n}{position}\PYG{p}{.} \PYG{n}{If} \PYG{n}{x} \PYG{n}{is} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{the} \PYG{n}{result} \PYG{n}{is} \PYG{n}{undefined}\PYG{p}{.}
+\PYG{err}{返回左起第一个‘}\PYG{l+m+mi}{1}\PYG{err}{’之前}\PYG{l+m+mi}{0}\PYG{err}{的个数。}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctz} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{Returns} \PYG{n}{the} \PYG{n}{number} \PYG{n}{of} \PYG{n}{trailing} \PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{n}{bits} \PYG{n}{in} \PYG{n}{x}\PYG{p}{,} \PYG{n}{starting} \PYG{n}{at} \PYG{n}{the} \PYG{n}{least} \PYG{n}{significant} \PYG{n}{bit} \PYG{n}{position}\PYG{p}{.} \PYG{n}{If} \PYG{n}{x} \PYG{n}{is} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{the} \PYG{n}{result} \PYG{n}{is} \PYG{n}{undefined}\PYG{p}{.}
+\PYG{err}{返回右起第一个‘}\PYG{l+m+mi}{1}\PYG{err}{’之后的}\PYG{l+m+mi}{0}\PYG{err}{的个数。}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}popcount} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{Returns} \PYG{n}{the} \PYG{n}{number} \PYG{n}{of} \PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{bits} \PYG{n}{in} \PYG{n}{x}\PYG{p}{.}
+\PYG{err}{返回‘}\PYG{l+m+mi}{1}\PYG{err}{’的个数。}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}parity} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+
+\PYG{n}{Returns} \PYG{n}{the} \PYG{n}{parity} \PYG{n}{of} \PYG{n}{x}\PYG{p}{,} \PYG{n}{i}\PYG{p}{.}\PYG{n}{e}\PYG{p}{.} \PYG{n}{the} \PYG{n}{number} \PYG{n}{of} \PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{bits} \PYG{n}{in} \PYG{n}{x} \PYG{n}{modulo} \PYG{l+m+mf}{2.}
+\PYG{err}{返回‘}\PYG{l+m+mi}{1}\PYG{err}{’的个数的奇偶性。}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ffsl} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ffs}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}clzl} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}clz}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctzl} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctz}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}popcountl} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}popcount}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}parityl} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}parity}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ffsll} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ffs}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}clzll} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}clz}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctzll} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctz}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}popcountll} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}popcount}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{.}
+
+\PYG{err}{—} \PYG{n}{Built}\PYG{o}{\PYGZhy{}}\PYG{n}{in} \PYG{n+nl}{Function}\PYG{p}{:} \PYG{k+kt}{int} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}parityll} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{)}
+
+\PYG{n}{Similar} \PYG{n}{to} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}parity}\PYG{p}{,} \PYG{n}{except} \PYG{n}{the} \PYG{n}{argument} \PYG{n}{type} \PYG{n}{is} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{.}
+\end{Verbatim}

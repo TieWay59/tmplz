@@ -1,0 +1,52 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// pbds zoj2334 合并logn}
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}ext/pb\PYGZus{}ds/priority\PYGZus{}queue.hpp\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{P}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{o}{::}\PYG{n}{priority\PYGZus{}queue}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{Heap}\PYG{p}{;}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e5}\PYG{o}{+}\PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{n}{Heap} \PYG{n}{heap}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];} 
+
+\PYG{k+kt}{int} \PYG{n}{F}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{int} \PYG{n+nf}{Find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{x} \PYG{o}{==} \PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{?}\PYG{n+nl}{x}\PYG{p}{:}\PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,}\PYG{n}{M}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{N}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{;}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{);}
+            \PYG{n}{heap}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+            \PYG{n}{heap}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{push}\PYG{p}{(}\PYG{n}{a}\PYG{p}{);}
+            \PYG{n}{F}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{M}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{M}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{b}\PYG{p}{);}
+            \PYG{k+kt}{int} \PYG{n}{fa} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{a}\PYG{p}{);}
+            \PYG{k+kt}{int} \PYG{n}{fb} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{b}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{fa} \PYG{o}{==} \PYG{n}{fb}\PYG{p}{)\PYGZob{}}
+                \PYG{n}{puts}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZhy{}1\PYGZdq{}}\PYG{p}{);}
+                \PYG{k}{continue}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{c+c1}{// cout\PYGZlt{}\PYGZlt{}fa\PYGZlt{}\PYGZlt{}\PYGZdq{} \PYGZdq{}\PYGZlt{}\PYGZlt{}fb\PYGZlt{}\PYGZlt{}endl;}
+            \PYG{n}{F}\PYG{p}{[}\PYG{n}{fb}\PYG{p}{]} \PYG{o}{=} \PYG{n}{fa}\PYG{p}{;}
+            \PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{;}
+            \PYG{n}{t}  \PYG{o}{=} \PYG{n}{heap}\PYG{p}{[}\PYG{n}{fa}\PYG{p}{].}\PYG{n}{top}\PYG{p}{(),}\PYG{n}{heap}\PYG{p}{[}\PYG{n}{fa}\PYG{p}{].}\PYG{n}{pop}\PYG{p}{(),}\PYG{n}{t}\PYG{o}{/=}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{heap}\PYG{p}{[}\PYG{n}{fa}\PYG{p}{].}\PYG{n}{push}\PYG{p}{(}\PYG{n}{t}\PYG{p}{);}
+            \PYG{n}{t}  \PYG{o}{=} \PYG{n}{heap}\PYG{p}{[}\PYG{n}{fb}\PYG{p}{].}\PYG{n}{top}\PYG{p}{(),}\PYG{n}{heap}\PYG{p}{[}\PYG{n}{fb}\PYG{p}{].}\PYG{n}{pop}\PYG{p}{(),}\PYG{n}{t}\PYG{o}{/=}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{heap}\PYG{p}{[}\PYG{n}{fb}\PYG{p}{].}\PYG{n}{push}\PYG{p}{(}\PYG{n}{t}\PYG{p}{);}
+            \PYG{n}{heap}\PYG{p}{[}\PYG{n}{fa}\PYG{p}{].}\PYG{n}{join}\PYG{p}{(}\PYG{n}{heap}\PYG{p}{[}\PYG{n}{fb}\PYG{p}{]);}
+            \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{heap}\PYG{p}{[}\PYG{n}{fa}\PYG{p}{].}\PYG{n}{top}\PYG{p}{());}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

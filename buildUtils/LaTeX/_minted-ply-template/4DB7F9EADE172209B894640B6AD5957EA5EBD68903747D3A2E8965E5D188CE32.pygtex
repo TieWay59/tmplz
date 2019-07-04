@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/* 中文注释测试 */}
+\PYG{c+cm}{/* }
+\PYG{c+cm}{ * Args:}
+\PYG{c+cm}{ *   g[]: graph, (u, v, w) = (u, g[u][i].first, g[u][i].second) }
+\PYG{c+cm}{ *   st: source vertex}
+\PYG{c+cm}{ * Return: }
+\PYG{c+cm}{ *   dis[]: distance from source vertex to each other vertex}
+\PYG{c+cm}{ */}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,} \PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}} \PYG{n}{g}\PYG{p}{[}\PYG{n}{N}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{N}\PYG{p}{],} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{N}\PYG{p}{];}
+\PYG{k+kt}{void} \PYG{n+nf}{spfa}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{st}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{memset}\PYG{p}{(}\PYG{n}{dis}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{dis}\PYG{p}{));}
+  \PYG{n}{memset}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{));}
+  \PYG{n}{queue}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{q}\PYG{p}{;}
+  \PYG{n}{q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{st}\PYG{p}{);}
+  \PYG{n}{dis}\PYG{p}{[}\PYG{n}{st}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{n}{vis}\PYG{p}{[}\PYG{n}{st}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+  \PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{q}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())} \PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{q}\PYG{p}{.}\PYG{n}{front}\PYG{p}{();}
+    \PYG{n}{q}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+    \PYG{n}{vis}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
+    \PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n+nl}{x} \PYG{p}{:} \PYG{n}{g}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+      \PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{n}{x}\PYG{p}{.}\PYG{n}{first}\PYG{p}{,} \PYG{n}{w} \PYG{o}{=} \PYG{n}{x}\PYG{p}{.}\PYG{n}{second}\PYG{p}{;}
+      \PYG{k}{if} \PYG{p}{(}\PYG{n}{dis}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{||} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{+} \PYG{n}{w} \PYG{o}{\PYGZlt{}} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{v}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+        \PYG{n}{dis}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{=} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{+} \PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{v}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+          \PYG{n}{vis}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+          \PYG{n}{q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+      \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

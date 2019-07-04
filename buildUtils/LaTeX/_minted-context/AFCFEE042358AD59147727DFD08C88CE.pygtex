@@ -1,0 +1,101 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{c+c1}{//typedef long long LL;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{LEN}  \PYG{o}{=} \PYG{l+m+mf}{1e6}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{k+kt}{bool} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{c+c1}{//int prime[LEN];}
+\PYG{k+kt}{int} \PYG{n}{Prime}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{cnt} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{LL}\PYG{p}{;}
+
+\PYG{n}{LL} \PYG{n+nf}{modular\PYGZus{}multi}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{x}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{y}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{mo}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{LL} \PYG{n}{t}\PYG{p}{;}
+	\PYG{n}{x}\PYG{o}{\PYGZpc{}=}\PYG{n}{mo}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{t}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{y}\PYG{p}{;}\PYG{n}{x}\PYG{o}{=}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{mo}\PYG{p}{,}\PYG{n}{y}\PYG{o}{\PYGZgt{}\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{)}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{y}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+			\PYG{n}{t}\PYG{o}{=}\PYG{p}{(}\PYG{n}{t}\PYG{o}{+}\PYG{n}{x}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{mo}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{t}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{LL} \PYG{n+nf}{modular\PYGZus{}exp}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{num}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{t}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{mo}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{LL} \PYG{n}{ret}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{temp}\PYG{o}{=}\PYG{n}{num}\PYG{o}{\PYGZpc{}}\PYG{n}{mo}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(;}\PYG{n}{t}\PYG{p}{;}\PYG{n}{t}\PYG{o}{\PYGZgt{}\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{temp}\PYG{o}{=}\PYG{n}{modular\PYGZus{}multi}\PYG{p}{(}\PYG{n}{temp}\PYG{p}{,}\PYG{n}{temp}\PYG{p}{,}\PYG{n}{mo}\PYG{p}{))}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{t}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+			\PYG{n}{ret}\PYG{o}{=}\PYG{n}{modular\PYGZus{}multi}\PYG{p}{(}\PYG{n}{ret}\PYG{p}{,}\PYG{n}{temp}\PYG{p}{,}\PYG{n}{mo}\PYG{p}{);}
+	\PYG{k}{return} \PYG{n}{ret}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{bool} \PYG{n+nf}{miller\PYGZus{}rabin}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{n}\PYG{o}{==}\PYG{l+m+mi}{2}\PYG{o}{||}\PYG{n}{n}\PYG{o}{==}\PYG{l+m+mi}{7}\PYG{o}{||}\PYG{n}{n}\PYG{o}{==}\PYG{l+m+mi}{61}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{n}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{o}{||}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{t}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{num}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{,}\PYG{l+m+mi}{61}\PYG{p}{\PYGZcb{};}\PYG{c+c1}{//2,7,61对unsigned int内的所有数够用了，最小不能判断的数为4 759 123 141；用2,3,7,61在 10\PYGZca{}16 内唯一不能判断的数是 46 856 248 225 981}
+	\PYG{n}{LL} \PYG{n}{a}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{n}{u}\PYG{o}{=}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{((}\PYG{n}{u}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{n}{t}\PYG{o}{++}\PYG{p}{,}\PYG{n}{u}\PYG{o}{\PYGZgt{}\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{3}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{a}\PYG{o}{=}\PYG{n}{num}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+		\PYG{n}{x}\PYG{o}{=}\PYG{n}{modular\PYGZus{}exp}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{u}\PYG{p}{,}\PYG{n}{n}\PYG{p}{);}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{t}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{y}\PYG{o}{=}\PYG{n}{modular\PYGZus{}multi}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{n}\PYG{p}{);}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{y}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{x}\PYG{o}{!=}\PYG{l+m+mi}{1}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{x}\PYG{o}{!=}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+				\PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+            \PYG{c+c1}{//其中用到定理，如果对模n存在1的非平凡平方根，则n是合数。}
+            \PYG{c+c1}{//如果一个数x满足方程x\PYGZca{}2≡1 (mod n),但x不等于对模n来说1的两个‘平凡’平方根：1或\PYGZhy{}1，则x是对模n来说1的非平凡平方根}
+			\PYG{n}{x}\PYG{o}{=}\PYG{n}{y}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{!=}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{c+c1}{//根据费马小定理,若n是素数，有a\PYGZca{}(n\PYGZhy{}1)≡1(mod n).因此n不可能是素数}
+			\PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{LEN} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Prime}\PYG{p}{[}\PYG{n}{cnt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+            \PYG{k}{for}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{j} \PYG{o}{=} \PYG{p}{(}\PYG{n}{LL}\PYG{p}{)}\PYG{n}{i} \PYG{o}{*}  \PYG{n}{i}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{i}\PYG{p}{)}
+                \PYG{n}{vis}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{bool} \PYG{n+nf}{isPrime}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZlt{}} \PYG{l+m+mf}{1e6}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k}{for}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{cnt}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{Prime}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZpc{}} \PYG{n}{Prime}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+		 \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else}
+	 \PYG{k}{return} \PYG{n}{miller\PYGZus{}rabin}\PYG{p}{(}\PYG{n}{n}\PYG{p}{);}
+ \PYG{p}{\PYGZcb{}} 
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{init}\PYG{p}{();}
+
+	\PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}
+	\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+	   \PYG{n}{LL} \PYG{n}{n}\PYG{p}{;}
+	   \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{n}\PYG{p}{;}
+	   \PYG{k}{if}\PYG{p}{(}\PYG{n}{isPrime}\PYG{p}{(}\PYG{n}{n}\PYG{p}{))}
+	      \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{}Yes\PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+	   \PYG{k}{else}
+	      \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{}No\PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}} 
+\end{Verbatim}

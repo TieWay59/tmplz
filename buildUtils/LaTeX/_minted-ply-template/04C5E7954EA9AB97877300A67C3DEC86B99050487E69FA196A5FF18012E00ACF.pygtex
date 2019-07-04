@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/* }
+\PYG{c+cm}{ * Args:}
+\PYG{c+cm}{ *   edge: edges of graph, (u, v, w) = (edge[i].second.first, edge[i].second.first, edge[i].first)}
+\PYG{c+cm}{ *   n: number of node, from 1 to n}
+\PYG{c+cm}{ * Return:}
+\PYG{c+cm}{ *   minimum spanning tree}
+\PYG{c+cm}{ */}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,} \PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,} \PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}} \PYG{n}{edge}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{N}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n+nf}{find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{return} \PYG{n}{u} \PYG{o}{==} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{?} \PYG{n+nl}{u} \PYG{p}{:} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{find}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{Union}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+  \PYG{n}{pre}\PYG{p}{[}\PYG{n}{find}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{find}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{kruskal}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)} 
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i} \PYG{o}{++}\PYG{p}{)} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+  \PYG{n}{sort}\PYG{p}{(}\PYG{n}{edge}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{edge}\PYG{p}{.}\PYG{n}{end}\PYG{p}{());}
+  \PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n+nl}{x} \PYG{p}{:} \PYG{n}{edge}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{x}\PYG{p}{.}\PYG{n}{second}\PYG{p}{.}\PYG{n}{first}\PYG{p}{,} \PYG{n}{v} \PYG{o}{=} \PYG{n}{x}\PYG{p}{.}\PYG{n}{second}\PYG{p}{.}\PYG{n}{second}\PYG{p}{,} \PYG{n}{w} \PYG{o}{=} \PYG{n}{x}\PYG{p}{.}\PYG{n}{first}\PYG{p}{;}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{find}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)} \PYG{o}{!=} \PYG{n}{find}\PYG{p}{(}\PYG{n}{v}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+      \PYG{n}{Union}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{);}
+      \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{w}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

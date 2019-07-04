@@ -1,0 +1,153 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// dinic}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}//C语言io}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}//以下是c语言常用头文件}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdlib\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}ctime\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cctype\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}//c++IO}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}sstream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}list\PYGZgt{}//c++常用容器}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}map\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}queue\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stack\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}//c++泛型的一些函数}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}functional\PYGZgt{}//用来提供一些模版}
+\PYG{c+cp}{\PYGZsh{}define fo0(i,n) for(int i = 0;i \PYGZlt{} n; ++i)}
+\PYG{c+cp}{\PYGZsh{}define fo1(i,n) for(int i = 1;i \PYGZlt{}= n; ++i)}
+\PYG{c+cp}{\PYGZsh{}define mem(ar,num) memset(ar,num,sizeof(ar))}
+\PYG{c+cp}{\PYGZsh{}define me(ar) memset(ar,0,sizeof(ar))}
+\PYG{c+cp}{\PYGZsh{}define lowbit(x) (x\PYGZam{}(\PYGZhy{}x))}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{LL}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{ULL}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int}    \PYG{n}{prime} \PYG{o}{=} \PYG{l+m+mi}{999983}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int}    \PYG{n}{INF} \PYG{o}{=} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{LL}     \PYG{n}{INFF} \PYG{o}{=}\PYG{l+m+mh}{0x7FFFFFFFFFFFFFFF}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{pi} \PYG{o}{=} \PYG{n}{acos}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{);}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{inf} \PYG{o}{=} \PYG{l+m+mf}{1e18}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{eps} \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}6}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{LL}     \PYG{n}{mod} \PYG{o}{=} \PYG{l+m+mf}{1e9} \PYG{o}{+} \PYG{l+m+mi}{7}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{LEN} \PYG{o}{=} \PYG{l+m+mi}{20000}\PYG{o}{+}\PYG{l+m+mi}{1000}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e8}\PYG{p}{;}
+\PYG{k}{struct} \PYG{n}{Edge}\PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,}\PYG{n}{to}\PYG{p}{,}\PYG{n}{cap}\PYG{p}{,}\PYG{n}{flow}\PYG{p}{;}
+  \PYG{n}{Edge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{w}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{)}\PYG{o}{:} \PYG{n}{from}\PYG{p}{(}\PYG{n}{u}\PYG{p}{),}\PYG{n}{to}\PYG{p}{(}\PYG{n}{v}\PYG{p}{),}\PYG{n}{cap}\PYG{p}{(}\PYG{n}{w}\PYG{p}{),}\PYG{n}{flow}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)\PYGZob{}\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{k}{struct} \PYG{n}{Dinic}\PYG{p}{\PYGZob{}}
+   \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{,}\PYG{n}{s}\PYG{p}{,}\PYG{n}{t}\PYG{p}{;}
+   \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Edge}\PYG{o}{\PYGZgt{}} \PYG{n}{edges}\PYG{p}{;}
+   \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+   \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+   \PYG{k+kt}{int} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+   \PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+   \PYG{k+kt}{int} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//好吧就是点, 代表该点在一次求增广的过程中搜索到了那条边,意思就是从这条边往下肯定搜索不到结果了}
+   \PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+   \PYG{p}{\PYGZob{}}
+       \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n}  \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+       \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{n}{G}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+       \PYG{n}{edges}\PYG{p}{.}\PYG{n}{clear}\PYG{p}{();}
+   \PYG{p}{\PYGZcb{}}
+   \PYG{k+kt}{void} \PYG{n+nf}{Add}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{w}\PYG{p}{)}
+   \PYG{p}{\PYGZob{}}
+       \PYG{n}{edges}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{Edge}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,}\PYG{n}{v}\PYG{p}{,}\PYG{n}{w}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{));}
+       \PYG{n}{edges}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{Edge}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,}\PYG{n}{u}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{));}
+       \PYG{n}{m} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}
+       \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{);}
+       \PYG{n}{G}\PYG{p}{[}\PYG{n}{v}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+   \PYG{p}{\PYGZcb{}}
+   \PYG{k+kt}{bool} \PYG{n+nf}{Bfs}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}\PYG{c+c1}{//分层}
+   \PYG{p}{\PYGZob{}}
+      \PYG{n}{me}\PYG{p}{(}\PYG{n}{d}\PYG{p}{);}
+      \PYG{n}{me}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{);}
+      \PYG{n}{d}\PYG{p}{[}\PYG{n}{s}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+      \PYG{n}{vis}\PYG{p}{[}\PYG{n}{s}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+
+      \PYG{n}{queue}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{Q}\PYG{p}{;}
+      \PYG{n}{Q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{s}\PYG{p}{);}
+      \PYG{k}{while}\PYG{p}{(}\PYG{o}{!}\PYG{n}{Q}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())}
+      \PYG{p}{\PYGZob{}}
+          \PYG{k+kt}{int} \PYG{n}{q} \PYG{o}{=} \PYG{n}{Q}\PYG{p}{.}\PYG{n}{front}\PYG{p}{();}\PYG{n}{Q}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+
+          \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{q}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();}\PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+          \PYG{p}{\PYGZob{}}
+              \PYG{n}{Edge} \PYG{o}{\PYGZam{}}\PYG{n}{tmp} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{q}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]];}
+              \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{cap}\PYG{o}{\PYGZgt{}}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{flow}\PYG{p}{)}
+              \PYG{p}{\PYGZob{}}
+                  \PYG{n}{vis}\PYG{p}{[}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+                  \PYG{n}{d}\PYG{p}{[}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d}\PYG{p}{[}\PYG{n}{q}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+                  \PYG{n}{Q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{to}\PYG{p}{);}
+              \PYG{p}{\PYGZcb{}}
+          \PYG{p}{\PYGZcb{}}
+      \PYG{p}{\PYGZcb{}}
+      \PYG{k}{return} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{t}\PYG{p}{];}
+   \PYG{p}{\PYGZcb{}}
+   \PYG{k+kt}{int} \PYG{n+nf}{Dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{node}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{)}
+   \PYG{p}{\PYGZob{}}
+
+       \PYG{k}{if}\PYG{p}{(}\PYG{n}{node} \PYG{o}{==} \PYG{n}{t}\PYG{o}{||}\PYG{n}{a} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{a}\PYG{p}{;}
+       \PYG{k+kt}{int} \PYG{n}{flow} \PYG{o}{=}  \PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{f}\PYG{p}{;}
+       \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{i} \PYG{o}{=} \PYG{n}{cur}\PYG{p}{[}\PYG{n}{node}\PYG{p}{];}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{node}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();}\PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+       \PYG{p}{\PYGZob{}}
+          \PYG{n}{Edge} \PYG{o}{\PYGZam{}}\PYG{n}{tmp} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{node}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]];}
+          \PYG{k}{if}\PYG{p}{(}\PYG{n}{d}\PYG{p}{[}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]}\PYG{o}{==}\PYG{n}{d}\PYG{p}{[}\PYG{n}{node}\PYG{p}{]}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{p}{(}\PYG{n}{f}\PYG{o}{=}\PYG{n}{Dfs}\PYG{p}{(}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{to}\PYG{p}{,}\PYG{n}{min}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{cap}\PYG{o}{\PYGZhy{}}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{flow}\PYG{p}{)))}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{p}{)}
+          \PYG{p}{\PYGZob{}}
+              \PYG{n}{flow} \PYG{o}{+=} \PYG{n}{f}\PYG{p}{;}
+              \PYG{n}{tmp}\PYG{p}{.}\PYG{n}{flow} \PYG{o}{+=} \PYG{n}{f}\PYG{p}{;}
+              \PYG{n}{edges}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{node}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{1}\PYG{p}{].}\PYG{n}{flow} \PYG{o}{\PYGZhy{}=} \PYG{n}{f}\PYG{p}{;}
+              \PYG{n}{a} \PYG{o}{\PYGZhy{}=} \PYG{n}{f}\PYG{p}{;}
+              \PYG{k}{if}\PYG{p}{(}\PYG{n}{a}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}
+                \PYG{k}{break}\PYG{p}{;}
+          \PYG{p}{\PYGZcb{}}
+       \PYG{p}{\PYGZcb{}}
+       \PYG{k}{return} \PYG{n}{flow}\PYG{p}{;}
+   \PYG{p}{\PYGZcb{}}
+   \PYG{k+kt}{int} \PYG{n+nf}{MaxFlow}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{s}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{)}
+   \PYG{p}{\PYGZob{}}
+       \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{s} \PYG{o}{=} \PYG{n}{s}\PYG{p}{;}
+       \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{t} \PYG{o}{=} \PYG{n}{t}\PYG{p}{;}
+       \PYG{k+kt}{int} \PYG{n}{flow} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+       \PYG{k}{while}\PYG{p}{(}\PYG{n}{Bfs}\PYG{p}{())}
+       \PYG{p}{\PYGZob{}}
+           \PYG{n}{me}\PYG{p}{(}\PYG{n}{cur}\PYG{p}{);}
+           \PYG{n}{flow} \PYG{o}{+=} \PYG{n}{Dfs}\PYG{p}{(}\PYG{n}{s}\PYG{p}{,}\PYG{n}{maxn}\PYG{p}{);}
+       \PYG{p}{\PYGZcb{}}
+       \PYG{k}{return} \PYG{n}{flow}\PYG{p}{;}
+
+   \PYG{p}{\PYGZcb{}}
+
+
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{Dinic} \PYG{n}{dinic}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,}\PYG{n}{M}\PYG{p}{,}\PYG{n}{S}\PYG{p}{,}\PYG{n}{T}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{N}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{M}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{S} \PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{T} \PYG{o}{=} \PYG{n}{N}\PYG{p}{;}
+        \PYG{n}{dinic}\PYG{p}{.}\PYG{n}{init}\PYG{p}{(}\PYG{n}{N}\PYG{p}{);}
+        \PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{n}{v}\PYG{p}{,}\PYG{n}{w}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{M}\PYG{p}{;}\PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{u}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{v}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{w}\PYG{p}{);}
+            \PYG{n}{dinic}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,}\PYG{n}{v}\PYG{p}{,}\PYG{n}{w}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{ans} \PYG{o}{=} \PYG{n}{dinic}\PYG{p}{.}\PYG{n}{MaxFlow}\PYG{p}{(}\PYG{n}{S}\PYG{p}{,}\PYG{n}{T}\PYG{p}{);}
+        \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{);}
+
+    \PYG{p}{\PYGZcb{}}
+
+
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

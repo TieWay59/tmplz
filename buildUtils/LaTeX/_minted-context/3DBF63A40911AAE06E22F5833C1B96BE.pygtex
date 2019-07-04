@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//读取正负整数}
+\PYG{k+kr}{inline} \PYG{k+kt}{int} \PYG{n+nf}{input}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{num} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{flag} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{((}\PYG{n}{c} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{())} \PYG{o}{\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{||} \PYG{n}{c} \PYG{o}{\PYGZgt{}} \PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{)} \PYG{n}{flag} \PYG{o}{=} \PYG{n}{c}\PYG{o}{==}\PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}} \PYG{o}{?} \PYG{l+m+mi}{1}\PYG{o}{:}\PYG{n}{flag}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{c}  \PYG{o}{\PYGZgt{}=} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{c} \PYG{o}{\PYGZlt{}=} \PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{num} \PYG{o}{=} \PYG{n}{num} \PYG{o}{*} \PYG{l+m+mi}{10} \PYG{o}{+} \PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{,}\PYG{n}{c} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{();}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{flag}\PYG{p}{)} \PYG{n}{num} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{num}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{num}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

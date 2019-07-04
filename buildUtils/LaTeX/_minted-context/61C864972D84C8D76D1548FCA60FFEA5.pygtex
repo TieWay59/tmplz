@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{先手必胜当且仅当：}
+\PYG{c+cm}{（1）所有堆的石子数都为 1 且游戏的 SG 值为 0；}
+\PYG{c+cm}{（2）有些堆的石子数大于 1 且游戏的 SG 值不为 0。}
+\PYG{c+cm}{对于任意一个 Anti\PYGZhy{}SG 游戏，如果我们规定当局面中所有的单一游戏的 SG 值为 0 时，游戏结束，则先手必胜当且仅当：}
+\PYG{c+cm}{（1）游戏的 SG 函数不为 0 且游戏中某个单一游戏的 SG 函数大于 1；}
+\PYG{c+cm}{（2）游戏的 SG 函数为 0 且游戏中没有单一游戏的 SG 函数大于 1。}
+\PYG{c+cm}{Every\PYGZhy{}SG 游戏规定，对于还没有结束的单一游戏，游戏者必须}
+\PYG{c+cm}{对该游戏进行一步决策；}
+\PYG{c+cm}{ Every\PYGZhy{}SG 游戏的其他规则与普通 SG 游戏相同}
+\PYG{c+cm}{ 对于 Every\PYGZhy{}SG 游戏先手必胜当且仅当单一游戏中最大的step为奇数。 }
+\PYG{c+cm}{*/}
+\end{Verbatim}

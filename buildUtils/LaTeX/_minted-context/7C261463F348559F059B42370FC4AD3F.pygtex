@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{string} \PYG{n+nf}{add}\PYG{p}{(}\PYG{n}{string} \PYG{n}{a}\PYG{p}{,}\PYG{n}{string} \PYG{n}{b}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{string} \PYG{n}{c}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{len1}\PYG{o}{=}\PYG{n}{a}\PYG{p}{.}\PYG{n}{length}\PYG{p}{();}
+    \PYG{k+kt}{int} \PYG{n}{len2}\PYG{o}{=}\PYG{n}{b}\PYG{p}{.}\PYG{n}{length}\PYG{p}{();}
+    \PYG{k+kt}{int} \PYG{n}{len}\PYG{o}{=}\PYG{n}{max}\PYG{p}{(}\PYG{n}{len1}\PYG{p}{,}\PYG{n}{len2}\PYG{p}{);}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{n}{len1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+        \PYG{n}{a}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{o}{+}\PYG{n}{a}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{n}{len2}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+        \PYG{n}{b}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{o}{+}\PYG{n}{b}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{ok}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{n}{len}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{char} \PYG{n}{temp}\PYG{o}{=}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{+}\PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{o}{+}\PYG{n}{ok}\PYG{p}{;}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{temp}\PYG{o}{\PYGZgt{}}\PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{ok}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+            \PYG{n}{temp}\PYG{o}{\PYGZhy{}=}\PYG{l+m+mi}{10}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else} \PYG{n}{ok}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{c}\PYG{o}{=}\PYG{n}{temp}\PYG{o}{+}\PYG{n}{c}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{ok}\PYG{p}{)} \PYG{n}{c}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{o}{+}\PYG{n}{c}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{c}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

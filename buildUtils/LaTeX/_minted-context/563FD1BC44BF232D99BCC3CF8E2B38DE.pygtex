@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k+kt}{clock\PYGZus{}t} \PYG{n}{start}\PYG{p}{,}\PYG{n}{end}\PYG{p}{;}
+    \PYG{n}{start} \PYG{o}{=} \PYG{n}{clock}\PYG{p}{();}
+    \PYG{n}{end} \PYG{o}{=} \PYG{n}{clock}\PYG{p}{();}
+    \PYG{n}{dur} \PYG{o}{=} \PYG{k+kt}{double}\PYG{p}{(}\PYG{n}{end} \PYG{o}{\PYGZhy{}} \PYG{n}{start}\PYG{p}{);}
+    \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Use Time: \PYGZpc{}f}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,(}\PYG{n}{dur}\PYG{o}{/}\PYG{n}{CLOCKS\PYGZus{}PER\PYGZus{}SEC}\PYG{p}{));}
+\end{Verbatim}
