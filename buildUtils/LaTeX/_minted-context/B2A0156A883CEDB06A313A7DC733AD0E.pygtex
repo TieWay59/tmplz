@@ -27,7 +27,7 @@
 
     \PYG{p}{\PYGZcb{}}
 
-\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{c+c1}{//Allinone}
 \PYG{k+kt}{void} \PYG{n+nf}{find}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{T}\PYG{p}{,}\PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{P}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{*} \PYG{n}{f}\PYG{p}{)}
 \PYG{p}{\PYGZob{}}
     \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{T}\PYG{p}{),}\PYG{n}{m} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{P}\PYG{p}{);}

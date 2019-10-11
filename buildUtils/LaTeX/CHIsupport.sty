@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{CHIsupport}[2019/10/11 CHIsupport Package]
+
+\RequirePackage{fontspec,xunicode}
+\RequirePackage{xeCJK}
+
+% https://github.com/boathit/CTEX/blob/master/texmf/tex/latex/ctex/fontset/ctex-xecjk-adobefonts.def
+% ctex-xecjk-adobefonts.def: Adobe 的 xeCJK 字体设置，为 Adobe 的四套字体
+% vim:ft=tex
+
+\defaultfontfeatures{Path = fonts/sarasa/, Mapping=tex-text}
+
+\setCJKmainfont[
+    BoldFont=sarasa-term-sc-regular.otf,
+    ItalicFont=sarasa-term-sc-regular.otf,
+    SmallCapsFont=sarasa-term-sc-regular.otf
+]{sarasa-term-sc-regular.otf}
+
+\fontspec[
+    BoldFont=sarasa-term-sc-bold.otf,
+    ItalicFont=sarasa-term-sc-italic.otf,
+    SmallCapsFont=sarasa-term-sc-regular.otf
+]{sarasa-term-sc-italic.otf}
+
+\setCJKsansfont{sarasa-term-sc-regular.otf}
+\setCJKmonofont{sarasa-term-sc-regular.otf}
+
+\setCJKfamilyfont{zhsong}{sarasa-term-sc-regular.otfr}
+\setCJKfamilyfont{zhhei}{sarasa-term-sc-regular.otf}
+\setCJKfamilyfont{zhfs}{sarasa-term-sc-regular.otf}
+\setCJKfamilyfont{zhkai}{sarasa-term-sc-regular.otf}
+
+\newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
+\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
+\newcommand*{\fangsong}{\CJKfamily{zhfs}} % 仿宋
+
+\endinput
