@@ -4,6 +4,9 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true,
-    "*.pygtex": "explorerExcludedFiles"
+    "*.pygtex": "explorerExcludedFiles",
+    "!templates": "explorerExcludedFiles",
+    "templates/*": "explorerExcludedFiles",
+    "templates/.": "explorerExcludedFiles"
   }
 }

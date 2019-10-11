@@ -3,5 +3,6 @@
 
 *.pygtex
 
-# templates/*
-# templates/.
+!templates
+templates/*
+templates/.
