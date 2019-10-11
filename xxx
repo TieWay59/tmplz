@@ -2,4 +2,5 @@
 # 屏蔽_minted-context的文件
 *.pygtex
 templates/*
+templates/.
 
