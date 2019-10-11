@@ -6,7 +6,6 @@
     "**/.factorypath": true,
     "*.pygtex": "explorerExcludedFiles",
     "!templates": "explorerExcludedFiles",
-    "templates/*": "explorerExcludedFiles",
-    "templates/.": "explorerExcludedFiles"
+    "templates/*": "explorerExcludedFiles"
   }
 }
