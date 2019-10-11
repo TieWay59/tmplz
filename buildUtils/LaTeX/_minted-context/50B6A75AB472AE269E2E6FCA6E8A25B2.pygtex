@@ -1,0 +1,256 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+m+mi}{1} \PYG{err}{计算日期差}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdlib.h\PYGZgt{}}
+ 
+\PYG{k+kt}{bool} \PYG{n}{isLeapYear}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{year}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{p}{((}\PYG{n}{year}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{4}\PYG{o}{==}\PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{year}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{100}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{||} \PYG{n}{year}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{400}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{// 以公元 1 年 1 月 1 日为基准，计算经过的日期 }
+\PYG{k+kt}{int} \PYG{n}{getDays}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{year}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{month}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{day}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{[]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{28}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{\PYGZcb{};}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{isLeapYear}\PYG{p}{(}\PYG{n}{year}\PYG{p}{))}
+		\PYG{n}{m}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{++}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{result} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{year}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{result} \PYG{o}{+=} \PYG{l+m+mi}{365}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{isLeapYear}\PYG{p}{(}\PYG{n}{i}\PYG{p}{))}
+			\PYG{n}{result} \PYG{o}{++}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{month}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{result} \PYG{o}{+=} \PYG{n}{m}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{result} \PYG{o}{+=} \PYG{n}{day}\PYG{p}{;}
+	
+	\PYG{k}{return} \PYG{n}{result}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n}{dayDis} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{year1}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{month1}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{day1}\PYG{p}{,}
+			\PYG{k+kt}{int} \PYG{n}{year2}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{month2}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{day2}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{n}{abs}\PYG{p}{(}\PYG{n}{getDays}\PYG{p}{(}\PYG{n}{year2}\PYG{p}{,} \PYG{n}{month2}\PYG{p}{,} \PYG{n}{day2}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{getDays}\PYG{p}{(}\PYG{n}{year1}\PYG{p}{,} \PYG{n}{month1}\PYG{p}{,} \PYG{n}{day1}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+	
+\PYG{k+kt}{int} \PYG{n}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{dayDis}\PYG{p}{(}\PYG{l+m+mi}{2012}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2018}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{25}\PYG{p}{));}
+	
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}} 
+\PYG{l+m+mi}{2} \PYG{err}{计算某一天星期几}
+\PYG{k+kt}{int} \PYG{n}{cal1}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{m}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{o}{||}\PYG{n}{m}\PYG{o}{==}\PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n}{m}\PYG{o}{+=}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{n}{y}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{w}\PYG{o}{=}\PYG{p}{(}\PYG{n}{d}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{3}\PYG{o}{*}\PYG{p}{(}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{o}{+}\PYG{n}{y}\PYG{o}{+}\PYG{n}{y}\PYG{o}{/}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{n}{y}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{o}{+}\PYG{n}{y}\PYG{o}{/}\PYG{l+m+mi}{400}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{7}\PYG{p}{;}
+    \PYG{k}{return} \PYG{o}{++}\PYG{n}{w}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n}{cal2}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{m}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{o}{||}\PYG{n}{m}\PYG{o}{==}\PYG{l+m+mi}{2}\PYG{p}{)}
+        \PYG{n}{m}\PYG{o}{+=}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{n}{y}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{c}\PYG{o}{=}\PYG{n}{y}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{n}{ty}\PYG{o}{=}\PYG{n}{y}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{100}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{w}\PYG{o}{=}\PYG{n}{ty}\PYG{o}{+}\PYG{n}{ty}\PYG{o}{/}\PYG{l+m+mi}{4}\PYG{o}{+}\PYG{n}{c}\PYG{o}{/}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{c}\PYG{o}{+}\PYG{l+m+mi}{26}\PYG{o}{*}\PYG{p}{(}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{10}\PYG{o}{+}\PYG{n}{d}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{w}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{7}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{o}{?}\PYG{l+m+mi}{7}\PYG{o}{:}\PYG{p}{(}\PYG{n}{w}\PYG{o}{+}\PYG{l+m+mi}{7}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{7}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{l+m+mi}{3} \PYG{err}{计算从}\PYG{l+m+mi}{2000} \PYG{l+m+mo}{01} \PYG{l+m+mo}{01} \PYG{err}{到}\PYG{l+m+mi}{9999} \PYG{l+m+mi}{12} \PYG{l+m+mi}{31} \PYG{err}{之间任意日期之间日期表示有多少个}\PYG{l+m+mi}{9}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+
+\PYG{k+kt}{int} \PYG{n}{year}\PYG{p}{,}\PYG{n}{month}\PYG{p}{,}\PYG{n}{day}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{a1}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{a2}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{;}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{1e4}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{c}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];} \PYG{c+c1}{// 代表当前年所有的9}
+\PYG{c+c1}{// int mon[30] = \PYGZob{}0,2,2,2,\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{run}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{y}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{400} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{o}{||}\PYG{p}{(}\PYG{n}{y}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{4}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{y}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{100}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{wanyue}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{t} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{2}\PYG{o}{+}\PYG{n}{run}\PYG{p}{(}\PYG{n}{y}\PYG{p}{);}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{t} \PYG{o}{==} \PYG{l+m+mi}{9}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{3}\PYG{o}{+}\PYG{l+m+mi}{30}\PYG{p}{;}
+    \PYG{k}{return} \PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{wanyear}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{num} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{tt} \PYG{o}{=} \PYG{n}{t}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{tt} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{tt} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10} \PYG{o}{==} \PYG{l+m+mi}{9}\PYG{p}{)} \PYG{n}{num}\PYG{o}{++}\PYG{p}{;}
+        \PYG{n}{tt} \PYG{o}{/=} \PYG{l+m+mi}{10}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{a}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]} \PYG{o}{=} \PYG{n}{num}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{run}\PYG{p}{(}\PYG{n}{t}\PYG{p}{);}
+    \PYG{k}{return} \PYG{n}{num}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{365}\PYG{o}{+}\PYG{n}{tmp}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{65}\PYG{o}{+}\PYG{n}{tmp}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n}{mo}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{28}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{\PYGZcb{};}
+\PYG{k+kt}{int} \PYG{n+nf}{Howmuchday}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{t}\PYG{o}{==}\PYG{l+m+mi}{2}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{run}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)}\PYG{o}{+}\PYG{l+m+mi}{28}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{mo}\PYG{p}{[}\PYG{n}{t}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{subday}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{a}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{b}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{10} \PYG{o}{==} \PYG{l+m+mi}{9}\PYG{p}{)}
+            \PYG{n}{sum}\PYG{o}{++}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{numsubday}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{b}\PYG{o}{\PYGZhy{}}\PYG{n}{a}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{numsubday}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{c1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{c2}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{num} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{b1} \PYG{o}{==} \PYG{n}{b2}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{numsubday}\PYG{p}{(}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{);}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{b1}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{b2}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{n}{num} \PYG{o}{+=} \PYG{n}{mo}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{+}\PYG{p}{(}\PYG{n}{i}\PYG{o}{==}\PYG{l+m+mi}{2}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{run}\PYG{p}{(}\PYG{n}{y}\PYG{p}{));}
+    \PYG{n}{num} \PYG{o}{+=} \PYG{n}{numsubday}\PYG{p}{(}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{Howmuchday}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{));}
+    \PYG{n}{num} \PYG{o}{+=} \PYG{n}{numsubday}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{);}
+    \PYG{k}{return} \PYG{n}{num}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{FF}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{num} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{tt} \PYG{o}{=} \PYG{n}{t}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{tt} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{tt} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10} \PYG{o}{==} \PYG{l+m+mi}{9}\PYG{p}{)} \PYG{n}{num}\PYG{o}{++}\PYG{p}{;}
+        \PYG{n}{tt} \PYG{o}{/=} \PYG{l+m+mi}{10}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{num}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{submonth}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{c1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{c2}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{b1} \PYG{o}{==} \PYG{n}{b2}\PYG{p}{)}
+         \PYG{k}{return} \PYG{n}{subday}\PYG{p}{(}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{)}\PYG{o}{+}\PYG{p}{(}\PYG{n}{c2}\PYG{o}{\PYGZhy{}}\PYG{n}{c1}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{FF}\PYG{p}{(}\PYG{n}{b1}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{b1}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{b2}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{n}{sum} \PYG{o}{+=} \PYG{n}{wanyue}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+
+    \PYG{n}{sum} \PYG{o}{+=} \PYG{n}{subday}\PYG{p}{(}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{Howmuchday}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{))}\PYG{o}{+}\PYG{n}{FF}\PYG{p}{(}\PYG{n}{b1}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{Howmuchday}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{c1}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{);}
+    \PYG{c+c1}{// cout\PYGZlt{}\PYGZlt{}sum\PYGZlt{}\PYGZlt{}endl;}
+    \PYG{n}{sum} \PYG{o}{+=} \PYG{n}{subday}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{)}\PYG{o}{+}\PYG{n}{FF}\PYG{p}{(}\PYG{n}{b2}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{c2}\PYG{p}{);}
+    \PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{subyear}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{c1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{a2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{c2}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{a1} \PYG{o}{==} \PYG{n}{a2}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{numsubday}\PYG{p}{(}\PYG{n}{a1}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{)}\PYG{o}{*}\PYG{n}{a}\PYG{p}{[}\PYG{n}{a1}\PYG{p}{]} \PYG{o}{+} \PYG{n}{submonth}\PYG{p}{(}\PYG{n}{a1}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{c}\PYG{p}{[}\PYG{n}{a2}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{c}\PYG{p}{[}\PYG{n}{a1}\PYG{p}{];}
+    \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{numsubday}\PYG{p}{(}\PYG{n}{a1}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{c1}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{)}\PYG{o}{*}\PYG{n}{a}\PYG{p}{[}\PYG{n}{a1}\PYG{p}{];}
+    \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{numsubday}\PYG{p}{(}\PYG{n}{a2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{)}\PYG{o}{*}\PYG{n}{a}\PYG{p}{[}\PYG{n}{a2}\PYG{p}{];}
+    \PYG{k}{return} \PYG{n}{ans} \PYG{o}{+} \PYG{n}{submonth}\PYG{p}{(}\PYG{n}{a1}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{c1}\PYG{p}{,}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{)}\PYG{o}{+}\PYG{n}{submonth}\PYG{p}{(}\PYG{n}{a2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)\PYGZob{}}
+
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{2000}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{maxn}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+        \PYG{n}{c}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{wanyear}\PYG{p}{(}\PYG{n}{i}\PYG{p}{);}
+        \PYG{n}{c}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{c}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{];}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}
+    \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+        \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZpc{}d\PYGZpc{}d \PYGZpc{}d\PYGZpc{}d\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{b1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{c1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a2}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{b2}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{c2}\PYG{p}{);}
+        \PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{subyear}\PYG{p}{(}\PYG{n}{a1}\PYG{p}{,}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{c1}\PYG{p}{,}\PYG{n}{a2}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{,}\PYG{n}{c2}\PYG{p}{);}
+        \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{// 同上}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdio.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}string.h\PYGZgt{}}
+
+\PYG{k+kt}{int} \PYG{n}{sum}\PYG{p}{[}\PYG{l+m+mi}{10005}\PYG{p}{][}\PYG{l+m+mi}{15}\PYG{p}{][}\PYG{l+m+mi}{35}\PYG{p}{],}\PYG{n}{pre}\PYG{p}{[}\PYG{l+m+mi}{10005}\PYG{p}{][}\PYG{l+m+mi}{15}\PYG{p}{][}\PYG{l+m+mi}{35}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{mon}\PYG{p}{[}\PYG{l+m+mi}{15}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{28}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{30}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{\PYGZcb{};}
+
+
+\PYG{k+kt}{int} \PYG{n+nf}{leap}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{400} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{100} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{4} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{check}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{num} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{y}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{y} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10} \PYG{o}{==} \PYG{l+m+mi}{9} \PYG{o}{?} \PYG{o}{++}\PYG{n+nl}{num} \PYG{p}{:} \PYG{n}{num} \PYG{o}{+=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{y} \PYG{o}{/=} \PYG{l+m+mi}{10}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{m}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{m} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10} \PYG{o}{==} \PYG{l+m+mi}{9} \PYG{o}{?} \PYG{o}{++}\PYG{n+nl}{num} \PYG{p}{:} \PYG{n}{num} \PYG{o}{+=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{m} \PYG{o}{/=} \PYG{l+m+mi}{10}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{d}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{d} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{10} \PYG{o}{==} \PYG{l+m+mi}{9} \PYG{o}{?} \PYG{o}{++}\PYG{n+nl}{num} \PYG{p}{:} \PYG{n}{num} \PYG{o}{+=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{d} \PYG{o}{/=} \PYG{l+m+mi}{10}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{return} \PYG{n}{num}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{d1}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{y2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m2}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{d2}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{tmp} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{y1} \PYG{o}{!=} \PYG{n}{y2} \PYG{o}{||} \PYG{n}{m1} \PYG{o}{!=} \PYG{n}{m2} \PYG{o}{||} \PYG{n}{d1} \PYG{o}{!=} \PYG{n}{d2}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{mon}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{n}{leap}\PYG{p}{(}\PYG{n}{y1}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{28}\PYG{p}{;}
+
+        \PYG{n}{pre}\PYG{p}{[}\PYG{n}{y1}\PYG{p}{][}\PYG{n}{m1}\PYG{p}{][}\PYG{n}{d1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{tmp}\PYG{p}{;}\PYG{c+c1}{//tmp是到前一个日期显示的9的数量。}
+
+        \PYG{n}{tmp} \PYG{o}{+=} \PYG{n}{check}\PYG{p}{(}\PYG{n}{y1}\PYG{p}{,}\PYG{n}{m1}\PYG{p}{,}\PYG{n}{d1}\PYG{p}{);}
+
+        \PYG{n}{sum}\PYG{p}{[}\PYG{n}{y1}\PYG{p}{][}\PYG{n}{m1}\PYG{p}{][}\PYG{n}{d1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{tmp}\PYG{p}{;}\PYG{c+c1}{//现在的日期显示的9的数量}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{++}\PYG{n}{d1} \PYG{o}{\PYGZgt{}} \PYG{n}{mon}\PYG{p}{[}\PYG{n}{m1}\PYG{p}{])}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{d1} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{++}\PYG{n}{m1} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{12}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{m1} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+                \PYG{n}{mon}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{28} \PYG{o}{+} \PYG{n}{leap}\PYG{p}{(}\PYG{o}{++}\PYG{n}{y1}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{t}\PYG{p}{;}
+
+    \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{t}\PYG{p}{);}
+
+    \PYG{n}{init}\PYG{p}{(}\PYG{l+m+mi}{2000}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{10000}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{);}
+
+    \PYG{k}{while} \PYG{p}{(}\PYG{n}{t}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{int} \PYG{n}{y1}\PYG{p}{,}\PYG{n}{m1}\PYG{p}{,}\PYG{n}{d1}\PYG{p}{,}\PYG{n}{y2}\PYG{p}{,}\PYG{n}{m2}\PYG{p}{,}\PYG{n}{d2}\PYG{p}{;}
+
+        \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZpc{}d\PYGZpc{}d\PYGZpc{}d\PYGZpc{}d\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{y1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{m1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{d1}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{y2}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{m2}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{d2}\PYG{p}{);}
+
+        \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{sum}\PYG{p}{[}\PYG{n}{y2}\PYG{p}{][}\PYG{n}{m2}\PYG{p}{][}\PYG{n}{d2}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{y1}\PYG{p}{][}\PYG{n}{m1}\PYG{p}{][}\PYG{n}{d1}\PYG{p}{]);}\PYG{c+c1}{//结束日期减去开始日期之前的那天，因为开始日期也要算的。}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

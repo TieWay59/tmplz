@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//最长上升子序列 The longest increasing sequence}
+
+\PYG{k}{template}  \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{It}\PYG{o}{\PYGZgt{}}
+\PYG{k+kt}{int} \PYG{n}{n\PYGZus{}lisLength}\PYG{p}{(}\PYG{n}{It} \PYG{n}{begin}\PYG{p}{,}\PYG{n}{It} \PYG{n}{end}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{typedef} \PYG{k}{typename} \PYG{n}{iterator\PYGZus{}traits}\PYG{o}{\PYGZlt{}}\PYG{n}{It}\PYG{o}{\PYGZgt{}::}\PYG{n}{value\PYGZus{}type} \PYG{n}{T}\PYG{p}{;}
+    \PYG{n}{T} \PYG{n}{inf} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{30}\PYG{p}{;}
+    \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T}\PYG{o}{\PYGZgt{}} \PYG{n}{best}\PYG{p}{(}\PYG{n}{end}\PYG{o}{\PYGZhy{}}\PYG{n}{begin}\PYG{p}{,}\PYG{n}{inf}\PYG{p}{);}
+    \PYG{k}{for}\PYG{p}{(}\PYG{n}{It} \PYG{n}{i} \PYG{o}{=} \PYG{n}{begin}\PYG{p}{;} \PYG{n}{i} \PYG{o}{!=} \PYG{n}{end}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{o}{*}\PYG{n}{lower\PYGZus{}bound}\PYG{p}{(}\PYG{n}{best}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),}\PYG{n}{best}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),}\PYG{o}{*}\PYG{n}{i}\PYG{p}{)} \PYG{o}{=} \PYG{o}{*}\PYG{n}{i}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n+nf}{lower\PYGZus{}bound}\PYG{p}{(}\PYG{n}{best}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),}\PYG{n}{best}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),}\PYG{n}{inf}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{best}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{();}
+
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

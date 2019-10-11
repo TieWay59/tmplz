@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{A Puzzle for Pirates HDU \PYGZhy{} 1538}
+\PYG{c+cm}{*/}
+
+\PYG{k+kt}{int}  \PYG{n+nf}{solve}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{q}\PYG{p}{)\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{)\PYGZob{}}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{q} \PYG{o}{==} \PYG{n}{n}\PYG{p}{)\PYGZob{}}
+                  \PYG{k}{return}  \PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{else}\PYG{p}{\PYGZob{}}
+                  \PYG{k}{if}\PYG{p}{(}\PYG{n}{q} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{2}\PYG{o}{==} \PYG{n}{n}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+                  \PYG{k}{else}            \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else}\PYG{p}{\PYGZob{}}
+           \PYG{k}{if}\PYG{p}{(}\PYG{n}{q} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{==} \PYG{n}{q}\PYG{p}{)}
+           \PYG{p}{\PYGZob{}}
+            \PYG{n}{LL}  \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{;}
+            \PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{)}
+                \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{p}{(}\PYG{n}{t}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{t} \PYG{o}{==} \PYG{n}{n}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{k}{else}       \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+           \PYG{p}{\PYGZcb{}}
+           \PYG{k}{else}\PYG{p}{\PYGZob{}}
+            \PYG{n}{LL} \PYG{n}{t}  \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{;}
+            \PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZlt{}} \PYG{n}{q}\PYG{p}{)}
+                \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{p}{(}\PYG{n}{t}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{t}  \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{)}  \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+            \PYG{k}{else}              \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+           \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}
+    \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+        \PYG{n}{LL} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{,}\PYG{n}{q}\PYG{p}{;}
+        \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{n}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{m}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{q}\PYG{p}{;}
+      \PYG{n}{LL} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{solve}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{,}\PYG{n}{q}\PYG{p}{);}
+       
+      \PYG{k}{if}\PYG{p}{(}\PYG{n}{ans} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{puts}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Thrown\PYGZdq{}}\PYG{p}{);}
+      \PYG{k}{else} \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}lld}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    
+
+   \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

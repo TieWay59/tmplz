@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//http://acm.hdu.edu.cn/showproblem.php?pid=1232}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{LEN} \PYG{o}{=} \PYG{l+m+mi}{1000}\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,}\PYG{n}{M}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{ar}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n+nf}{Find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}\PYG{c+c1}{//并查集之find 函数}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{x}\PYG{o}{==}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{?}\PYG{n+nl}{x}\PYG{p}{:}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{=}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{N}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{N}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{M}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{n}{ar}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{M}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{;}
+           \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{b}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)}\PYG{o}{!=}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{b}\PYG{p}{))}\PYG{c+c1}{//如果不在一个集合,合并}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{ar}\PYG{p}{[}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{b}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k+kt}{int} \PYG{n}{Count}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{o}{==} \PYG{n}{i}\PYG{p}{)}
+             \PYG{n}{Count}\PYG{o}{++}\PYG{p}{;}
+        \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{Count}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

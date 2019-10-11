@@ -1,0 +1,60 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{复杂度 E*log(E),适用于稀疏图}
+\PYG{c+cm}{https://vjudge.net/problem/HDU\PYGZhy{}1863}
+\PYG{c+cm}{*/}
+
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k}{struct} \PYG{n}{Edge}\PYG{c+c1}{//边}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,}\PYG{n}{to}\PYG{p}{,}\PYG{n}{cost}\PYG{p}{;}
+    \PYG{k+kt}{bool} \PYG{k}{operator}\PYG{o}{\PYGZlt{}} \PYG{p}{(} \PYG{k}{const} \PYG{n}{Edge} \PYG{o}{\PYGZam{}} \PYG{n}{a}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{cost} \PYG{o}{\PYGZlt{}} \PYG{n}{a}\PYG{p}{.}\PYG{n}{cost}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{Edge} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{F}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n+nf}{Find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}\PYG{c+c1}{//并查集算法}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{x} \PYG{o}{==} \PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{?} \PYG{n+nl}{x}\PYG{p}{:}\PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,}\PYG{n}{M}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{N}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{M}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{N}\PYG{p}{)}\PYG{c+c1}{// N代表的是道路数量，M代表村庄的数量}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{M}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{n}{F}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}}  \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+             \PYG{n}{Edge} \PYG{o}{\PYGZam{}}\PYG{n}{t} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+            \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{t}\PYG{p}{.}\PYG{n}{from}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{t}\PYG{p}{.}\PYG{n}{to}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{t}\PYG{p}{.}\PYG{n}{cost}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{sort}\PYG{p}{(}\PYG{n}{edge}\PYG{p}{,}\PYG{n}{edge}\PYG{o}{+}\PYG{n}{N}\PYG{p}{);}\PYG{c+c1}{// 对边进行排序}
+        \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{num} \PYG{o}{=} \PYG{n}{M}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{N} \PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}\PYG{c+c1}{// 一个个将边加进去}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Edge} \PYG{n}{t} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{t}\PYG{p}{.}\PYG{n}{from}\PYG{p}{)} \PYG{o}{==} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{t}\PYG{p}{.}\PYG{n}{to}\PYG{p}{))}
+                \PYG{k}{continue}\PYG{p}{;}
+            \PYG{n}{F}\PYG{p}{[}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{t}\PYG{p}{.}\PYG{n}{from}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{F}\PYG{p}{[}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{t}\PYG{p}{.}\PYG{n}{to}\PYG{p}{)];}
+            \PYG{n}{sum} \PYG{o}{+=} \PYG{n}{t}\PYG{p}{.}\PYG{n}{cost}\PYG{p}{;}
+            \PYG{n}{num}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{num} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)}
+            \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{sum}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+        \PYG{k}{else}
+            \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{}?\PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

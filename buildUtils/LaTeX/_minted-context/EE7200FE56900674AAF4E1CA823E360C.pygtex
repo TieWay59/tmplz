@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//[POJ\PYGZhy{}2931] }
+\PYG{c+c1}{// 超自然数求解不平等博弈问题}
+\PYG{k+kt}{char} \PYG{n}{ar}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{];}
+\PYG{k+kt}{bool} \PYG{n}{b}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{];}
+\PYG{n}{LL} \PYG{n+nf}{sureal}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)\PYGZob{}}
+  \PYG{n}{LL} \PYG{n}{k}  \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{n}{k} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{52}\PYG{p}{;}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+    \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}s\PYGZdq{}}\PYG{p}{,}\PYG{n}{ar}\PYG{p}{);}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{ar}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}W\PYGZsq{}}\PYG{p}{)}
+      \PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k}{else}
+      \PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{n}{LL} \PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{while}\PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{==} \PYG{n}{b}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{n}{x} \PYG{o}{+=} \PYG{n}{k}\PYG{p}{;}
+    \PYG{k}{else} \PYG{n}{x} \PYG{o}{\PYGZhy{}=} \PYG{n}{k}\PYG{p}{;}
+    \PYG{n}{i}\PYG{o}{++}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{n}{k} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{k}{while}\PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{)\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} 
+      \PYG{n}{x} \PYG{o}{+=} \PYG{n}{k}\PYG{p}{;}
+    \PYG{k}{else}
+      \PYG{n}{x} \PYG{o}{\PYGZhy{}=} \PYG{n}{k}\PYG{p}{;}
+    \PYG{n}{i}\PYG{o}{++}\PYG{p}{;}
+    \PYG{n}{k} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{return} \PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+   \PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}
+   \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+   \PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+     \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+     \PYG{k+kt}{char} \PYG{n}{br}\PYG{p}{[}\PYG{l+m+mi}{100}\PYG{p}{];}
+     \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}s \PYGZpc{}d: \PYGZdq{}}\PYG{p}{,}\PYG{n}{br}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{);}
+     
+     \PYG{n}{LL} \PYG{n}{ans1} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ans2} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+     \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}
+     \PYG{n}{rep}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}   \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+     \PYG{n}{rep}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}   \PYG{n}{ans1} \PYG{o}{+=} \PYG{n}{sureal}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+     \PYG{n}{rep}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}   \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+     \PYG{n}{rep}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}   \PYG{n}{ans2} \PYG{o}{+=} \PYG{n}{sureal}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+     \PYG{c+c1}{// cout\PYGZlt{}\PYGZlt{}ans1\PYGZlt{}\PYGZlt{}\PYGZdq{} \PYGZdq{}\PYGZlt{}\PYGZlt{}ans2\PYGZlt{}\PYGZlt{}endl;}
+     \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}s \PYGZpc{}d: \PYGZdq{}}\PYG{p}{,}\PYG{n}{br}\PYG{p}{,}\PYG{n}{n}\PYG{p}{);}
+     \PYG{k}{if}\PYG{p}{(}\PYG{n}{ans1} \PYG{o}{\PYGZgt{}=} \PYG{n}{ans2}\PYG{p}{)}
+      \PYG{n}{puts}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Yes\PYGZdq{}}\PYG{p}{);}
+     \PYG{k}{else}
+      \PYG{n}{puts}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}No\PYGZdq{}}\PYG{p}{);}
+   \PYG{p}{\PYGZcb{}}
+
+   \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

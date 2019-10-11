@@ -4,7 +4,7 @@
 
 - win10可以（我也只验证了win10）
 
-- python3
+- python 3.7.2
 
 - TexLive 2019
 

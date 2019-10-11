@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//计算凸包，输入点数组p,个数为p，输出点数组为ch。函数返回凸包顶点数}
+\PYG{c+c1}{//输入不能有重复节点}
+\PYG{c+c1}{//如果精度要求搞需要用dcmp判断}
+\PYG{c+c1}{//如果不希望在边上右点，需要将 \PYGZlt{}= 改为 \PYGZlt{} }
+\PYG{k+kt}{int} \PYG{n+nf}{ConvexHull}\PYG{p}{(}\PYG{n}{Point} \PYG{o}{*}\PYG{n}{p}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{n} \PYG{p}{,}\PYG{n}{Point} \PYG{o}{*}\PYG{n}{ch}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{sort}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{p}\PYG{o}{+}\PYG{n}{n}\PYG{p}{);}
+    \PYG{k+kt}{int} \PYG{n}{m} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{m}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{Cross}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{n}{p}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{])}\PYG{o}{\PYGZlt{}=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{m}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+        \PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{p}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{m}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{while}\PYG{p}{(}\PYG{n}{m} \PYG{o}{\PYGZgt{}} \PYG{n}{k}\PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{Cross}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{],}\PYG{n}{p}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{])} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{m}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+        \PYG{n}{ch}\PYG{p}{[}\PYG{n}{m}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{p}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{m}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{m}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

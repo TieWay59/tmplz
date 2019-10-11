@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{LL} \PYG{n+nf}{qpow}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{a}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{b}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{m}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{LL} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{a} \PYG{o}{\PYGZpc{}=} \PYG{n}{m}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{b} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+		   \PYG{n}{ans} \PYG{o}{=} \PYG{n}{ans}\PYG{o}{*}\PYG{n}{a}\PYG{o}{\PYGZpc{}}\PYG{n}{m}\PYG{p}{;}
+		   \PYG{n}{a} \PYG{o}{=} \PYG{n}{a}\PYG{o}{*}\PYG{n}{a}\PYG{o}{\PYGZpc{}}\PYG{n}{m}\PYG{p}{;}
+		   \PYG{n}{b} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{LL} \PYG{n+nf}{C}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{n}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{m}\PYG{p}{,}\PYG{n}{LL} \PYG{n}{p}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{m} \PYG{o}{\PYGZgt{}} \PYG{n}{n}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{LL} \PYG{n}{tmp1} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{tmp2} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{m} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{p}{,}\PYG{n}{m}\PYG{p}{);}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{tmp1} \PYG{o}{=} \PYG{n}{tmp1}\PYG{o}{*}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{o}{+}\PYG{n}{i}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{p}\PYG{p}{;}
+		\PYG{n}{tmp2} \PYG{o}{=} \PYG{n}{tmp2}\PYG{o}{*}\PYG{n}{i}\PYG{o}{\PYGZpc{}}\PYG{n}{p}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{tmp1}\PYG{o}{*}\PYG{n}{qpow}\PYG{p}{(}\PYG{n}{tmp2}\PYG{p}{,}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{p}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{LL} \PYG{n+nf}{lucas}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{n}\PYG{p}{,} \PYG{n}{LL} \PYG{n}{m}\PYG{p}{,} \PYG{n}{LL} \PYG{n}{p}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{m} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+	  \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{lucas}\PYG{p}{(}\PYG{n}{n}\PYG{o}{/}\PYG{n}{p}\PYG{p}{,}\PYG{n}{m}\PYG{o}{/}\PYG{n}{p}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)}\PYG{o}{*}\PYG{n}{C}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZpc{}}\PYG{n}{p}\PYG{p}{,}\PYG{n}{m}\PYG{o}{\PYGZpc{}}\PYG{n}{p}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{p}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

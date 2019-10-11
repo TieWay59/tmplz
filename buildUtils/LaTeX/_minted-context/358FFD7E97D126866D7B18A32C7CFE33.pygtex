@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// 无向图的点联通分量}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn}\PYG{o}{=} \PYG{l+m+mi}{1000}\PYG{o}{+}\PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{iscut}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{bccno}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{dfs\PYGZus{}clock}\PYG{p}{,}\PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{;}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{bcc}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{n}{stack}\PYG{o}{\PYGZlt{}}\PYG{n}{Edge}\PYG{o}{\PYGZgt{}} \PYG{n}{S}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n+nf}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{fa}\PYG{p}{)\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{lowu} \PYG{o}{=} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{o}{++}\PYG{n}{dfs\PYGZus{}clock}\PYG{p}{;}
+  \PYG{k+kt}{int} \PYG{n}{child} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{];}
+    \PYG{n}{Edge} \PYG{n}{e} \PYG{o}{=} \PYG{p}{(}\PYG{n}{Edge}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{n}{u}\PYG{p}{,}\PYG{n}{v}\PYG{p}{\PYGZcb{};}
+    \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{v}\PYG{p}{])\PYGZob{}}
+      \PYG{n}{S}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{e}\PYG{p}{);}
+      \PYG{n}{child}\PYG{o}{++}\PYG{p}{;}
+      \PYG{k+kt}{int} \PYG{n}{lowv} \PYG{o}{=} \PYG{n}{dfs}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,}\PYG{n}{u}\PYG{p}{);}
+      \PYG{n}{lowu} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{lowu}\PYG{p}{,}\PYG{n}{lowv}\PYG{p}{);}
+      \PYG{k}{if}\PYG{p}{(}\PYG{n}{lowv} \PYG{o}{\PYGZgt{}=} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])\PYGZob{}}
+        \PYG{n}{iscut}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+        \PYG{n}{bcc\PYGZus{}cnt}\PYG{o}{++}\PYG{p}{;}
+        \PYG{n}{bcc}\PYG{p}{[}\PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+        \PYG{k}{for}\PYG{p}{(;;)\PYGZob{}}
+          \PYG{n}{Edge} \PYG{n}{x} \PYG{o}{=} \PYG{n}{S}\PYG{p}{.}\PYG{n}{top}\PYG{p}{();} \PYG{n}{S}\PYG{p}{.}\PYG{n}{pop}\PYG{p}{();}
+          \PYG{k}{if}\PYG{p}{(}\PYG{n}{bccno}\PYG{p}{[}\PYG{n}{x}\PYG{p}{.}\PYG{n}{u}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{n}{bcc}\PYG{p}{[}\PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{u}\PYG{p}{);} \PYG{n}{bccno}\PYG{p}{[}\PYG{n}{x}\PYG{p}{.}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{;\PYGZcb{}}
+          \PYG{k}{if}\PYG{p}{(}\PYG{n}{bccno}\PYG{p}{[}\PYG{n}{x}\PYG{p}{.}\PYG{n}{v}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{n}{bcc}\PYG{p}{[}\PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{v}\PYG{p}{);} \PYG{n}{bccno}\PYG{p}{[}\PYG{n}{x}\PYG{p}{.}\PYG{n}{v}\PYG{p}{]} \PYG{o}{=} \PYG{n}{bcc\PYGZus{}cnt}\PYG{p}{;\PYGZcb{}}
+          \PYG{k}{if}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{u} \PYG{o}{==} \PYG{n}{u}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{x}\PYG{p}{.}\PYG{n}{v} \PYG{o}{==} \PYG{n}{v}\PYG{p}{)} \PYG{k}{break}\PYG{p}{;}
+
+        \PYG{p}{\PYGZcb{}}
+      \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{v} \PYG{o}{!=} \PYG{n}{fa}\PYG{p}{)\PYGZob{}}
+      \PYG{n}{S}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(}\PYG{n}{e}\PYG{p}{);}\PYG{n}{lowu} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{v}\PYG{p}{],}\PYG{n}{lowu}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+  \PYG{k}{if}\PYG{p}{(}\PYG{n}{fa} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{child} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{iscut}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{return} \PYG{n}{lowu}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{find\PYGZus{}bcc}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)\PYGZob{}}
+  \PYG{n}{memset}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{));}
+  \PYG{n}{memset}\PYG{p}{(}\PYG{n}{iscut}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{iscut}\PYG{p}{));}
+  \PYG{n}{memset}\PYG{p}{(}\PYG{n}{bccno}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{bccno}\PYG{p}{));}
+  \PYG{n}{dfs\PYGZus{}clock} \PYG{o}{=} \PYG{n}{bcc\PYGZus{}cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{n}{dfs}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{//无向图的边\PYGZhy{}双联通分量}
+\PYG{c+c1}{// 第一边dfs求出所有的割边，然后第二边dfs求出所有边—双连通分量（不经过割边）}
+\end{Verbatim}

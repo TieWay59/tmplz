@@ -6,11 +6,27 @@
 
 \usepackage[a4paper,left=18mm,right=18mm,top=15mm,bottom=15mm]{geometry} 
 \usepackage{CHIsupport}  % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
-\usepackage{minted}         
-\usemintedstyle{rainbow_dash}
+\usepackage{minted}   
+\setminted{
+    linenos=true,
+    breaklines=true,
+    encoding=utf8,
+    fontseries=heiti,
+    % autogobble=true,
+    frame=lines
+}      
+%\usemintedstyle{rainbow_dash}
 
 
-\usepackage[colorlinks]{hyperref}       % 目录可跳转
+% 减少飘红报错
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdocolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\AtBeginEnvironment{minted}{\renewcommand{\colorbox}[3][]{#3}}
+\makeatother
+
+
+\usepackage[colorlinks,linkcolor=black,urlcolor=black]{hyperref}       % 目录可跳转
 \setlength{\headheight}{15pt}
 
 \author{TieWay59}   
@@ -26,255 +42,255 @@
 %%%%%%正文开始%%%%%%
 \section{其它}
 \subsection{c++中处理2进制的一些函数.cpp}
-\inputminted[linenos,breaklines,fontseries=heiti]{c++}{"D:/tmplz/templates/其它/c++中处理2进制的一些函数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/c++中处理2进制的一些函数.cpp"}
 \subsection{IO}
 \subsubsection{fread.cpp}
-\inputminted[linenos,breaklines,fontseries=heiti]{c++}{"D:/tmplz/templates/其它/IO/fread.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/IO/fread.cpp"}
 \subsubsection{fread2.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/其它/IO/fread2.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/IO/fread2.cpp"}
 \subsubsection{保留小数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/其它/IO/保留小数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/IO/保留小数.cpp"}
 \subsubsection{读取整数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/其它/IO/读取整数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/IO/读取整数.cpp"}
 \subsection{测量程序的运行时间.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/其它/测量程序的运行时间.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/测量程序的运行时间.cpp"}
 \subsection{转化成二进制.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/其它/转化成二进制.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/其它/转化成二进制.cpp"}
 \section{几何}
 \subsection{2D}
 \subsubsection{8 旋转卡壳.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/8 旋转卡壳.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/8 旋转卡壳.cpp"}
 \subsubsection{PSLG.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/PSLG.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/PSLG.cpp"}
 \subsubsection{二维几何模板.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/二维几何模板.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/二维几何模板.cpp"}
 \subsubsection{二维凸包.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/二维凸包.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/二维凸包.cpp"}
 \subsubsection{判断点是否在多边形内.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/判断点是否在多边形内.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/判断点是否在多边形内.cpp"}
 \subsubsection{圆与多边形相交的面积.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/圆与多边形相交的面积.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/圆与多边形相交的面积.cpp"}
 \subsubsection{求圆与直线的交点.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/2D/求圆与直线的交点.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/2D/求圆与直线的交点.cpp"}
 \subsection{3D}
 \subsubsection{三维几何的基本操作.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/3D/三维几何的基本操作.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/3D/三维几何的基本操作.cpp"}
 \subsubsection{三维几何的模版.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/3D/三维几何的模版.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/3D/三维几何的模版.cpp"}
 \subsubsection{三维凸包.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/3D/三维凸包.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/3D/三维凸包.cpp"}
 \subsubsection{维度转换为三维坐标.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/几何/3D/维度转换为三维坐标.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/几何/3D/维度转换为三维坐标.cpp"}
 \section{动态规划}
 \subsection{1 单调队列.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/动态规划/1 单调队列.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/动态规划/1 单调队列.cpp"}
 \subsection{1 最长上升子序列.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/动态规划/1 最长上升子序列.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/动态规划/1 最长上升子序列.cpp"}
 \subsection{string dp}
 \subsubsection{trie+dp.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/动态规划/string dp/trie+dp.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/动态规划/string dp/trie+dp.cpp"}
 \subsection{zhuangyadp}
 \subsubsection{1 多米诺骨牌覆盖.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/动态规划/zhuangyadp/1 多米诺骨牌覆盖.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/动态规划/zhuangyadp/1 多米诺骨牌覆盖.cpp"}
 \subsection{树上的分治}
 \subsubsection{1 树的重心.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/动态规划/树上的分治/1 树的重心.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/动态规划/树上的分治/1 树的重心.cpp"}
 \section{图论}
 \subsection{DFS}
 \subsubsection{1.无向图的割点和桥.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/DFS/1.无向图的割点和桥.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/DFS/1.无向图的割点和桥.cpp"}
 \subsubsection{2.无向图的双连通分量.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/DFS/2.无向图的双连通分量.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/DFS/2.无向图的双连通分量.cpp"}
 \subsubsection{3有向图的强联通分量.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/DFS/3有向图的强联通分量.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/DFS/3有向图的强联通分量.cpp"}
 \subsubsection{4 2-sat 问题.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/DFS/4 2-sat 问题.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/DFS/4 2-sat 问题.cpp"}
 \subsection{LCA}
 \subsubsection{1 DFS+RMQ.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/LCA/1 DFS+RMQ.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/LCA/1 DFS+RMQ.cpp"}
 \subsubsection{2倍增算法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/LCA/2倍增算法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/LCA/2倍增算法.cpp"}
 \subsection{Maxflow}
 \subsubsection{1 Dinic.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/Maxflow/1 Dinic.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/Maxflow/1 Dinic.cpp"}
 \subsubsection{2 ISAP.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/Maxflow/2 ISAP.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/Maxflow/2 ISAP.cpp"}
 \subsubsection{3 MCMF.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/Maxflow/3 MCMF.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/Maxflow/3 MCMF.cpp"}
 \subsection{二分图}
 \subsubsection{1 匈牙利算法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/二分图/1 匈牙利算法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/二分图/1 匈牙利算法.cpp"}
 \subsubsection{2 KM.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/二分图/2 KM.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/二分图/2 KM.cpp"}
 \subsubsection{3 一般图最大匹配.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/二分图/3 一般图最大匹配.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/二分图/3 一般图最大匹配.cpp"}
 \subsection{最小生成树}
 \subsubsection{1 Krustral 卡鲁斯卡尔算法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最小生成树/1 Krustral 卡鲁斯卡尔算法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最小生成树/1 Krustral 卡鲁斯卡尔算法.cpp"}
 \subsubsection{2 prim 算法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最小生成树/2 prim 算法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最小生成树/2 prim 算法.cpp"}
 \subsubsection{3 最小限制生成树.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最小生成树/3 最小限制生成树.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最小生成树/3 最小限制生成树.cpp"}
 \subsubsection{4 次小生成树.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最小生成树/4 次小生成树.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最小生成树/4 次小生成树.cpp"}
 \subsection{最短路}
 \subsubsection{1 Dijkstra.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最短路/1 Dijkstra.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最短路/1 Dijkstra.cpp"}
 \subsubsection{2 Bellman-ford.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最短路/2 Bellman-ford.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最短路/2 Bellman-ford.cpp"}
 \subsubsection{3 floyed.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最短路/3 floyed.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最短路/3 floyed.cpp"}
 \subsubsection{堆优化的有限队列.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/图论/最短路/堆优化的有限队列.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/图论/最短路/堆优化的有限队列.cpp"}
 \section{数学}
 \subsection{3 FWT模板.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/3 FWT模板.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/3 FWT模板.cpp"}
 \subsection{4 单纯形法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/4 单纯形法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/4 单纯形法.cpp"}
 \subsection{5.线性基.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/5.线性基.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/5.线性基.cpp"}
 \subsection{BM.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/BM.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/BM.cpp"}
 \subsection{Combinatorial mathematics}
 \subsubsection{康托展开.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/Combinatorial mathematics/康托展开.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/Combinatorial mathematics/康托展开.cpp"}
 \subsection{FFT}
 \subsubsection{FFT.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/FFT/FFT.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/FFT/FFT.cpp"}
 \subsubsection{kuangbin.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/FFT/kuangbin.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/FFT/kuangbin.cpp"}
 \subsubsection{lrj.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/FFT/lrj.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/FFT/lrj.cpp"}
 \subsection{Lagrange-poly}
 \subsubsection{template.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/Lagrange-poly/template.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/Lagrange-poly/template.cpp"}
 \subsection{三分.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/三分.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/三分.cpp"}
 \subsection{博弈}
 \subsubsection{2.威佐夫博弈.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/2.威佐夫博弈.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/2.威佐夫博弈.cpp"}
 \subsubsection{3 Nim 积.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/3 Nim 积.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/3 Nim 积.cpp"}
 \subsubsection{4 K倍动态减法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/4 K倍动态减法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/4 K倍动态减法.cpp"}
 \subsubsection{5 海盗分金问题.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/5 海盗分金问题.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/5 海盗分金问题.cpp"}
 \subsubsection{6 Green Hackbush.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/6 Green Hackbush.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/6 Green Hackbush.cpp"}
 \subsubsection{7 反nim 博弈.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/7 反nim 博弈.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/7 反nim 博弈.cpp"}
 \subsubsection{8 超自然数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/博弈/8 超自然数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/博弈/8 超自然数.cpp"}
 \subsection{数论}
 \subsubsection{1 加法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/1 加法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/1 加法.cpp"}
 \subsubsection{1 逆元.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/1 逆元.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/1 逆元.cpp"}
 \subsubsection{2 减法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/2 减法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/2 减法.cpp"}
 \subsubsection{3 乘法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/3 乘法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/3 乘法.cpp"}
 \subsubsection{4 除法.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/4 除法.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/4 除法.cpp"}
 \subsubsection{5.蒙哥马利快速模.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/5.蒙哥马利快速模.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/5.蒙哥马利快速模.cpp"}
 \subsubsection{Euler.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/Euler.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/Euler.cpp"}
 \subsubsection{lucas ，组合数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/lucas ，组合数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/lucas ，组合数.cpp"}
 \subsubsection{miller-rabin-Pollard-rho.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/miller-rabin-Pollard-rho.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/miller-rabin-Pollard-rho.cpp"}
 \subsubsection{分段求和.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/分段求和.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/分段求和.cpp"}
 \subsubsection{大数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/大数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/大数.cpp"}
 \subsubsection{快速数论变换.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/快速数论变换.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/快速数论变换.cpp"}
 \subsubsection{欧拉函数打表.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/欧拉函数打表.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/欧拉函数打表.cpp"}
 \subsubsection{欧拉筛和埃氏筛.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/欧拉筛和埃氏筛.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/欧拉筛和埃氏筛.cpp"}
 \subsubsection{素性检测.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/素性检测.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/素性检测.cpp"}
 \subsubsection{素数筛.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/素数筛.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/素数筛.cpp"}
 \subsubsection{逆元打表.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/数论/逆元打表.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/数论/逆元打表.cpp"}
 \subsection{矩阵快速幂.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/矩阵快速幂.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/矩阵快速幂.cpp"}
 \subsection{自适应辛普森积分.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数学/自适应辛普森积分.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数学/自适应辛普森积分.cpp"}
 \section{数据结构}
 \subsection{CDQ分治}
 \subsubsection{CDQ分治.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/CDQ分治/CDQ分治.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/CDQ分治/CDQ分治.cpp"}
 \subsubsection{CDQ求动态逆序数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/CDQ分治/CDQ求动态逆序数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/CDQ分治/CDQ求动态逆序数.cpp"}
 \subsubsection{陌上花开CDQ三位偏序.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/CDQ分治/陌上花开CDQ三位偏序.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/CDQ分治/陌上花开CDQ三位偏序.cpp"}
 \subsection{fenkuai}
 \subsubsection{区间修改区间查询.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/fenkuai/区间修改区间查询.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/fenkuai/区间修改区间查询.cpp"}
 \subsubsection{区间数的平方.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/fenkuai/区间数的平方.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/fenkuai/区间数的平方.cpp"}
 \subsubsection{在线查询区间众数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/fenkuai/在线查询区间众数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/fenkuai/在线查询区间众数.cpp"}
 \subsection{pbds}
 \subsubsection{1 可合并优先队列.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/pbds/1 可合并优先队列.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/pbds/1 可合并优先队列.cpp"}
 \subsection{二叉搜索树}
 \subsubsection{1 二叉树.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/二叉搜索树/1 二叉树.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/二叉搜索树/1 二叉树.cpp"}
 \subsubsection{2 treap.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/二叉搜索树/2 treap.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/二叉搜索树/2 treap.cpp"}
 \subsubsection{3 伸展树.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/二叉搜索树/3 伸展树.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/二叉搜索树/3 伸展树.cpp"}
 \subsection{基础数据结构}
 \subsubsection{堆.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/基础数据结构/堆.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/基础数据结构/堆.cpp"}
 \subsection{字符串}
 \subsubsection{1 Trie(前缀树).cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/字符串/1 Trie(前缀树).cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/字符串/1 Trie(前缀树).cpp"}
 \subsubsection{2 KMP.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/字符串/2 KMP.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/字符串/2 KMP.cpp"}
 \subsubsection{3 AC自动机.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/字符串/3 AC自动机.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/字符串/3 AC自动机.cpp"}
 \subsubsection{4 KMP-KMP变形.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/字符串/4 KMP-KMP变形.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/字符串/4 KMP-KMP变形.cpp"}
 \subsubsection{5 字符串hash.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/字符串/5 字符串hash.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/字符串/5 字符串hash.cpp"}
 \subsubsection{6 后缀数组.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/字符串/6 后缀数组.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/字符串/6 后缀数组.cpp"}
 \subsection{并查集}
 \subsubsection{加权并查集+区间合并.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/并查集/加权并查集+区间合并.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/并查集/加权并查集+区间合并.cpp"}
 \subsubsection{并查集.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/并查集/并查集.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/并查集/并查集.cpp"}
 \subsection{树状数组}
 \subsubsection{1 树状数组模板.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/树状数组/1 树状数组模板.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/树状数组/1 树状数组模板.cpp"}
 \subsubsection{2 区间出现两次的数的个数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/树状数组/2 区间出现两次的数的个数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/树状数组/2 区间出现两次的数的个数.cpp"}
 \subsection{线段树}
 \subsubsection{1.区间更新区间查询.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/1.区间更新区间查询.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/1.区间更新区间查询.cpp"}
 \subsubsection{2 主席树求第k大.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/2 主席树求第k大.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/2 主席树求第k大.cpp"}
 \subsubsection{2 树套树求动态第k大.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/2 树套树求动态第k大.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/2 树套树求动态第k大.cpp"}
 \subsubsection{3 树套树求动态逆序数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/3 树套树求动态逆序数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/3 树套树求动态逆序数.cpp"}
 \subsubsection{4 李超树.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/4 李超树.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/4 李超树.cpp"}
 \subsubsection{5 线段树-区间最小乘积.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/5 线段树-区间最小乘积.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/5 线段树-区间最小乘积.cpp"}
 \subsubsection{6 区间加斐波那契数.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/6 区间加斐波那契数.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/6 区间加斐波那契数.cpp"}
 \subsubsection{7 区间加+区间乘.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/数据结构/线段树/7 区间加+区间乘.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/数据结构/线段树/7 区间加+区间乘.cpp"}
 \section{模拟}
 \subsection{1 日期.cpp}
-\inputminted[breaklines]{c++}{"D:/tmplz/templates/模拟/1 日期.cpp"}
+\inputminted{c++}{"D:/tmplz/templates/模拟/1 日期.cpp"}
 
 \end{document}
 

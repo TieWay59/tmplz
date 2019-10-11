@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{typedef} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Point}\PYG{o}{\PYGZgt{}} \PYG{n}{Polygon}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n+nf}{isPointInPolygon}\PYG{p}{(}\PYG{n}{Point} \PYG{n}{p}\PYG{p}{,}\PYG{n}{Polygon} \PYG{n}{poly}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{n}  \PYG{o}{=} \PYG{n}{poly}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}
+    \PYG{k+kt}{int} \PYG{n}{wn} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{Onsegment}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,}\PYG{n}{poly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{n}{poly}\PYG{p}{[(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{n}\PYG{p}{]))} \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{dcmp}\PYG{p}{(}\PYG{n}{Cross}\PYG{p}{(}\PYG{n}{poly}\PYG{p}{[(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{n}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{poly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{n}{poly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]));}
+        \PYG{k+kt}{int} \PYG{n}{d1} \PYG{o}{=} \PYG{n}{dcmp}\PYG{p}{(}\PYG{n}{poly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{y}\PYG{o}{\PYGZhy{}}\PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+        \PYG{k+kt}{int} \PYG{n}{d2} \PYG{o}{=} \PYG{n}{dcmp}\PYG{p}{(}\PYG{n}{poly}\PYG{p}{[(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{n}\PYG{p}{].}\PYG{n}{y}\PYG{o}{\PYGZhy{}}\PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{d1} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{d2} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{wn} \PYG{o}{++}\PYG{p}{;}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{d2} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{0}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{d1} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{wn} \PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{wn} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)}  \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

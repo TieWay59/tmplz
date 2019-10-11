@@ -1,0 +1,59 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxnode} \PYG{o}{=} \PYG{l+m+mf}{4e5}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{sigma\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{26}\PYG{p}{;}
+\PYG{k}{struct} \PYG{n}{Trie}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{maxnode}\PYG{p}{][}\PYG{n}{sigma\PYGZus{}size}\PYG{p}{];}
+    \PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{[}\PYG{n}{maxnode}\PYG{p}{];}
+    \PYG{k+kt}{int} \PYG{n}{sz}\PYG{p}{;}
+    \PYG{n}{Trie}\PYG{p}{()}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{sz} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+        \PYG{n}{memset}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]));}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{idx}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{c}\PYG{o}{\PYGZhy{}}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{void} \PYG{n}{init}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{memset}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{));}
+        \PYG{n}{memset}\PYG{p}{(}\PYG{n}{val}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{val}\PYG{p}{));}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{void} \PYG{n}{insert}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{s}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{s}\PYG{p}{);}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{n}{idx}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{])}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{memset}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{],}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{]));}
+                \PYG{n}{val}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+                \PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sz}\PYG{o}{++}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{u} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{val}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{query}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{s}\PYG{p}{,}\PYG{k+kt}{int}  \PYG{n}{t}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{s}\PYG{p}{);}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=}  \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{n}{idx}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{])}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{if}\PYG{p}{(}\PYG{n}{val}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{]])}
+                    \PYG{n}{sum} \PYG{o}{=} \PYG{p}{(}\PYG{n}{sum}\PYG{o}{+}\PYG{n}{ans}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{n}{t}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{else}
+                \PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+            \PYG{n}{u} \PYG{o}{=} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

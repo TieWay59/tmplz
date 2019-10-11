@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{string} \PYG{n+nf}{div}\PYG{p}{(}\PYG{n}{string} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{string} \PYG{n}{c}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{len}\PYG{o}{=}\PYG{n}{a}\PYG{p}{.}\PYG{n}{length}\PYG{p}{();}
+    \PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{char} \PYG{n}{s}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{ans}\PYG{o}{=}\PYG{n}{ans}\PYG{o}{*}\PYG{l+m+mi}{10}\PYG{o}{+}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+        \PYG{n}{s}\PYG{o}{=}\PYG{n}{ans}\PYG{o}{/}\PYG{n}{b}\PYG{o}{+}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+        \PYG{n}{ans}\PYG{o}{\PYGZpc{}=}\PYG{n}{b}\PYG{p}{;}
+        \PYG{n}{c}\PYG{o}{+=}\PYG{n}{s}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k+kt}{int} \PYG{n}{pos}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{\PYGZlt{}}\PYG{n}{len} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{c}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{]}\PYG{o}{==}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{)} \PYG{n}{pos}\PYG{o}{++}\PYG{p}{;}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{==}\PYG{n}{len}\PYG{p}{)} \PYG{k}{return} \PYG{l+s}{\PYGZdq{}0\PYGZdq{}}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n}{c}\PYG{p}{.}\PYG{n}{substr}\PYG{p}{(}\PYG{n}{pos}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,177 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// 限制某一点的度数不能超过K}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}map\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{c+cp}{\PYGZsh{}define me(ar) memset(ar,0,sizeof(ar))}
+\PYG{k}{const}  \PYG{k+kt}{int}    \PYG{n}{INF} \PYG{o}{=} \PYG{l+m+mf}{1e8}\PYG{p}{;}
+\PYG{c+c1}{//......................................................}
+\PYG{k}{const}  \PYG{k+kt}{int} \PYG{n}{LEN} \PYG{o}{=} \PYG{l+m+mi}{30}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{K}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{;}
+\PYG{k}{struct} \PYG{n}{Edge}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{weight}\PYG{p}{;}
+    \PYG{k+kt}{bool} \PYG{k}{operator} \PYG{o}{\PYGZlt{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Edge} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{)} \PYG{k}{const} 
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{return} \PYG{n}{weight} \PYG{o}{\PYGZlt{}} \PYG{n}{a}\PYG{p}{.}\PYG{n}{weight}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{LEN}\PYG{o}{*}\PYG{n}{LEN}\PYG{o}{+}\PYG{l+m+mi}{10}\PYG{p}{];}\PYG{c+c1}{//邻接表存边,Kruskal 算法要用}
+\PYG{k+kt}{int} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{][}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//邻接矩阵}
+\PYG{k+kt}{int} \PYG{n}{sign}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{][}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//记录那些边已经在生成树里面了}
+\PYG{k+kt}{int} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//记录是否相连}
+\PYG{k+kt}{int} \PYG{n}{F}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//并查集所用}
+\PYG{k+kt}{int} \PYG{n}{Father}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//由i到i+1度限制生成树需要用动态规划求解,用来状态转移}
+\PYG{k+kt}{int} \PYG{n}{Best}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//Best[i] 指的是由当前节点到park这些边中最长边是多少}
+\PYG{k+kt}{int} \PYG{n+nf}{Find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}\PYG{c+c1}{//并查集所用Find函数}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{x} \PYG{o}{==} \PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{?}\PYG{n+nl}{x}\PYG{p}{:}\PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]);}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void}  \PYG{n+nf}{Dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}\PYG{c+c1}{//Dfs动态规划记忆化搜索}
+\PYG{p}{\PYGZob{}}
+\PYG{c+c1}{//    vis[x] = 1;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i} \PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if}\PYG{p}{(}\PYG{n}{sign}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{x}\PYG{p}{]}\PYG{o}{\PYGZam{}!}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}\PYG{c+c1}{//如果有边相连并且下一个节点没有被访问}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{x}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}
+            	\PYG{n}{Best}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{INF}\PYG{p}{;}\PYG{c+c1}{//与park 直接相连的边不能删除}
+            
+            \PYG{k}{else}
+              	\PYG{n}{Best}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{max}\PYG{p}{(}\PYG{n}{Best}\PYG{p}{[}\PYG{n}{x}\PYG{p}{],}\PYG{n}{dis}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]);}\PYG{c+c1}{//状态转移方程            }
+            \PYG{n}{Father}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+            \PYG{n}{vis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+            \PYG{n}{Dfs}\PYG{p}{(}\PYG{n}{i}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()\PYGZob{}}
+	  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{LEN}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{n}{F}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+        \PYG{n}{me}\PYG{p}{(}\PYG{n}{sign}\PYG{p}{);}\PYG{c+c1}{//初始化标记数组}
+        \PYG{n}{me}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{);}
+        \PYG{c+c1}{//初始化邻接矩阵}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{LEN}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{LEN}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+             \PYG{n}{dis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{m}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{//初始化并查集数组}
+        \PYG{n}{init}\PYG{p}{();}
+        \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//用来记录共有多少个节点}
+        \PYG{c+c1}{// set\PYGZlt{}string\PYGZgt{} se;}
+        \PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{ma}\PYG{p}{;}\PYG{c+c1}{//将地点编号}
+        \PYG{n}{ma}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}Park\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//将park 加入节点}
+        \PYG{n}{string} \PYG{n}{s1}\PYG{p}{,}\PYG{n}{s2}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{;}
+        \PYG{k+kt}{int} \PYG{n}{weight} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{s1}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{s2}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{weight}\PYG{p}{;}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{s1} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}Park\PYGZdq{}}\PYG{o}{||}\PYG{n}{ma}\PYG{p}{[}\PYG{n}{s1}\PYG{p}{]} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)}
+                \PYG{n}{a} \PYG{o}{=} \PYG{n}{ma}\PYG{p}{[}\PYG{n}{s1}\PYG{p}{];}\PYG{c+c1}{//如果节点已编号,则直接使用}
+            \PYG{k}{else}
+                \PYG{n}{a} \PYG{o}{=} \PYG{n}{ma}\PYG{p}{[}\PYG{n}{s1}\PYG{p}{]} \PYG{o}{=} \PYG{o}{++}\PYG{n}{n}\PYG{p}{;}\PYG{c+c1}{//如果没有编号,编号}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{s2} \PYG{o}{==}\PYG{l+s}{\PYGZdq{}Park\PYGZdq{}}\PYG{o}{||}\PYG{n}{ma}\PYG{p}{[}\PYG{n}{s2}\PYG{p}{]}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)}
+                \PYG{n}{b} \PYG{o}{=} \PYG{n}{ma}\PYG{p}{[}\PYG{n}{s2}\PYG{p}{];}
+            \PYG{k}{else}
+                \PYG{n}{b} \PYG{o}{=} \PYG{n}{ma}\PYG{p}{[}\PYG{n}{s2}\PYG{p}{]} \PYG{o}{=} \PYG{o}{++}\PYG{n}{n}\PYG{p}{;}
+            \PYG{n}{dis}\PYG{p}{[}\PYG{n}{a}\PYG{p}{][}\PYG{n}{b}\PYG{p}{]} \PYG{o}{=} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{b}\PYG{p}{][}\PYG{n}{a}\PYG{p}{]} \PYG{o}{=} \PYG{n}{weight}\PYG{p}{;}
+            \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{x} \PYG{o}{=} \PYG{n}{a}\PYG{p}{;}
+            \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{y} \PYG{o}{=} \PYG{n}{b}\PYG{p}{;}
+            \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{weight} \PYG{o}{=} \PYG{n}{weight}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{c+c1}{//求最小生成树}
+        \PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//kruskal 算法求最小生成树}
+        \PYG{n}{sort}\PYG{p}{(}\PYG{n}{edge}\PYG{p}{,}\PYG{n}{edge}\PYG{o}{+}\PYG{n}{m}\PYG{p}{);}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{x} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{x}\PYG{p}{;}
+            \PYG{k+kt}{int} \PYG{n}{y} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{y}\PYG{p}{;}
+             \PYG{n}{weight} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{weight}\PYG{p}{;}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{x}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{o}{||}\PYG{n}{y}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{c+c1}{//去除掉park这个点}
+                \PYG{k}{continue}\PYG{p}{;}
+            \PYG{k+kt}{int} \PYG{n}{xx} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+            \PYG{k+kt}{int} \PYG{n}{yy} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{y}\PYG{p}{);}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{xx}\PYG{o}{!=}\PYG{n}{yy}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{F}\PYG{p}{[}\PYG{n}{xx}\PYG{p}{]} \PYG{o}{=} \PYG{n}{F}\PYG{p}{[}\PYG{n}{yy}\PYG{p}{];}
+                \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{weight}\PYG{p}{;}
+                \PYG{n}{sign}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sign}\PYG{p}{[}\PYG{n}{y}\PYG{p}{][}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+
+
+        \PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{K}\PYG{p}{;}\PYG{c+c1}{//最小k度生成树}
+        \PYG{k+kt}{int} \PYG{n}{Min}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//用来记录每一个最小生成树到park点的最小路径}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{LEN}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{n}{Min}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}\PYG{c+c1}{//初始化}
+        \PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}\PYG{c+c1}{//用来记录最小路径的点}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{dis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZlt{}}\PYG{n}{Min}\PYG{p}{[}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)])}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{Min}\PYG{p}{[}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{];}
+                \PYG{n}{index}\PYG{p}{[}\PYG{n}{Find}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{////        cout\PYGZlt{}\PYGZlt{}se.size()\PYGZlt{}\PYGZlt{}endl;}
+        \PYG{k+kt}{int} \PYG{n}{m} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//用来记录除去park点即0点之后共有多少个连通分量}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{Min}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{INF}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{Min}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+                \PYG{n}{sign}\PYG{p}{[}\PYG{n}{index}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]][}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sign}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{index}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{//将这个最小路径的点与park相连}
+                \PYG{n}{m}\PYG{o}{++}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k+kt}{int} \PYG{n}{MMin} \PYG{o}{=} \PYG{n}{ans}\PYG{p}{;}
+        \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{m} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{K}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}\PYG{c+c1}{//从m+1到K求最小i度生成树}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{me}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{);}
+            \PYG{n}{vis}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+            \PYG{n}{Dfs}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+            \PYG{k+kt}{int} \PYG{n}{select} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{//select用来记录选择哪个与park点相连是最小的}
+            \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{sign}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{dis}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{!=} \PYG{n}{INF}\PYG{p}{)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{k}{if}\PYG{p}{(}\PYG{n}{dis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{Best}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZlt{}}\PYG{n}{sum}\PYG{p}{)}
+                    \PYG{p}{\PYGZob{}}
+                        \PYG{n}{select}  \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+                        \PYG{n}{sum} \PYG{o}{=} \PYG{n}{dis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{Best}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+                    \PYG{p}{\PYGZcb{}}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{if}\PYG{p}{(}\PYG{n}{select} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{c+c1}{//如果找不到,就跳出循环}
+                \PYG{k}{break}\PYG{p}{;}
+            \PYG{n}{ans} \PYG{o}{+=} \PYG{n}{sum}\PYG{p}{;}
+            \PYG{n}{sign}\PYG{p}{[}\PYG{n}{select}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sign}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{n}{select}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+            \PYG{n}{MMin} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{MMin}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{);}
+            \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{select}\PYG{p}{;} \PYG{n}{i} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{=} \PYG{n}{Father}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{if}\PYG{p}{(}\PYG{n}{dis}\PYG{p}{[}\PYG{n}{Father}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]][}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{Best}\PYG{p}{[}\PYG{n}{select}\PYG{p}{])}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{sign}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{Father}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{sign}\PYG{p}{[}\PYG{n}{Father}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]][}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+                    \PYG{k}{break}\PYG{p}{;}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{ans}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Total miles driven: \PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{MMin}\PYG{p}{);}
+       \PYG{c+c1}{// cout\PYGZlt{}\PYGZlt{}MMin\PYGZlt{}\PYGZlt{}endl;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

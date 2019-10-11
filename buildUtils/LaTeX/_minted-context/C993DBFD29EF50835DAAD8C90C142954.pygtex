@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n+nf}{Add}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{)}\PYG{c+c1}{//}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZlt{}=}\PYG{n}{N}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{tree}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{p}\PYG{p}{;}
+            \PYG{n}{x} \PYG{o}{+=} \PYG{n}{lowbit}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{Query}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{sum} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{sum} \PYG{o}{+=} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];}
+        \PYG{n}{x} \PYG{o}{\PYGZhy{}=} \PYG{n}{lowbit}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

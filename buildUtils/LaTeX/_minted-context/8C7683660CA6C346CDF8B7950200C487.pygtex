@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// 威佐夫博弈}
+\PYG{c+c1}{// 两对石子，只能选择在一堆或者两堆石子里面取相同石子}
+\PYG{c+c1}{// 打表发现规律,第k个必败点,a\PYGZus{}k = b\PYGZus{}k+k}
+\PYG{c+c1}{// a\PYGZus{}k = (1+sqrt(5))/2 *k ，判断就是直接下面的式子了}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{a}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{b}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{a} \PYG{o}{\PYGZgt{}} \PYG{n}{b}\PYG{p}{)}
+		  \PYG{n}{swap}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{);}
+		\PYG{k+kt}{int}   \PYG{n}{c} \PYG{o}{=} \PYG{n}{floor}\PYG{p}{((}\PYG{n}{b}\PYG{o}{\PYGZhy{}}\PYG{n}{a}\PYG{p}{)}\PYG{o}{*}\PYG{p}{((}\PYG{l+m+mf}{1.0}\PYG{o}{+}\PYG{n}{sqrt}\PYG{p}{(}\PYG{l+m+mf}{5.0}\PYG{p}{))}\PYG{o}{/}\PYG{l+m+mf}{2.0}\PYG{p}{));}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{a} \PYG{o}{==} \PYG{n}{c}\PYG{p}{)}
+			 \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{0}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{k}{else}
+			 \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+   \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

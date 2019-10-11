@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// Size[u] 代表以节点u为根的子树节点个数}
+\PYG{c+c1}{// dp[u] 代表去除u节点后最大子树的节点个数}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{2e4}\PYG{o}{+}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{Size}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{ans}\PYG{p}{;}
+\PYG{k+kt}{void}  \PYG{n+nf}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{fa}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Size}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{fa}\PYG{o}{==}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{])}\PYG{k}{continue}\PYG{p}{;}
+		\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{],}\PYG{n}{u}\PYG{p}{);}
+		\PYG{c+c1}{// sum += tmp;}
+		\PYG{n}{Size}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{Size}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]];}
+		\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{max}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{],}\PYG{n}{Size}\PYG{p}{[}\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]]);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{Size}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]}\PYG{o}{++}\PYG{p}{;}
+	\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{max}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{Size}\PYG{p}{[}\PYG{n}{u}\PYG{p}{],}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]);}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{ans}\PYG{p}{])} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{u}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}
+	\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{);}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{n}{G}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{n}{v}\PYG{p}{;}
+			\PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{u}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{v}\PYG{p}{);}
+			\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+			\PYG{n}{G}\PYG{p}{[}\PYG{n}{v}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{dp}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}
+		\PYG{n}{dfs}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{,}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{ans}\PYG{p}{]);}
+	\PYG{p}{\PYGZcb{}}
+   \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

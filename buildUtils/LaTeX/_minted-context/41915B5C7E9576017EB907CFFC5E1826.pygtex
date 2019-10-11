@@ -1,0 +1,43 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{LEN} \PYG{o}{=} \PYG{l+m+mi}{234567}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{F}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{[}\PYG{n}{LEN}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n+nf}{Find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{x}\PYG{o}{!=}\PYG{n}{k}\PYG{p}{)\PYGZob{}}
+       \PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{k}\PYG{p}{);}
+       \PYG{n}{val}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{val}\PYG{p}{[}\PYG{n}{k}\PYG{p}{];}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{F}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,}\PYG{n}{M}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{N}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{M}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+       \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+           \PYG{n}{F}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+           \PYG{n}{val}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+       \PYG{p}{\PYGZcb{}}
+       \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{c}\PYG{p}{;}
+       \PYG{k+kt}{int} \PYG{n}{Count} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+       \PYG{k}{while}\PYG{p}{(}\PYG{n}{M}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+           \PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{b}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{c}\PYG{p}{);}
+           \PYG{n}{a}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+           \PYG{k+kt}{int} \PYG{n}{x1} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{a}\PYG{p}{);}
+           \PYG{k+kt}{int} \PYG{n}{y1} \PYG{o}{=} \PYG{n}{Find}\PYG{p}{(}\PYG{n}{b}\PYG{p}{);}
+           \PYG{k}{if}\PYG{p}{(}\PYG{n}{x1}\PYG{o}{==}\PYG{n}{y1}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{c}\PYG{o}{+}\PYG{n}{val}\PYG{p}{[}\PYG{n}{a}\PYG{p}{]}\PYG{o}{!=}\PYG{n}{val}\PYG{p}{[}\PYG{n}{b}\PYG{p}{])}
+            \PYG{o}{++}\PYG{n}{Count}\PYG{p}{;}
+           \PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{x1}\PYG{o}{\PYGZlt{}}\PYG{n}{y1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+               \PYG{n}{F}\PYG{p}{[}\PYG{n}{y1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x1}\PYG{p}{;}
+               \PYG{n}{val}\PYG{p}{[}\PYG{n}{y1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{c}\PYG{o}{+}\PYG{n}{val}\PYG{p}{[}\PYG{n}{a}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{val}\PYG{p}{[}\PYG{n}{b}\PYG{p}{];}
+           \PYG{p}{\PYGZcb{}}
+           \PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{x1}\PYG{o}{\PYGZgt{}}\PYG{n}{y1}\PYG{p}{)\PYGZob{}}
+               \PYG{n}{F}\PYG{p}{[}\PYG{n}{x1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{y1}\PYG{p}{;}
+               \PYG{n}{val}\PYG{p}{[}\PYG{n}{x1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{val}\PYG{p}{[}\PYG{n}{b}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{val}\PYG{p}{[}\PYG{n}{a}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{c}\PYG{p}{;}
+           \PYG{p}{\PYGZcb{}}
+       \PYG{p}{\PYGZcb{}}
+       \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{Count}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

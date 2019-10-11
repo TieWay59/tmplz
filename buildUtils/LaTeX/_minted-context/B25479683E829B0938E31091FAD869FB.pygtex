@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// O(n*m) 复杂度不确定}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mi}{2000} \PYG{o}{+} \PYG{l+m+mi}{10}\PYG{p}{;}
+
+\PYG{k}{struct} \PYG{n}{TwoSAT} \PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+  \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{];}
+  \PYG{k+kt}{bool} \PYG{n}{mark}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{];}
+  \PYG{k+kt}{int} \PYG{n}{S}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{],} \PYG{n}{c}\PYG{p}{;}
+
+  \PYG{k+kt}{bool} \PYG{n+nf}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{mark}\PYG{p}{[}\PYG{n}{x}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{mark}\PYG{p}{[}\PYG{n}{x}\PYG{p}{])} \PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+    \PYG{n}{mark}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+    \PYG{n}{S}\PYG{p}{[}\PYG{n}{c}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+    \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{x}\PYG{p}{].}\PYG{n}{size}\PYG{p}{();} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+      \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{G}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]))} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+    \PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{n} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+    \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{G}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+    \PYG{n}{memset}\PYG{p}{(}\PYG{n}{mark}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{mark}\PYG{p}{));}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{c+c1}{// x = xval or y = yval}
+  \PYG{k+kt}{void} \PYG{n+nf}{add\PYGZus{}clause}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{xval}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{yval}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{x} \PYG{o}{*} \PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{xval}\PYG{p}{;}
+    \PYG{n}{y} \PYG{o}{=} \PYG{n}{y} \PYG{o}{*} \PYG{l+m+mi}{2} \PYG{o}{+} \PYG{n}{yval}\PYG{p}{;}
+    \PYG{n}{G}\PYG{p}{[}\PYG{n}{x}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{y}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{c+c1}{// G[0].Pb(1)}
+    \PYG{n}{G}\PYG{p}{[}\PYG{n}{y}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{1}\PYG{p}{);}\PYG{c+c1}{// G[1].Pb(0);}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{k+kt}{bool} \PYG{n+nf}{solve}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{+=} \PYG{l+m+mi}{2}\PYG{p}{)}
+      \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{mark}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{mark}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+        \PYG{n}{c} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{i}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+          \PYG{k}{while}\PYG{p}{(}\PYG{n}{c} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{mark}\PYG{p}{[}\PYG{n}{S}\PYG{p}{[}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{c}\PYG{p}{]]} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
+          \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{))} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+      \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

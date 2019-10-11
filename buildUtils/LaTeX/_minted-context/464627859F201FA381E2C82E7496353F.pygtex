@@ -1,0 +1,74 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}define mem(ar,num) memset(ar,num,sizeof(ar))}
+\PYG{c+cp}{\PYGZsh{}define me(ar) memset(ar,0,sizeof(ar))}
+\PYG{c+cp}{\PYGZsh{}define lowbit(x) (x\PYGZam{}(\PYGZhy{}x))}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{LL}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{ULL}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int}    \PYG{n}{prime} \PYG{o}{=} \PYG{l+m+mi}{999983}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int}    \PYG{n}{INF} \PYG{o}{=} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{LL}     \PYG{n}{INFF} \PYG{o}{=}\PYG{l+m+mh}{0x7FFFFFFFFFFFFFFF}\PYG{p}{;}
+\PYG{c+c1}{//const double pi = acos(\PYGZhy{}1.0);}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{inf} \PYG{o}{=} \PYG{l+m+mf}{1e18}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{eps} \PYG{o}{=} \PYG{l+m+mf}{1e\PYGZhy{}6}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{LL}     \PYG{n}{mod} \PYG{o}{=} \PYG{l+m+mf}{1e9} \PYG{o}{+} \PYG{l+m+mi}{7}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{dr}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{][}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{};}
+\PYG{c+c1}{// UVa12298 Super Poker II}
+\PYG{c+c1}{// Rujia Liu}
+
+\PYG{k}{const} \PYG{k+kt}{long} \PYG{k+kt}{double} \PYG{n}{PI} \PYG{o}{=} \PYG{n}{acos}\PYG{p}{(}\PYG{l+m+mf}{0.0}\PYG{p}{)} \PYG{o}{*} \PYG{l+m+mf}{2.0}\PYG{p}{;}
+
+\PYG{k}{typedef} \PYG{n}{complex}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}} \PYG{n}{CD}\PYG{p}{;}
+
+\PYG{c+c1}{// Cooley\PYGZhy{}Tukey的FFT算法，迭代实现。inverse = false时计算逆FFT}
+\PYG{k+kr}{inline} \PYG{k+kt}{void} \PYG{n+nf}{FFT}\PYG{p}{(}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{CD}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{,} \PYG{k+kt}{bool} \PYG{n}{inverse}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{a}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}
+  \PYG{c+c1}{// 原地快速bit reversal}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{if}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZgt{}} \PYG{n}{i}\PYG{p}{)} \PYG{n}{swap}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{a}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);}
+    \PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{n}{k} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{))} \PYG{n}{j} \PYG{o}{\PYGZam{}=} \PYG{o}{\PYGZti{}}\PYG{n}{k}\PYG{p}{;}
+    \PYG{n}{j} \PYG{o}{|=} \PYG{n}{k}\PYG{p}{;}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{k+kt}{double} \PYG{n}{pi} \PYG{o}{=} \PYG{n}{inverse} \PYG{o}{?} \PYG{o}{\PYGZhy{}}\PYG{n+nl}{PI} \PYG{p}{:} \PYG{n}{PI}\PYG{p}{;}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{step} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{step} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{step} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{// 把每相邻两个“step点DFT”通过一系列蝴蝶操作合并为一个“2*step点DFT”}
+    \PYG{k+kt}{double} \PYG{n}{alpha} \PYG{o}{=} \PYG{n}{pi} \PYG{o}{/} \PYG{n}{step}\PYG{p}{;}
+    \PYG{c+c1}{// 为求高效，我们并不是依次执行各个完整的DFT合并，而是枚举下标k}
+    \PYG{c+c1}{// 对于一个下标k，执行所有DFT合并中该下标对应的蝴蝶操作，即通过E[k]和O[k]计算X[k]}
+    \PYG{c+c1}{// 蝴蝶操作参考：http://en.wikipedia.org/wiki/Butterfly\PYGZus{}diagram}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{n}{step}\PYG{p}{;} \PYG{n}{k}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+      \PYG{c+c1}{// 计算omega\PYGZca{}k. 这个方法效率低，但如果用每次乘omega的方法递推会有精度问题。}
+      \PYG{c+c1}{// 有更快更精确的递推方法，为了清晰起见这里略去}
+      \PYG{n}{CD} \PYG{n}{omegak} \PYG{o}{=} \PYG{n}{exp}\PYG{p}{(}\PYG{n}{CD}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{*}\PYG{n}{k}\PYG{p}{));} 
+      \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{Ek} \PYG{o}{=} \PYG{n}{k}\PYG{p}{;} \PYG{n}{Ek} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{Ek} \PYG{o}{+=} \PYG{n}{step} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// Ek是某次DFT合并中E[k]在原始序列中的下标}
+        \PYG{k+kt}{int} \PYG{n}{Ok} \PYG{o}{=} \PYG{n}{Ek} \PYG{o}{+} \PYG{n}{step}\PYG{p}{;} \PYG{c+c1}{// Ok是该DFT合并中O[k]在原始序列中的下标}
+        \PYG{n}{CD} \PYG{n}{t} \PYG{o}{=} \PYG{n}{omegak} \PYG{o}{*} \PYG{n}{a}\PYG{p}{[}\PYG{n}{Ok}\PYG{p}{];} \PYG{c+c1}{// 蝴蝶操作：x1 * omega\PYGZca{}k}
+        \PYG{n}{a}\PYG{p}{[}\PYG{n}{Ok}\PYG{p}{]} \PYG{o}{=} \PYG{n}{a}\PYG{p}{[}\PYG{n}{Ek}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{t}\PYG{p}{;}  \PYG{c+c1}{// 蝴蝶操作：y1 = x0 \PYGZhy{} t}
+        \PYG{n}{a}\PYG{p}{[}\PYG{n}{Ek}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{t}\PYG{p}{;}         \PYG{c+c1}{// 蝴蝶操作：y0 = x0 + t}
+      \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+  \PYG{p}{\PYGZcb{}}
+
+  \PYG{k}{if}\PYG{p}{(}\PYG{n}{inverse}\PYG{p}{)}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{/=} \PYG{n}{n}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// 用FFT实现的快速多项式乘法}
+\PYG{k+kr}{inline} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}} \PYG{k}{operator} \PYG{o}{*} \PYG{p}{(}\PYG{k}{const} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{v1}\PYG{p}{,} \PYG{k}{const} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{v2}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{k+kt}{int} \PYG{n}{s1} \PYG{o}{=} \PYG{n}{v1}\PYG{p}{.}\PYG{n}{size}\PYG{p}{(),} \PYG{n}{s2} \PYG{o}{=} \PYG{n}{v2}\PYG{p}{.}\PYG{n}{size}\PYG{p}{(),} \PYG{n}{S} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;}
+  \PYG{k}{while}\PYG{p}{(}\PYG{n}{S} \PYG{o}{\PYGZlt{}} \PYG{n}{s1} \PYG{o}{+} \PYG{n}{s2}\PYG{p}{)} \PYG{n}{S} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+  \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{CD}\PYG{o}{\PYGZgt{}} \PYG{n}{a}\PYG{p}{(}\PYG{n}{S}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{),} \PYG{n}{b}\PYG{p}{(}\PYG{n}{S}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{);} \PYG{c+c1}{// 把FFT的输入长度补成2的幂，不小于v1和v2的长度之和}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{s1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v1}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+  \PYG{n}{FFT}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n+nb}{false}\PYG{p}{);}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{s2}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+  \PYG{n}{FFT}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n+nb}{false}\PYG{p}{);}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{S}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{*=} \PYG{n}{b}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+  \PYG{n}{FFT}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n+nb}{true}\PYG{p}{);}
+  \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}} \PYG{n}{res}\PYG{p}{(}\PYG{n}{s1} \PYG{o}{+} \PYG{n}{s2} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{);}
+  \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{s1} \PYG{o}{+} \PYG{n}{s2} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{res}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{real}\PYG{p}{();} \PYG{c+c1}{// 虚部均为0}
+  \PYG{k}{return} \PYG{n}{res}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

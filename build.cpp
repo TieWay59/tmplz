@@ -38,12 +38,12 @@ void reWritePath(char *tPath) {
 void writeMintedPath(const char *lang, const char *tPath) {
     std::string language = lang;
     if (language == "java") {
-        fprintf(pf_path_file, "\\inputminted[breaklines]{java}{\"%s\"}\n", tPath);
+        fprintf(pf_path_file, "\\inputminted{java}{\"%s\"}\n", tPath);
         //如果路径里面有空格，那么要给路径加上引号，否则控制台找不到。
     } else if (language == "py") {
-        fprintf(pf_path_file, "\\inputminted[breaklines]{python}{\"%s\"}\n", tPath);
+        fprintf(pf_path_file, "\\inputminted{python}{\"%s\"}\n", tPath);
     } else {
-        fprintf(pf_path_file, "\\inputminted[breaklines]{c++}{\"%s\"}\n", tPath);
+        fprintf(pf_path_file, "\\inputminted{c++}{\"%s\"}\n", tPath);
     }
 }
 

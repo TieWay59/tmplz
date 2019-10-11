@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{string} \PYG{n+nf}{mul}\PYG{p}{(}\PYG{n}{string} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{string} \PYG{n}{c}\PYG{p}{;}
+    \PYG{k+kt}{char} \PYG{n}{s}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{len}\PYG{o}{=}\PYG{n}{a}\PYG{p}{.}\PYG{n}{length}\PYG{p}{();}
+    \PYG{k+kt}{int} \PYG{n}{ok}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{n}{len}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k+kt}{int} \PYG{n}{temp}\PYG{o}{=}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{)}\PYG{o}{*}\PYG{n}{b}\PYG{o}{+}\PYG{n}{ok}\PYG{p}{;}
+        \PYG{n}{ok}\PYG{o}{=}\PYG{n}{temp}\PYG{o}{/}\PYG{l+m+mi}{10}\PYG{p}{;}
+        \PYG{n}{s}\PYG{o}{=}\PYG{n}{temp}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{10}\PYG{o}{+}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+        \PYG{n}{c}\PYG{o}{=}\PYG{n}{s}\PYG{o}{+}\PYG{n}{c}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{while}\PYG{p}{(}\PYG{n}{ok}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{s}\PYG{o}{=}\PYG{n}{ok}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{10}\PYG{o}{+}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+        \PYG{n}{c}\PYG{o}{=}\PYG{n}{s}\PYG{o}{+}\PYG{n}{c}\PYG{p}{;}
+        \PYG{n}{ok}\PYG{o}{/=}\PYG{l+m+mi}{10}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{c}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
