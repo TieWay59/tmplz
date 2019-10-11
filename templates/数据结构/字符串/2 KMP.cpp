@@ -26,7 +26,7 @@ void getFail(char *P,int *f)
 
     }
 
-}
+}//Allinone
 void find(char * T,char * P,int* f)
 {
     int n = strlen(T),m = strlen(P);
