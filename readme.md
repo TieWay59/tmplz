@@ -69,5 +69,6 @@
 ## 待办
 
 - [ ] 重构build.cpp 参考[win10 下 c++遍历文件夹](https://blog.csdn.net/ming5945/article/details/78594864)
-- [x] 修掉laxer导致的red box
+- [x] 修掉laxer导致的red box [minted
+ issue #243](https://github.com/gpoore/minted/issues/243)
 - [ ] 增加引入md的feature
