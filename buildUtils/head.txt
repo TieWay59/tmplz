@@ -17,12 +17,12 @@
 }      
 %\usemintedstyle{rainbow_dash}
 
-
 % 减少飘红报错
+\usepackage{etoolbox,xpatch}
 \makeatletter
-\AtBeginEnvironment{minted}{\dontdocolorbox}
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
 \def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
-\AtBeginEnvironment{minted}{\renewcommand{\colorbox}[3][]{#3}}
+\xpatchcmd{\inputminted}{\minted@fvset}{\minted@fvset\dontdofcolorbox}{}{}
 \makeatother
 
 

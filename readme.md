@@ -58,7 +58,6 @@
 - [硬伤] 如果代码文件保存时的编码和当前系统编码不同，中文会乱码。
 - [硬伤] 如果系统语言编码不是中文，会独取异常。
 - [潜在] 一些奇怪的路径可能导致出错。
-- [潜在] 小部分语法问题会出现红框样式（比如`{#define ...}`）。
 - [玄学] 编译成功的要求蛮高的，少不了折腾。
 
 ## 鸣谢
@@ -69,5 +68,6 @@
 
 ## 待办
 
-- [ ]  重构build.cpp 参考[win10 下 c++遍历文件夹](https://blog.csdn.net/ming5945/article/details/78594864)
-- [ ]  修掉laxer导致的red box
+- [ ] 重构build.cpp 参考[win10 下 c++遍历文件夹](https://blog.csdn.net/ming5945/article/details/78594864)
+- [x] 修掉laxer导致的red box
+- [ ] 增加引入md的feature
