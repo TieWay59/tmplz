@@ -116,7 +116,8 @@ int find_path(const char *lp_path, const int &level)// 遍历搜索目录
                     (!strcmp(result, "cc")) ||
                     (!strcmp(result, "py")) ||
                     (!strcmp(result, "cpp")) ||
-                    (!strcmp(result, "java"))
+                    (!strcmp(result, "java"))||
+                    (!strcmp(result, "txt"))
                         ) {
                     strcpy(fileName, lp_path);//合成文件名全路径
                     strcat(fileName, "\\");

@@ -43,10 +43,11 @@
 
 ## 使用
 
-1. 把你所有需要的代码都丢到templates文件夹里。
-2. 运行build.exe。
-3. 自己想办法编译：\buildUtils\LaTeX\context.tex
-4. context.pdf 就是结果了。
+1. 自己配置的时候，需要修改build.cpp里面的绝对路径(到`\tmplz`)。
+2. 把你所有需要的代码都丢到templates文件夹里。
+3. 运行build.exe。
+4. 用常用的方式（XeLaTeX）编译：\buildUtils\LaTeX\context.tex
+5. 同路径下出现的context.pdf。
 
 ## 优点
 
@@ -61,6 +62,7 @@
 - [硬伤] 标题只能分到LaTeX默认的三级。
 - [硬伤] 如果代码文件保存时的编码和当前系统编码不同，中文会乱码。
 - [硬伤] 如果系统语言编码不是中文，会读取异常。
+- [硬伤] 如果路径有`_`,`&`等符号会无法编译(似乎是宏包的锅)。 
 - [潜在] 一些奇怪的路径可能导致出错。
 - [潜在] 一些长压行的代码会折行异常。（模板代码干嘛压行啊喂ORZ）
 - [玄学] 编译成功的要求蛮高的，少不了折腾。
@@ -77,3 +79,4 @@
 - [x] 修掉laxer导致的red box [minted
  issue #243](https://github.com/gpoore/minted/issues/243)
 - [ ] 增加引入md的feature
+- [ ] 避开路径名的不兼容（原因是tex的标题里不可以有部分特殊符号）
