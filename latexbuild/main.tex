@@ -1,0 +1,193 @@
+\documentclass[a4paper,landscape,twocolumn]{book} % 横向页面， 双栏
+\usepackage[utf8]{inputenc}
+
+\title{codebook}
+\author{tieway59}
+\date{September 2020}
+
+% 页码位置调整最简单方案
+% https://tex.stackexchange.com/questions/443344/page-numbering-left-and-right
+\usepackage{titleps}
+\renewpagestyle{plain}{
+    \sethead{}{}{}
+    \setfoot[tieway59][ - \thepage \ -  ][\today]{tieway59}{ - \thepage \ - }{\today}
+    % 分别是奇偶页的定位
+}
+\pagestyle{plain}
+
+
+% 页边距设置
+\usepackage{geometry}
+\geometry{a4paper, left=0.7cm, right=0.7cm, top=1.3cm, bottom=8mm, ,footskip=5mm}
+
+
+% 字体设置 https://github.com/source-foundry/Hack/issues/69#issuecomment-138621789
+\usepackage{fontspec}
+% \setmonofont{Liberation Mono}
+\setmonofont[
+    Path=./fonts/ ,
+    Extension = .ttf, % or .otf
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    % Ligatures = %TeX, 这个问题无法解决，就是xelatex编译的时候，<=之类的符号会连字，但是应该页不影响阅读。使用lua就没毛病。
+]{sarasa-term-sc}
+
+\setmainfont[
+    Path=./fonts/ ,
+    Extension = .ttf, % or .otf
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    % Ligatures = %TeX, 这个问题无法解决，就是xelatex编译的时候，<=之类的符号会连字，但是应该页不影响阅读。使用lua就没毛病。
+]{sarasa-term-sc}
+% \setmonofont{sarasa-term-sc-regular.ttf}
+
+\usepackage{minted}
+\setminted{
+    escapeinside = false,
+    mathescape,             % 注释支持公式
+    linenos = true,         % 行号
+    breaklines = true,      % 自动折行
+    encoding = utf8,
+    fontsize = \small,      % 内容字体大小
+    numbersep = 3pt,        % 行号数字偏移
+    xleftmargin = 8pt,      % 代码块左侧外部偏移
+    frame = single,         % 代码块线框样式
+    framerule = 0.4pt,      % 线框宽度
+    framesep = 1mm          % 内容与线框偏移
+}
+
+% \usemintedstyle{xcode}      % 颜色样式（这个报红较少）
+\usemintedstyle{bw}         % 黑白
+% \usemintedstyle{vs}         % vs
+
+% 设置行号字体
+% \usepackage{./packages/fancyvrb}
+% \renewcommand{\theFancyVerbLine}{\monofont{\scriptsize\arabic{FancyVerbLine}}}  % oneleaf会对这个指令爆出很多错误，但是这个是有效的。 看着烦可以关掉，就是行号有点小。
+
+% 进一步避免报红 https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
+\usepackage{etoolbox,xpatch}
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\xpatchcmd{\inputminted}{\minted@fvset}{\minted@fvset\dontdofcolorbox}{}{}
+\xpatchcmd{\mintinline}{\minted@fvset}{\minted@fvset\dontdofcolorbox}{}{} % see https://tex.stackexchange.com/a/401250/
+\makeatother
+
+
+\begin{document}
+
+% \maketitle 加了第一页有点问题，会浪费两张纸，所以我就干脆不要了。
+
+\begingroup
+\let\onecolumn\twocolumn
+\tableofcontents
+\endgroup
+
+% \newpage
+
+\chapter{几何}
+\section{Circle-圆形.cpp}
+\inputminted{c++}{./codes/000}
+\section{Circumcenter-外心-三点定圆.cpp}
+\inputminted{c++}{./codes/001}
+\section{ClosestPoints-最近点对.cpp}
+\inputminted{c++}{./codes/002}
+\section{ConvexHull-凸包.cpp}
+\inputminted{c++}{./codes/003}
+\section{Hull-下凸包求函数最值.cpp}
+\inputminted{c++}{./codes/004}
+\section{Line-Segment-直线与线段.cpp}
+\inputminted{c++}{./codes/005}
+\section{MinCircleCover-最小圆覆盖.cpp}
+\inputminted{c++}{./codes/006}
+\section{Points-Vector-点与向量.cpp}
+\inputminted{c++}{./codes/007}
+\section{Polygon-多边形.cpp}
+\inputminted{c++}{./codes/008}
+\chapter{图论}
+\section{AstarKSP-A星K短路-nklogn.cpp}
+\inputminted{c++}{./codes/009}
+\section{dijkstra-with-pairs.cpp}
+\inputminted{c++}{./codes/010}
+\section{Dinic-by-ztc.cpp}
+\inputminted{c++}{./codes/011}
+\section{Graph.txt}
+\inputminted{text}{./codes/012}
+\section{linklist.cpp}
+\inputminted{c++}{./codes/013}
+\section{tarjanSCC.cpp}
+\inputminted{c++}{./codes/014}
+\chapter{基础}
+\section{fastpower.cpp}
+\inputminted{c++}{./codes/015}
+\section{prime-sieve-素数筛.cpp}
+\inputminted{c++}{./codes/016}
+\chapter{字符串}
+\section{Aho–Corasick-AC自动机-多模式匹配.cpp}
+\inputminted{c++}{./codes/017}
+\section{Aho–Corasick-AC自动机-统计次数-拓扑序优化.cpp}
+\inputminted{c++}{./codes/018}
+\section{Levenshtein-Distance-编辑距离.py}
+\inputminted{python}{./codes/019}
+\section{manacher-单数组马拉车.cpp}
+\inputminted{c++}{./codes/020}
+\section{manacher-双数组马拉车.cpp}
+\inputminted{c++}{./codes/021}
+\chapter{数学}
+\section{double-compare.cpp}
+\inputminted{c++}{./codes/022}
+\section{fastFacterial-快速阶乘-分块fft.cpp}
+\inputminted{c++}{./codes/023}
+\section{fft-多项式乘法.cpp}
+\inputminted{c++}{./codes/024}
+\section{扩展CRT.py}
+\inputminted{python}{./codes/025}
+\section{矩阵快速幂+大十进制指数版.cpp}
+\inputminted{c++}{./codes/026}
+\chapter{数据结构}
+\section{zhuxishu-SegKth.cpp}
+\inputminted{c++}{./codes/027}
+\section{ZTC's-Splay.cpp}
+\inputminted{c++}{./codes/028}
+\chapter{数论}
+\section{Binomial-Coefficients-组合数-Lucas.cpp}
+\inputminted{c++}{./codes/029}
+\section{Binomial-Coefficients-组合数-Lucas.cpp.ignore}
+\section{Binomial-Coefficients-组合数-杨辉三角.cpp}
+\inputminted{c++}{./codes/031}
+\section{Binomial-Coefficients-组合数-逆元-模大素数.cpp}
+\inputminted{c++}{./codes/032}
+\section{Extended-Euclidean-algorithm-(exGCD).cpp}
+\inputminted{c++}{./codes/033}
+\section{ZTC's-FFT.txt}
+\inputminted{text}{./codes/034}
+\section{数论分块.cpp}
+\inputminted{c++}{./codes/035}
+\chapter{杂项}
+\section{coutf.cpp}
+\inputminted{c++}{./codes/036}
+\section{debug-from-tourist.cpp}
+\inputminted{c++}{./codes/037}
+\section{fast-IO-int.cpp}
+\inputminted{c++}{./codes/038}
+\section{fast-IO-快速版（可敲）.cpp}
+\inputminted{c++}{./codes/039}
+\section{fast-IO-极致版.ignore}
+\section{fastpow-快速幂.cpp}
+\inputminted{c++}{./codes/041}
+\section{Misc-杂技---随机数.cpp}
+\inputminted{c++}{./codes/042}
+\section{string-read-speed.cpp}
+\inputminted{c++}{./codes/043}
+\section{timetest.cpp}
+\inputminted{c++}{./codes/044}
+\section{unordered-map-自写哈希.cpp}
+\inputminted{c++}{./codes/045}
+\section{单调队列-定长区间最值.cpp}
+\inputminted{c++}{./codes/046}
+
+\end{document}

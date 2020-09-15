@@ -79,5 +79,5 @@ if __name__ == '__main__':
 
     template = template.format('\n'.join(export))
 
-    with open('out.txt', 'w+') as f:
+    with open('.\\latexbuild\\main.tex', 'w+') as f:
         f.write(template)
