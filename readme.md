@@ -1,5 +1,11 @@
 # 代码书生成器（CodeFilesToPDF）
 
+![exampl1](./assets/example1.png)
+
+![exampl2](./assets/example2.png)
+
+![exampl3](./assets/example3.png)
+
 ## 背景
 
 参加算法竞赛可以带纸质参考材料，所以每次赛前准备材料的打印是一个很头疼的问题。
@@ -22,6 +28,10 @@ Latex的minted包有不错的代码排版效果。
 并且支持外部文件通过url导入，这部分代码非常程序化。
 
 那么只要有一个把文件夹结构翻译成tex的语句就好。
+
+在分支中有一个我去年做过的C++的尝试[link](https://github.com/TieWay59/tmplz/tree/v0.1.0-archived)
+
+今年我想用python做一遍，并且在样式上有更多改进创新。
 
 
 ## 环境
