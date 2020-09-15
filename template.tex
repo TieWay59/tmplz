@@ -1,0 +1,94 @@
+\documentclass[a4paper,landscape,twocolumn]{{book}} % 横向页面， 双栏
+\usepackage[utf8]{{inputenc}}
+
+\title{{codebook}}
+\author{{tieway59}}
+\date{{September 2020}}
+
+% 页码位置调整最简单方案
+% https://tex.stackexchange.com/questions/443344/page-numbering-left-and-right
+\usepackage{{titleps}}
+\renewpagestyle{{plain}}{{
+    \sethead{{}}{{}}{{}}
+    \setfoot[tieway59][ - \thepage \ -  ][\today]{{tieway59}}{{ - \thepage \ - }}{{\today}}
+    % 分别是奇偶页的定位
+}}
+\pagestyle{{plain}}
+
+
+% 页边距设置
+\usepackage{{geometry}}
+\geometry{{a4paper, left=0.7cm, right=0.7cm, top=1.3cm, bottom=8mm, ,footskip=5mm}}
+
+
+% 字体设置 https://github.com/source-foundry/Hack/issues/69#issuecomment-138621789
+\usepackage{{fontspec}}
+% \setmonofont{{Liberation Mono}}
+\setmonofont[
+    Path=./fonts/ ,
+    Extension = .ttf, % or .otf
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    % Ligatures = %TeX, 这个问题无法解决，就是xelatex编译的时候，<=之类的符号会连字，但是应该页不影响阅读。使用lua就没毛病。
+]{{sarasa-term-sc}}
+
+\setmainfont[
+    Path=./fonts/ ,
+    Extension = .ttf, % or .otf
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    % Ligatures = %TeX, 这个问题无法解决，就是xelatex编译的时候，<=之类的符号会连字，但是应该页不影响阅读。使用lua就没毛病。
+]{{sarasa-term-sc}}
+% \setmonofont{{sarasa-term-sc-regular.ttf}}
+
+\usepackage{{minted}}
+\setminted{{
+    escapeinside = false,
+    mathescape,             % 注释支持公式
+    linenos = true,         % 行号
+    breaklines = true,      % 自动折行
+    encoding = utf8,
+    fontsize = \small,      % 内容字体大小
+    numbersep = 3pt,        % 行号数字偏移
+    xleftmargin = 8pt,      % 代码块左侧外部偏移
+    frame = single,         % 代码块线框样式
+    framerule = 0.4pt,      % 线框宽度
+    framesep = 1mm          % 内容与线框偏移
+}}
+
+% \usemintedstyle{{xcode}}      % 颜色样式（这个报红较少）
+\usemintedstyle{{bw}}         % 黑白
+% \usemintedstyle{{vs}}         % vs
+
+% 设置行号字体
+% \usepackage{{./packages/fancyvrb}}
+% \renewcommand{{\theFancyVerbLine}}{{\monofont{{\scriptsize\arabic{{FancyVerbLine}}}}}}  % oneleaf会对这个指令爆出很多错误，但是这个是有效的。 看着烦可以关掉，就是行号有点小。
+
+% 进一步避免报红 https://tex.stackexchange.com/questions/343494/minted-red-box-around-greek-characters
+\usepackage{{etoolbox,xpatch}}
+\makeatletter
+\AtBeginEnvironment{{minted}}{{\dontdofcolorbox}}
+\def\dontdofcolorbox{{\renewcommand\fcolorbox[4][]{{##4}}}}
+\xpatchcmd{{\inputminted}}{{\minted@fvset}}{{\minted@fvset\dontdofcolorbox}}{{}}{{}}
+\xpatchcmd{{\mintinline}}{{\minted@fvset}}{{\minted@fvset\dontdofcolorbox}}{{}}{{}} % see https://tex.stackexchange.com/a/401250/
+\makeatother
+
+
+\begin{{document}}
+
+% \maketitle 加了第一页有点问题，会浪费两张纸，所以我就干脆不要了。
+
+\begingroup
+\let\onecolumn\twocolumn
+\tableofcontents
+\endgroup
+
+% \newpage
+
+{}
+
+\end{{document}}
