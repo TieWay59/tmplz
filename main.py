@@ -7,11 +7,11 @@ output_root = '.\\latexbuild\\codes'
 tex_output_root = '.\\codes'
 export = []
 
-level = [r'\chapter', r'\section', r'\subsection', r'\subsubsection']
+level = [r'\section', r'\subsection', r'\subsubsection']
 
 
 def make_section(old_name, step):
-    lv = level[min(max(step, 0), 3)]
+    lv = level[min(max(step, 0), 2)]
     old_name = '-'.join(old_name.split('_'))
     old_name = '-'.join(old_name.split(' '))
     tex_sec = lv + '{' + old_name + '}'
