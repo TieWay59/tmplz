@@ -6,7 +6,7 @@
 
 ![exampl3](./assets/example3.png)
 
-## 背景
+## 一个很合理的背景
 
 参加算法竞赛可以带纸质参考材料，所以每次赛前准备材料的打印是一个很头疼的问题。
 
@@ -33,6 +33,16 @@ Latex的minted包有不错的代码排版效果。
 
 今年我想用python做一遍，并且在样式上有更多改进创新。
 
+## 特性展示
+
+优雅的 [sarasa](https://github.com/be5invis/Sarasa-Gothic) 字体，保持简中和代码都良好等宽：
+![example-font-detail](./assets/example-font-detail.png)
+
+神奇的 mathescape 让你的注释可以添加公式（语法同markdown $）：
+![example-mathescape](./assets/example-mathescape.png)
+
+即使没有队友也能方便地对着文本敲:
+![example](./assets/example-typing.jpg)
 
 ## 环境
 
