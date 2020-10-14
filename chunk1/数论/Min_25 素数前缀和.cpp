@@ -1,7 +1,7 @@
 /**
  *  @Source: https://loj.ac/submission/795951
  *  @Author: Min_25 Japan
- *  @Complexity: $O(n^{\frac{1}{2})$ 似乎常数很低
+ *  @Complexity: $O(n^{\frac{1}{2}})$ 似乎常数很低
  *  @Description:
  *      奇快无比的素数前缀和（Min_25本人写的）
  *      数据范围到1e11
@@ -34,7 +34,6 @@ S sum1o(T n) {
     return sum1<T, S>(n) - 2 * sum1<T, S>(n >> 1);
 }
 
-__attribute__((target("avx"), optimize("O3", "unroll-loops")))
 i128 prime_sum(const i64 N) {
     if (N <= 1)
         return 0;

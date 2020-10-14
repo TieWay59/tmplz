@@ -1,118 +1,82 @@
 /**
- *  @Source:myself
+ *  @Source: myself
  *  @Author: Tieway59
- *  @Complexity: $O(N)$
+ *  @Complexity: $O(N^3logP)$
  *  @Description:
- *      输入长度为n的串S，求S的最长双回文子串T,即可将T分为两部分X，Y，
- *      ∣X∣,∣Y∣≥1|X|,|Y|≥1∣X∣,∣Y∣≥1 且X和Y都是回文串。
- *
- *      转化成枚举后缀拼接就很好做了。
- *      思路是用PAM处理每个位置i的最长回文后缀，lb[i] (反向是rb[i])
- *      $ans = max(lb[i] + rb[i + 1])$
+ *      n行m列，下标从1开始
  *
  *  @Example:
- *      baacaabbacabb
- *      ans := 12
  *
  *  @Verification:
- *      洛谷 P4555 [国家集训队]最长双回文串
- *      https://www.luogu.com.cn/problem/P4555
+ *      http://codeforces.com/problemset/problem/185/A
+ *      http://codeforces.com/problemset/submission/185/95319533
+ *
  */
 
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
+const long long mo = 1e9 + 7;
+const int MATSZ = 11;
 typedef long long ll;
-const int PAMN = 1.2e5 + 59;
 
-struct PAM {
-    int tot, las;
-    int ch[PAMN][26];
-    int cnt[PAMN];
-    int len[PAMN];
-    int fail[PAMN];
-//    int npos[PAMN];
+struct matrix {
+    int n, m;
+    ll a[MATSZ][MATSZ];
 
-    int pos;
-    char s[PAMN];
-
-    int node(int l) {
-        tot++;
-        memset(ch[tot], 0, sizeof(ch[tot]));
-        len[tot] = l;
-        cnt[tot] = 0;
-        fail[tot] = 0;
-//        npos[tot] = pos;    //记录第一次出现的位置
-
-        return tot;
+    void clear() {
+        n = m = 0;
+        memset(a, 0, sizeof a);
     }
 
-    void init() {
-        tot = -1;
-        las = 0;
-        pos = 0;
-        s[pos] = '$';   // s = '￥......'
-        node(0);      // node[0] : len =  0 偶根
-        node(-1);     // node[1] : len = -1 奇根
-        fail[0] = 1;
-
+    matrix operator*(const matrix &t) const {
+        matrix ret;
+        ret.clear();
+        ret.n = n, ret.m = m;
+        for (int i = 1; i <= n; i++)
+            for (int k = 1; k <= m; k++)
+                for (int j = 1; j <= m; j++)
+                    //这里m其实应该写t.m，但是矩阵乘法的条件就是两者相等
+                    ret.a[i][j] = (ret.a[i][j] + (a[i][k] * t.a[k][j]) % mo) % mo;
+        return ret;
     }
 
-    int jump(int u) {
-        while (s[pos - len[u] - 1] != s[pos]) {
-            u = fail[u];
-        }
-        return u;
+    void eye(int x)//生成单位矩阵
+    {
+        clear();
+        n = m = x;
+        for (int i = 1; i <= x; i++)
+            a[i][i] = 1;
     }
+};
 
-    void extend(char c, int lb[]) {
-        s[++pos] = c;
-        int d = c - 'a';
-        int u = jump(las);
-        if (!ch[u][d]) {
-            int v = node(len[u] + 2);
-            fail[v] = ch[jump(fail[u])][d];
-            ch[u][d] = v;
-        }
-        las = ch[u][d];
-        cnt[las]++;
-
-        lb[pos] = max(lb[pos], len[las]);
-//        rb[pos - len[las] + 1] = max(rb[pos - len[las] + 1], len[las]);
-
-//        npos[las] = pos;    // 记录最后出现的位置
+matrix fpow(matrix base, ll idx) {
+    matrix ans;
+    ans.eye(base.n);
+    while (idx) {
+        if (idx & 1)ans = ans * base;
+        base = base * base;
+        idx >>= 1;
     }
-} pam;
-
-char s[PAMN];
-int lb[PAMN];
-int rb[PAMN];
-
+    return ans;
+}
 
 int main() {
+    ll n;
+    matrix mat1, mat2, ans;
+    while (cin >> n) {
+        mat1.n = 1, mat1.m = 2;
+        mat1.a[1][1] = 1;
+        mat1.a[1][2] = 0;
+        mat2.n = 2, mat2.m = 2;
+        mat2.a[1][1] = 3, mat2.a[1][2] = 1;
+        mat2.a[2][1] = 1, mat2.a[2][2] = 3;
 
-    scanf("%s", s + 1);
-    int n = strlen(s + 1);
-
-    pam.init();
-    for (int i = 1; i <= n; i++) {
-        lb[i] = 0;
-        pam.extend(s[i], lb);
+        ans = mat1 * fpow(mat2, n);
+        cout << (ans.a[1][1] % mo) << endl;
     }
-    reverse(s + 1, s + 1 + n);
-    pam.init();
-    for (int i = 1; i <= n; i++) {
-        rb[i] = 0;
-        pam.extend(s[i], rb);
-    }
-    reverse(rb + 1, rb + 1 + n);
-
-    int ans = 0;
-    for (int i = 1; i < n; ++i) {
-        ans = max(ans, lb[i] + rb[i + 1]);
-    }
-
-    printf("%d\n", ans);
-
     return 0;
 }
+/*
+
+*/

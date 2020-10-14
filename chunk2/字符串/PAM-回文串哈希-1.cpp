@@ -48,7 +48,7 @@ struct PAM {
         tot = -1;
         las = 0;
         pos = 0;
-        s[pos] = '$';   // s = '￥......'
+        s[pos] = '*';   // s = '*......'
         node(0);      // node[0] : len =  0 偶根
         node(-1);     // node[1] : len = -1 奇根
         fail[0] = 1;

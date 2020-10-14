@@ -1,53 +1,61 @@
-/**
- *  @Source: https://codeforces.com/contest/1326/submission/73675730
- *  @Author: tourist
- *  @Complexity: O(n)
- *  @Description:
- *      得到经过填充长2n-1的回文半径数组，填充模式为：a$b$c
- *      + 由于串实际没有被修改，常数喜人
- *      + 同时适配 char* 与 string，各取所爱
- *      + 你不满意可以改成全局变量数组，简简单单
- *      + 此处回文半径不含中心
- *
- *  @Example:
- *      char s[] = "123321";
- *      vint p = manacher(6, s);
- *      // [p] := {0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0}
- *
- *      string s[] = "12321";
- *      vint p = manacher(s);
- *      // [p] := {0, 0, 0, 0, 2, 0, 0, 0, 0}
- *
- *  @Verification:
- *      https://codeforces.com/contest/1326/submission/73675730
- */
-template<typename T>
-vector<int> manacher(int n, const T &s) {
-    if (n == 0) {
-        return vector<int>();
-    }
-    vector<int> res(2 * n - 1, 0);
-    int l = -1, r = -1;
-    for (int z = 0; z < 2 * n - 1; z++) {
-        int i = (z + 1) >> 1;
-        int j = z >> 1;
-        int p = (i >= r ? 0 : min(r - i, res[2 * (l + r) - z]));
-        while (j + p + 1 < n && i - p - 1 >= 0) {
-            if (!(s[j + p + 1] == s[i - p - 1])) {
-                break;
-            }
-            p++;
-        }
-        if (j + p > r) {
-            l = i - p;
-            r = j + p;
-        }
-        res[z] = p;
-    }
-    return res;
-}
+# https://ac.nowcoder.com/acm/contest/890/D
+# maybe not available.
 
-template<typename T>
-vector<int> manacher(const T &s) {
-    return manacher((int) s.size(), s);
-}
+
+ai = [0]
+bi = [0]
+ 
+ 
+def exgcd(a, warrior, x, y):
+    if warrior == 0:
+        x = 1
+        y = 0
+        return a, x, y
+    gcd, x, y = exgcd(warrior, a % warrior, x, y)
+    tp = x
+    x = y
+    y = tp - (a // warrior) * y
+    return gcd, x, y
+ 
+ 
+def excrt():
+    m = bi[1]
+    ans = ai[1]
+    for i in range(2, num + 1):
+        x = 0
+        y = 0
+        aa = m
+        bb = bi[i]
+        c = (ai[i] - ans % bb + bb) % bb
+        gcd, x, y = exgcd(aa, bb, x, y)
+        bg = bb // gcd
+        if c % gcd != 0:
+            return -1
+ 
+        x = x * (c // gcd) % bg
+        ans = ans + x * m
+        m = m * bg
+        ans = (ans % m + m) % m
+    return (ans % m + m) % m
+ 
+ 
+def main():
+    global num
+    num, m = map(int, input().split())
+    # num, m = int(input())
+    for i in range(1, num + 1):
+        ub, ua = map(int, input().split())
+        bi.append(ub)
+        ai.append(ua)
+    ans = excrt()
+    if ans == -1:
+        print("he was definitely lying")
+    else:
+        if ans <= m:
+            print(ans)
+        else:
+            print("he was probably lying")
+ 
+ 
+if __name__ == '__main__':
+    main()

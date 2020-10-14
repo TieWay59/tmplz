@@ -1,149 +1,109 @@
-/**
- *  @Source: https://blog.csdn.net/cloudy_happy/article/details/82748973
- *  @Author: Tieway59
- *  @Complexity: $O(k^2logN)$ k代表最短线性递推式的长度
- *  @Description:
- *      $O(K^2)$ 的复杂度用BM求 最短线性递推式
- *      $O(k^2logN)$ 的复杂度做线性递推求第N项
- *      注意从0开始下标。
- *      常见用于解决一些矩阵快速幂推不出来公式的情况
- *
- *  @Example:
- *      see below
- *
- *  @Verification:
- *      2018 ICPC 焦作站网络赛
- *      https://vjudge.net/solution/27743995
- *
- *      洛谷模板题
- *      https://www.luogu.com.cn/problem/P5487
- *
- */
-
-#include <stdio.h>
-#include <vector>
-
+//大数分解和随机测试素数
+#include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef vector<ll> VLL;
-#define REP(i, a, b) for (ll i = (a);i<(b);i++)
-#define pb push_back
-#define SZ(x) (ll((x).size()))
-const ll mod = -1;
+const int MAXN = (int) 1e6 + 7;
+typedef pair<ll, int> pli;
+/**
+ *  @Source: https://blog.csdn.net/qq_41848675/article/details/98233182
+ *  @Author: 苏丁力
+ *  @Complexity: $O(n^{\frac{1}{4}})$
+ *  @Description:
+ *      1e18范围内的数做质因子分解
+ *      输出是按照因子从小到大的（中间有一步排序）
+ *
+ *  @Example:
+ *      if (!pollard_rho::miller_rabin(n))
+ *          res = pollard_rho::solve(n);
+ *
+ *      [n] := 30
+ *      [res] := {(2, 1), (3, 1), (5, 1)}
+ *
+ *  @Verification:
+ *      身经百战（懒得贴了）
+ *
+ */
+namespace pollard_rho {
+    const int C = 2307;
+    const int S = 8;//可以适当调大
+    typedef pair<ll, int> pli;
+    mt19937_64 rd(time(0));
+    vector<ll> ve;
 
+    ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
 
-ll fmod(ll a, ll b) {
-    ll res = 1;
-    a %= mod;
-    for (; b; b >>= 1) {
-        if (b & 1)res = res * a % mod;
-        a = a * a % mod;
+    ll mul(ll a, ll b, ll mod) {
+        return (a * b - (ll) (a / (long double) mod * b + 1e-3) * mod + mod) % mod;
     }
-    return res;
-}
 
-namespace linear_seq {
-    const long long N = 10010;
-    ll res[N], base[N];
-    ll _c[N], _md[N];
-
-    vector<long long> Md;
-
-    void mul(ll *a, ll *b, long long k) {
-        REP(i, 0, k + k) _c[i] = 0;
-        REP(i, 0, k) {
-            if (a[i]) {
-                REP(j, 0, k) {
-                    _c[i + j] = (_c[i + j] + a[i] * b[j]) % mod;
-                }
-            }
+    ll power(ll a, ll b, ll mod) {
+        ll res = 1;
+        a %= mod;
+        while (b) {
+            if (b & 1)res = mul(res, a, mod);
+            a = mul(a, a, mod);
+            b >>= 1;
         }
-        for (long long i = k + k - 1; i >= k; i--) {
-            if (_c[i]) {
-                REP(j, 0, SZ(Md)) {
-                    _c[i - k + Md[j]] = (_c[i - k + Md[j]] - _c[i] * _md[Md[j]]) % mod;
-                }
-            }
+        return res;
+    }
+
+    bool check(ll a, ll n) {
+        ll m = n - 1, x, y;
+        int j = 0;
+        while (!(m & 1))m >>= 1, j++;
+        x = power(a, m, n);
+        for (int i = 1; i <= j; x = y, i++) {
+            y = mul(x, x, n);
+            if (y == 1 && x != 1 && x != n - 1)return 1;
         }
-        REP(i, 0, k) a[i] = _c[i];
+        return y != 1;
     }
 
-    // a 系数 b 初值 b[n+1]=a[0]*b[n]+...
-    long long solve(ll n, const VLL &a, const VLL &b) {
-        ll ans = 0, pnt = 0;
-        long long k = SZ(a);
-//        assert(SZ(a) == SZ(b));
-        REP(i, 0, k) _md[k - 1 - i] = -a[i];
-        _md[k] = 1;
-        Md.clear();
-        REP(i, 0, k) if (_md[i] != 0) Md.push_back(i);
-        REP(i, 0, k) res[i] = base[i] = 0;
-        res[0] = 1;
-        while ((1ll << pnt) <= n) pnt++;
-        for (long long p = pnt; p >= 0; p--) {
-            mul(res, res, k);
-            if ((n >> p) & 1) {
-                for (long long i = k - 1; i >= 0; i--) res[i + 1] = res[i];
-                res[0] = 0;
-                REP(j, 0, SZ(Md)) {
-                    res[Md[j]] = (res[Md[j]] - res[k] * _md[Md[j]]) % mod;
-                }
-            }
+    bool miller_rabin(ll n) { //素数随机测试算法
+        if (n == 1)return 0;
+        if (n == 2)return 1;
+        if (!(n & 1))return 0;
+        for (int i = 0; i < S; i++)
+            if (check(rd() % (n - 1) + 1, n))
+                return 0;
+        return 1;
+    }
+
+    ll pollard_rho(ll n, int c) {
+        ll i = 1, k = 2, x = rd() % n, y = x, d;
+        while (1) {
+            i++;
+            x = (mul(x, x, n) + c) % n, d = gcd(y - x, n);
+            if (d > 1 && d < n)return d;
+            if (y == x)return n;
+            if (i == k)y = x, k <<= 1;
         }
-        REP(i, 0, k) ans = (ans + res[i] * b[i]) % mod;
-        if (ans < 0) ans += mod;
-        return ans;
     }
 
-    VLL BM(const VLL &s) {
-        VLL C(1, 1), B(1, 1);
-        ll L = 0, m = 1, b = 1;
-        REP(n, 0, SZ(s)) {
-            ll d = 0;
-            REP(i, 0, L + 1) d = (d + (ll) C[i] * s[n - i]) % mod;
-            if (d == 0) ++m;
-            else if (2 * L <= n) {
-                VLL T = C;
-                ll c = mod - d * fmod(b, mod - 2) % mod;
-                while (SZ(C) < SZ(B) + m) C.pb(0);
-                REP(i, 0, SZ(B)) C[i + m] = (C[i + m] + c * B[i]) % mod;
-                L = n + 1 - L;
-                B = T;
-                b = d;
-                m = 1;
-            } else {
-                ll c = mod - d * fmod(b, mod - 2) % mod;
-                while (SZ(C) < SZ(B) + m) C.pb(0);
-                REP(i, 0, SZ(B)) C[i + m] = (C[i + m] + c * B[i]) % mod;
-                ++m;
-            }
+    void findfac(ll n, int c) {
+        if (n == 1)return;
+        if (miller_rabin(n)) {
+            ve.push_back(n);
+            return;
         }
-        return C;
+        ll m = n;
+        while (m == n)m = pollard_rho(n, c--);
+        findfac(m, c);
+        findfac(n / m, c);
     }
 
-    VLL seq; // 线性递推式 系数数组
-
-    void build(const VLL &a) {
-        seq = BM(a);
-        seq.erase(seq.begin());
-        REP(i, 0, SZ(seq)) seq[i] = (mod - seq[i]) % mod;
-    }
-
-    ll cal(const VLL &a, ll n) {
-        build(a);
-        return solve(n, seq, VLL(a.begin(), a.begin() + SZ(seq)));
+    vector<pli> solve(ll n) {
+        vector<pli> res;
+        ve.clear();
+        findfac(n, C);
+        sort(ve.begin(), ve.end());
+        for (auto x:ve) {
+            if (res.empty() || res.back().first != x)
+                res.push_back({x, 1});
+            else res.back().second++;
+        }
+        return res;
     }
 }
-
-const VLL v = {3, 9, 20, 46, 106, 244, 560, 1286, 2956, 6794, 15610};
-ll n;
-int kase;
-
-int main() {
-    scanf("%d", &kase);
-    while (kase--) {
-        scanf("%lld", &n);
-        printf("%lld\n", linear_seq::cal(v, n - 1));
-    }
-    return 0;
-}
+vector<pli> res;
+//接口返回一个所有质因数及其个数的vector

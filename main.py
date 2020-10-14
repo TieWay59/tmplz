@@ -2,7 +2,7 @@ import os
 import shutil
 
 # path为批量文件的文件夹根目录
-input_root = '.\\codefiles'
+input_root = '.\\chunk1'
 output_root = '.\\latexbuild\\codes'
 tex_output_root = '.\\codes'
 export = []
@@ -31,7 +31,7 @@ def make_input(old_name, true_path):
     elif suf.count('md') > 0:
         suf = 'text'
     else:
-        print("!!!ignore:" + old_name)
+        print("unexcepted ignore:" + old_name)
         return
 
     true_path = true_path.replace('\\', '/')
@@ -58,6 +58,9 @@ def rename_dfs(p, step):
             make_section(old_name, step)
             rename_dfs(os.path.join(p, old_name), step + 1)
         else:
+            if old_name.split('.')[-1].count('ignore') > 0:
+                print('ignore: ' + old_name)
+                continue
             make_section(old_name, step)
             make_input(old_name, os.path.join(tex_output_root, new_name))
             shutil.copyfile(old_path, new_path)

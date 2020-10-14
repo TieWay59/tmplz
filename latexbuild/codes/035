@@ -1,61 +1,82 @@
-# https://ac.nowcoder.com/acm/contest/890/D
-# maybe not available.
+/**
+ *  @Source: https://blog.csdn.net/qq_41848675/article/details/98233182
+ *  @Author: 苏丁力
+ *
+ *  @Description:
+ *      提供一些备选的低复杂度的分解方法。
+ *
+ */
 
+//质因数分解 基于埃氏nlogn筛法
+vector<long long> trial_division1(long long n) {
+    vector<long long> factorization;
+    for (long long d = 2; d * d <= n; d++) {
+        while (n % d == 0) {
+            factorization.push_back(d);
+            n /= d;
+        }
+    }
+    if (n > 1)
+        factorization.push_back(n);
+    return factorization;
+}
+//三倍速版
+vector<long long> trial_division3(long long n) {
+    vector<long long> factorization;
+    for (int d : {2, 3, 5}) {
+        while (n % d == 0) {
+            factorization.push_back(d);
+            n /= d;
+        }
+    }
+    static array<int, 8> increments = {4, 2, 4, 2, 4, 6, 2, 6};
+    int i = 0;
+    for (long long d = 7; d * d <= n; d += increments[i++]) {
+        while (n % d == 0) {
+            factorization.push_back(d);
+            n /= d;
+        }
+        if (i == 8)
+            i = 0;
+    }
+    if (n > 1)
+        factorization.push_back(n);
+    return factorization;
+}
+//基于已经筛完的质数
+vector<long long> primes;
 
-ai = [0]
-bi = [0]
- 
- 
-def exgcd(a, warrior, x, y):
-    if warrior == 0:
-        x = 1
-        y = 0
-        return a, x, y
-    gcd, x, y = exgcd(warrior, a % warrior, x, y)
-    tp = x
-    x = y
-    y = tp - (a // warrior) * y
-    return gcd, x, y
- 
- 
-def excrt():
-    m = bi[1]
-    ans = ai[1]
-    for i in range(2, num + 1):
-        x = 0
-        y = 0
-        aa = m
-        bb = bi[i]
-        c = (ai[i] - ans % bb + bb) % bb
-        gcd, x, y = exgcd(aa, bb, x, y)
-        bg = bb // gcd
-        if c % gcd != 0:
-            return -1
- 
-        x = x * (c // gcd) % bg
-        ans = ans + x * m
-        m = m * bg
-        ans = (ans % m + m) % m
-    return (ans % m + m) % m
- 
- 
-def main():
-    global num
-    num, m = map(int, input().split())
-    # num, m = int(input())
-    for i in range(1, num + 1):
-        ub, ua = map(int, input().split())
-        bi.append(ub)
-        ai.append(ua)
-    ans = excrt()
-    if ans == -1:
-        print("he was definitely lying")
-    else:
-        if ans <= m:
-            print(ans)
-        else:
-            print("he was probably lying")
- 
- 
-if __name__ == '__main__':
-    main()
+vector<long long> trial_division4(long long n) {
+    vector<long long> factorization;
+    for (long long d : primes) {
+        if (d * d > n)
+            break;
+        while (n % d == 0) {
+            factorization.push_back(d);
+            n /= d;
+        }
+    }
+    if (n > 1)
+        factorization.push_back(n);
+    return factorization;
+}
+//基于线性筛的lp数组
+vector<long long> trial_division4(long long n) {
+    vector<long long> factorization;
+    while(n>1)factorization.push_back(lp[n]),n /= lp[n];
+    if (n > 1)
+        factorization.push_back(n);
+    return factorization;
+}
+//O(|p - q|) n = a^2 - b^2 尝试a的值。
+int fermat(int n) {
+    int a = ceil(sqrt(n));
+    int b2 = a*a - n;
+    int b = round(sqrt(b2));
+    while (b * b != b2) {
+        a = a + 1;
+        b2 = a*a - n;
+        b = round(sqrt(b2));
+    }
+    return a - b;
+}
