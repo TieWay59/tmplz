@@ -12,6 +12,7 @@ void update_siz(int x)
         node[x].siz = (node[x].ch[0] ? node[node[x].ch[0]].siz : 0) +
                 (node[x].ch[1] ? node[node[x].ch[1]].siz : 0) + node[x].cnt;
 }
+
 bool chk(int x) { return node[node[x].par].ch[1] == x; }
 void rorate(int x)
 {

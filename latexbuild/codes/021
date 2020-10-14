@@ -1,6 +1,6 @@
 /**
  *  @Source: https://codeforces.com/blog/entry/12143
- *  @Complexity: O(n)
+ *  @Complexity: $O(n)$
  *  @Description: length of largest palindrome centered at each
  *      character of string and between every consecutive pair
  *      二维数组分别表示第i个位置偶数长度和奇数长度的回文半径（不含中心位置）。

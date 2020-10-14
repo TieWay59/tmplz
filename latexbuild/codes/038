@@ -1,86 +1,131 @@
+//
+// Created by acm-33 on 2019/7/24.
+//
 
-inline void read(int &x) {
-    char ch;
-    bool flag = false;
-    for (ch = getchar(); !isdigit(ch); ch = getchar())if (ch == '-') flag = true;
-    for (x = 0; isdigit(ch); x = x * 10 + ch - '0', ch = getchar());
-    x = flag ? -x : x;
+#define _debug(x) cerr<<#x<<" = "<<x<<endl
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef long long ll;
+const ll LINF = 0x3f3f3f3f3f3f3f3f;
+const ll INF = 0x3f3f3f3f3f3f3f3f;
+//const int MAXN = 3000 + 59;
+const ll MOD = 998244353;
+const int MAXN = 100015;
+
+const int M = MAXN * 30;
+int n, q, m, tot;
+int a[MAXN], t[MAXN];
+int T[MAXN], lson[M], rson[M], c[M];
+
+void Init_hush() {
+    for (int i = 1; i <= n; i++)
+        t[i] = a[i];
+    sort(t + 1, t + 1 + n);
+    m = unique(t + 1, t + 1 + n) - t - 1;
 }
 
-inline void write(int x) {
-    static const int maxlen = 100;
-    static char s[maxlen];
-    if (x < 0) {
-        putchar('-');
-        x = -x;
+int build(int l, int r) {
+    int root = tot++;
+    c[root] = 0;
+    if (l != r) {
+        int mid = (l + r) >> 1;
+        lson[root] = build(l, mid);
+        rson[root] = build(mid + 1, r);
     }
-    if (!x) {
-        putchar('0');
-        return;
-    }
-    int len = 0;
-    for (; x; x /= 10) s[len++] = x % 10 + '0';
-    for (int i = len - 1; i >= 0; --i) putchar(s[i]);
+    return root;
 }
 
+int hush(int x) {
+    return lower_bound(t + 1, t + 1 + m, x) - t;
+}
 
-namespace Fast_IO { //orz laofu
-    const int MAXL((1 << 18) + 1);
-    int iof, iotp;
-    char ioif[MAXL], *ioiS, *ioiT, ioof[MAXL], *iooS = ioof, *iooT = ioof + MAXL - 1, ioc, iost[55];
+int update(int root, int pos, int val) {
+    int newroot = tot++, tmp = newroot;
+    c[newroot] = c[root] + val;
+    int l = 1, r = m;
+    while (l < r) {
+        int mid = (l + r) >> 1;
+        if (pos <= mid) {
+            lson[newroot] = tot++;
+            rson[newroot] = rson[root];
+            newroot = lson[newroot];
+            root = lson[root];
+            r = mid;
+        } else {
+            rson[newroot] = tot++;
+            lson[newroot] = lson[root];
+            newroot = rson[newroot];
+            root = rson[root];
 
-    char Getchar() {
-        if (ioiS == ioiT) {
-            ioiS = ioif;
-            ioiT = ioiS + fread(ioif, 1, MAXL, stdin);
-            return (ioiS == ioiT ? EOF : *ioiS++);
-        } else return (*ioiS++);
+            l = mid + 1;
+        }
+        c[newroot] = c[root] + val;
     }
+    return tmp;
+}
 
-    void Write() {
-        fwrite(ioof, 1, iooS - ioof, stdout);
-        iooS = ioof;
+int query(int left_root, int right_root, int k) {
+    int l = 1, r = m;
+    while (l < r) {
+        int mid = (l + r) >> 1;
+        if (c[lson[left_root]] - c[lson[right_root]] >= k) {
+            r = mid;
+            left_root = lson[left_root];
+            right_root = lson[right_root];
+        } else {
+            l = mid + 1;
+            k -= c[lson[left_root]] - c[lson[right_root]];
+            left_root = rson[left_root];
+            right_root = rson[right_root];
+        }
     }
+    return l;
+}
 
-    void Putchar(char x) {
-        *iooS++ = x;
-        if (iooS == iooT)Write();
+ll Seg_k(int l, int r, int k) {
+    if (k > r - l + 1)return -1;
+    return 1ll * t[query(T[l], T[r + 1], k)];
+}
+
+int main() {
+
+    while (scanf("%d%d", &n, &q) == 2) {
+        tot = 0;
+        for (int i = 1; i <= n; i++)
+            scanf("%d", &a[i]);
+        Init_hush();
+        T[n + 1] = build(1, m);
+        for (int i = n; i; i--) {
+            int pos = hush(a[i]);
+            T[i] = update(T[i + 1], pos, 1);
+        }
+        while (q--) {
+            int l, r, k;
+            scanf("%d%d%d", &l, &r, &k);
+            printf("%lld\n", Seg_k(l, r, k));
+        }
     }
+    return 0;
+}
 
-    inline int read() {
-        int x = 0;
-        for (iof = 1, ioc = Getchar(); (ioc < '0' || ioc > '9') && ioc != EOF;)
-            iof = ioc == '-' ? -1 : 1, ioc = Getchar();
-        if (ioc == EOF)Write(), exit(0);
-        for (x = 0; ioc <= '9' && ioc >= '0'; ioc = Getchar())x = (x << 3) + (x << 1) + (ioc ^ 48);
-        return x * iof;
-    }
+/*
+5 5
+5 3 4 1 2
+1 2 2
+1 2 1
+1 5 3
+1 5 4
+1 5 6
 
-    inline long long read_ll() {
-        long long x = 0;
-        for (iof = 1, ioc = Getchar(); (ioc < '0' || ioc > '9') && ioc != EOF;)
-            iof = ioc == '-' ? -1 : 1, ioc = Getchar();
-        if (ioc == EOF)Write(), exit(0);
-        for (x = 0; ioc <= '9' && ioc >= '0'; ioc = Getchar())x = (x << 3) + (x << 1) + (ioc ^ 48);
-        return x * iof;
-    }
 
-    void Getstr(char *s, int &l) {
-        for (ioc = Getchar(); ioc == ' ' || ioc == '\n' || ioc == '\t';)ioc = Getchar();
-        if (ioc == EOF)Write(), exit(0);
-        for (l = 0; !(ioc == ' ' || ioc == '\n' || ioc == '\t' || ioc == EOF); ioc = Getchar())s[l++] = ioc;
-        s[l] = 0;
-    }
+*/
 
-    template<class Int>
-    void Print(Int x, char ch = '\0') {
-        if (!x)Putchar('0');
-        if (x < 0)Putchar('-'), x = -x;
-        while (x)iost[++iotp] = x % 10 + '0', x /= 10;
-        while (iotp)Putchar(iost[iotp--]);
-        if (ch)Putchar(ch);
-    }
+/*
 
-    void Putstr(const char *s) { for (int i = 0, n = strlen(s); i < n; ++i)Putchar(s[i]); }
-} // namespace Fast_IO
-using namespace Fast_IO;
+
+
+
+ */

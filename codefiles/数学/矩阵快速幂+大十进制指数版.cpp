@@ -11,7 +11,6 @@ template<
 typename _Tp,
 const int MAXMatrixSize
 >
-
 struct Matrix {
     _Tp m[MAXMatrixSize][MAXMatrixSize];
     _Tp mod = 0;
