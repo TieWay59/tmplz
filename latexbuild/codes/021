@@ -1,129 +1,63 @@
-#define _debug(x) cerr<<#x<<" = "<<x<<endl
-
-#include <bits/stdc++.h>
-
-using namespace
-std;
-typedef long long ll;
 
 
-template<
-typename _Tp,
-const int MAXMatrixSize
->
-struct Matrix {
-    _Tp m[MAXMatrixSize][MAXMatrixSize];
-    _Tp mod = 0;
+namespace Fast_IO { //orz laofu
+    const int MAXL((1 << 18) + 1);
+    int iof, iotp;
+    char ioif[MAXL], *ioiS, *ioiT, ioof[MAXL];
+    char *iooS = ioof, *iooT = ioof + MAXL - 1, ioc, iost[55];
 
-    Matrix() {
-        memset(m, 0, sizeof m);
+    char Getchar() {
+        if (ioiS == ioiT) {
+            ioiS = ioif;
+            ioiT = ioiS + fread(ioif, 1, MAXL, stdin);
+            return (ioiS == ioiT ? EOF : *ioiS++);
+        } else return (*ioiS++);
     }
 
-    Matrix(int _mod) : mod(_mod) {
-        memset(m, 0, sizeof m);
+    void Write() {
+        fwrite(ioof, 1, iooS - ioof, stdout);
+        iooS = ioof;
     }
 
-    void init1() {
-        //*this = Matrix(mod);
-        set(0, 0, 1);
-        set(1, 1, 1);
-//        for (int i = 0; i < MAXMatrixSize; i++)
-//            m[i][i] = 1;
+    void Putchar(char x) {
+        *iooS++ = x;
+        if (iooS == iooT)Write();
     }
 
-    inline void set(const int
-
-    &r, const int &c, const _Tp &v) { this->m[r][c] = v; }
-
-    inline _Tp get(const int
-
-    &r, const int &c) { return this->m[r][c]; }
-
-    inline void setMod(const _Tp
-
-    &_mod) { this->mod = _mod; }
-
-    inline Matrix operator
-    *(
-    const Matrix t
-    ) {
-        Matrix res(mod);//= Matrix(mod);
-        res.setMod(mod);
-        for (int i = 0; i < MAXMatrixSize; i++)
-            for (int j = 0; j < MAXMatrixSize; j++)
-                for (int k = 0; k < MAXMatrixSize; k++)
-                    res.m[i][j] = (res.m[i][j] + m[i][k] * t.m[k][j]) % mod;
-        return res;
-    }
-};
-
-typedef Matrix<ll, 2> mat;
-
-mat A, B;
-ll mo, len;
-char n[1000059];
-
-inline mat fpow(mat base, ll exp) {
-    mat res(mo);
-    res.init1();
-    while (exp) {
-        if (exp & 1)res = res * base;
-        exp >>= 1;
-        base = base * base;
-    }
-    return res;
-}
-
-inline ll calc() {
-
-    len = strlen(n);
-    //reverse(n, n + len);
-
-    mat res(mo);
-    res.init1();
-    mat base = B;
-
-    for (int i = len - 1; i >= 0; --i) {
-        if (n[i] > '0')
-            res = res * fpow(base, n[i] - '0');
-        base = fpow(base, 10);
+    inline int read() {
+        int x = 0;
+        for (iof = 1, ioc = Getchar(); (ioc < '0' || ioc > '9') && ioc != EOF;)
+            iof = ioc == '-' ? -1 : 1, ioc = Getchar();
+        if (ioc == EOF)Write(), exit(0);
+        for (x = 0; ioc <= '9' && ioc >= '0'; ioc = Getchar())x = (x << 3) + (x << 1) + (ioc ^ 48);
+        return x * iof;
     }
 
-    res = A * res;
-    return res.get(0, 0);
-}
+    inline long long read_ll() {
+        long long x = 0;
+        for (iof = 1, ioc = Getchar(); (ioc < '0' || ioc > '9') && ioc != EOF;)
+            iof = ioc == '-' ? -1 : 1, ioc = Getchar();
+        if (ioc == EOF)Write(), exit(0);
+        for (x = 0; ioc <= '9' && ioc >= '0'; ioc = Getchar())x = (x << 3) + (x << 1) + (ioc ^ 48);
+        return x * iof;
+    }
 
-//https://ac.nowcoder.com/acm/contest/885/B
-/*
- * input n is a long char string.(1e6)
- * mo is global Mod.
- * other parameters are just Matrix elements.
- *
- *
- */
-ll x0, x1, a, b;
+    void Getstr(char *s, int &l) {
+        for (ioc = Getchar(); ioc == ' ' || ioc == '\n' || ioc == '\t';)ioc = Getchar();
+        if (ioc == EOF)Write(), exit(0);
+        for (l = 0; !(ioc == ' ' || ioc == '\n' || ioc == '\t' || ioc == EOF); ioc = Getchar())s[l++] = ioc;
+        s[l] = 0;
+    }
 
-int main() {
+    template<class Int>
+    void Print(Int x, char ch = '\0') {
+        if (!x)Putchar('0');
+        if (x < 0)Putchar('-'), x = -x;
+        while (x)iost[++iotp] = x % 10 + '0', x /= 10;
+        while (iotp)Putchar(iost[iotp--]);
+        if (ch)Putchar(ch);
+    }
 
-    scanf("%lld%lld%lld%lld", &x0, &x1, &a, &b);
-    scanf("%s %lld", n, &mo);
-
-    A = mat(mo);
-    A.set(0, 0, x0);
-    A.set(0, 1, x1);
-
-    B = mat(mo);
-    B.set(0, 0, 0);
-    B.set(0, 1, b);
-    B.set(1, 0, 1);
-    B.set(1, 1, a);
-
-    printf("%lld\n", calc());
-    return 0;
-}
-/*
-
-
-
-
- * */
+    void Putstr(const char *s) { for (int i = 0, n = strlen(s); i < n; ++i)Putchar(s[i]); }
+} // namespace Fast_IO
+using namespace Fast_IO;

@@ -1,96 +1,179 @@
-//http://poj.org/status?problem_id=&user_id=tieway59&result=&language=
-#define myDebug(x) cerr<<#x<<" "<<x<<endl
-
-#include <string.h>
-#include <algorithm>
-#include <iostream>
 
 
-using namespace std;
-const int INF = 0x3f3f3f3f;
-const int MAXN = 1e3 + 7;
-
-
-struct Edge {
-    int u, v, nx; // ,w
-} e[MAXN << 2];
-
-int head[MAXN], cntEd;
-
-inline void addEdge(int u, int v) {
-    e[cntEd] = {u, v, head[u]};
-    head[u] = cntEd++;
+int root, cntN;
+#define nd node[now]
+struct SNODE
+{
+    int val, cnt, par, siz, ch[2];
+} node[MAXN];
+void update_siz(int x)
+{
+    if (x)
+        node[x].siz = (node[x].ch[0] ? node[node[x].ch[0]].siz : 0) +
+                (node[x].ch[1] ? node[node[x].ch[1]].siz : 0) + node[x].cnt;
 }
 
-//-----tarjan
-int dfn[MAXN], low[MAXN], scc[MAXN], stk[MAXN], index = 0, sccnum = 0, top = 0;
-
-void tarjan(int root) {
-    if (dfn[root]) return;
-    dfn[root] = low[root] = ++index;
-    stk[++top] = root;
-    for (int i = head[root]; ~i; i = e[i].nx) {
-        int v = e[i].v;
-        if (!dfn[v]) {    //如果v结点未访问过
-            tarjan(v);
-            low[root] = min(low[root], low[v]);
-        } else if (!scc[v]) {    //如果还在栈内
-            low[root] = min(low[root], dfn[v]);
-        }
+bool chk(int x) { return node[node[x].par].ch[1] == x; }
+void rorate(int x)
+{
+    int y = node[x].par, z = node[y].par, k = chk(x), d = node[x].ch[k ^ 1];
+    printf("&&%d,%d,%d,%d&&", x, y, z, d);
+    node[y].ch[k] = d;
+    node[d].par = y;
+    node[z].ch[chk(y)] = x;
+    node[x].par = z;
+    node[x].ch[k ^ 1] = y;
+    node[y].par = x;
+    update_siz(y);
+    update_siz(x);
+}
+void splay(int x, int to = 0)
+{
+    if (x == 0)
+    {
+        assert(false);
+        return;
     }
-    if (low[root] == dfn[root]) {    //后代不能找到更浅的点
-        sccnum++;
-        for (;;) {
-            int x = stk[top--];
-            scc[x] = sccnum;
-            if (x == root) break;
+    while (node[x].par != to)
+    {
+        if (node[node[x].par].par == to)
+            rorate(x);
+        else if (chk(x) == chk(node[x].par))
+            rorate(node[x].par), rorate(x);
+        else
+            rorate(x), rorate(x);
+        printf("<%d,%d,%d>", x, node[x].par, to);
+        printf("$$%d$$", node[1].ch[1]);
+    }
+    if (to == 0)
+        root = x;
+}
+void Insert(int x)
+{
+    if (root == 0)
+    {
+        int now = ++cntN;
+        nd.val = x;
+        root = now;
+        nd.cnt = 1;
+        nd.siz = 1;
+        nd.par = nd.ch[0] = nd.ch[1] = 0;
+        return;
+    }
+    int now = root, fa = 0;
+    while (1)
+    {
+        printf("(%d,%d,%d)", now, nd.val, nd.ch[1]);
+        if (x == nd.val)
+        {
+            nd.cnt++;
+            update_siz(now);
+            update_siz(fa);
+            splay(now);
+            return;
+        }
+        printf("22");
+        fa = now;
+        now = nd.ch[nd.val < x];
+        if (now == 0)
+        {
+            now = ++cntN;
+            nd.cnt = nd.siz = 1;
+            nd.ch[0] = nd.ch[1] = 0;
+            node[fa].ch[x > node[fa].val] = now;
+            printf("{%d,%d,%d}", fa, x > node[fa].val, now);
+            printf("$$%d$$", node[1].ch[1]);
+            nd.par = fa;
+            nd.val = x;
+            update_siz(fa);
+            splay(now);
+            return;
         }
     }
 }
-//---------
-
-int ind[MAXN], oud[MAXN];
-
-int main() {
-    memset(head, -1, sizeof head);
-
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
-    int n;
-
-    cin >> n;
-    for (int v, i = 1; i <= n; i++) {
-        while (cin >> v && v) {
-            addEdge(i, v);
+int rnk(int x)
+{
+    int now = root, ans = 0;
+    while (now)
+    {
+        printf("[%d,%d,%d,%d]", now, nd.val, nd.ch[0], nd.ch[1]);
+        if (x < nd.val)
+            now = nd.ch[0];
+        else
+        {
+            ans += node[nd.ch[0]].siz;
+            if (x == nd.val)
+            {
+                splay(now);
+                return ans + 1;
+            }
+            ans += nd.cnt;
+            now = nd.ch[1];
         }
     }
-    for (int i = 1; i <= n; i++)
-        if (!dfn[i]) tarjan(i);
-
-    int ans1 = 0;
-    int ans2 = 0;
-
-    for (int u, v, i = 0; i < cntEd; i++) {
-        u = scc[e[i].u];
-        v = scc[e[i].v];
-        if (u != v) {
-            ind[v]++;
-            oud[u]++;
-        }
-    }
-    for (int i = 1; i <= sccnum; i++) {
-        if (ind[i] == 0) {
-            ans1++;
-        }
-        if (oud[i] == 0) {
-            ans2++;
-        }
-    }
-    ans2 = max(ans2, ans1);
-
-    if (sccnum == 1)ans1 = 1, ans2 = 0;
-    cout << ans1 << endl << ans2 << endl;
-
-    return 0;
+    return -1;
 }
+int kth(int x)
+{
+    int now = root;
+    if (nd.siz < x)
+        return -1;
+    while (1)
+    {
+        if (nd.ch[0] && node[nd.ch[0]].siz >= x)
+            now = nd.ch[0];
+        else
+        {
+            int tmp = node[nd.ch[0]].siz + nd.cnt;
+            if (x <= tmp)
+                return nd.val;
+            x -= tmp;
+            now = nd.ch[1];
+        }
+    }
+}
+
+int main()
+{
+    int num, m;
+    scanf("%d%d", &num, &m);
+    for (int i = 1; i <= num; i++)
+    {
+        int x;
+        scanf("%d", &x);
+        printf("*");
+        Insert(x);
+    }
+    for (int i = 1; i <= m; i++)
+    {
+        int op, x;
+        scanf("%d%d", &op, &x);
+        if (op == 1)
+        {
+            Insert(x);
+        }
+        else if (op == 2)
+        {
+            printf("\num>>%d\num", rnk(x));
+        }
+        else if (op == 3)
+            printf("\num>>%d\num", kth(x));
+        else
+            printf("\num>>Val::%d,Siz::%d,Cnt::%d,Lc::%d,Rc::%d,Par::%d\num",
+                   node[x].val,
+                   node[x].siz,
+                   node[x].cnt,
+                   node[x].ch[0],
+                   node[x].ch[1],
+                   node[x].par);
+    }
+}
+/*
+5 100
+1 3 5  7 9
+1 2
+1 2
+2 1
+2 3
+2 3
+*/

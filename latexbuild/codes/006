@@ -1,133 +1,141 @@
 /**
- *  @Source: https://www.luogu.com.cn/problem/solution/P1742
- *  @Author: snowbody -> tieway59
+ *  @Source:myself
+ *  @Author: Tieway59
+ *  @Complexity: $O(N)$
  *  @Description:
- *      时间复杂度 O(N)
- *      为了减少中途过度开根，距离都是先按照平方计算的。
+ *      给出一个长度为N的字符串，要求输出一个长度为N的统计数组A
+ *      A[i]表示长度为i的good substring的数量
+ *      good substring ：该子串是回文串，且该子串的一半也是回文串。
+ *      做法是子串哈希，PAM枚举所有子串，检查。
  *
  *  @Example:
- *      vector<Point> p(n);
- *      for (auto &pi : p) cin >> pi;
- *      Circle circle;
- *      MinCircleCover(p, circle);
- *
- *      6
- *      8.0 9.0
- *      4.0 7.5
- *      1.0 2.0
- *      5.1 8.7
- *      9.0 2.0
- *      4.5 1.0
- *      // r = 5.0000000000 (5.0000000000,5.0000000000)
+ *      abababa
+ *      7 0 0 0 3 0 0
  *
  *  @Verification:
- *      https://www.luogu.com.cn/problem/P1742
+ *      2019 杭电多校2 1009 I Love Palindrome String
+ *      http://acm.hdu.edu.cn/showproblem.php?pid=6599
  */
 
+#include <bits/stdc++.h>
 
+using namespace std;
+typedef long long ll;
+const int PAMN = 3e5 + 59;
 
-//点或向量 (iostream选择性抄写)
-struct Point {
-    double x, y;
+struct PAM {
+    int tot, las;
+    int ch[PAMN][26];
+    int cnt[PAMN];
+    int len[PAMN];
+    int fail[PAMN];
+    int npos[PAMN];
 
-    Point() {}
+    int pos;
+    char s[PAMN];
 
-    Point(double x, double y) : x(x), y(y) {}
-
-    friend ostream &operator<<(ostream &ut, Point &r) { return ut << r.x << " " << r.y; }
-
-    friend istream &operator>>(istream &in, Point &r) { return in >> r.x >> r.y; }
-};
-
-typedef Point Vector;
-
-inline Vector operator+(Vector a, Vector b) {
-    return Vector(a.x + b.x, a.y + b.y);
-}
-
-inline Vector operator-(Vector a, Vector b) {
-    return Vector(a.x - b.x, a.y - b.y);
-}
-
-//向量数乘
-inline Vector operator*(Vector a, double p) {
-    return Vector(a.x * p, a.y * p);
-}
-
-//向量数除
-inline Vector operator/(Vector a, double p) {
-    return Vector(a.x / p, a.y / p);
-}
-
-//两点间距离
-inline double Distance(Point a, Point b) {
-    return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-}
-
-inline double Distance2(Point a, Point b) {
-    return ((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-}
-
-struct Circle {
-    Point c;
-    double r;
-
-    Point point(double a)//基于圆心角求圆上一点坐标
-    {
-        return Point(c.x + cos(a) * r, c.y + sin(a) * r);
+    int node(int l) {
+        tot++;
+        memset(ch[tot], 0, sizeof(ch[tot]));
+        len[tot] = l;
+        cnt[tot] = 0;
+        fail[tot] = 0;
+        npos[tot] = pos;    //记录第一次出现的位置
+        return tot;
     }
-};
 
-template<typename tp>
-inline tp pow2(const tp &x) {
-    return x * x;
+    void init() {
+        tot = -1;
+        las = 0;
+        pos = 0;
+        s[pos] = '*';   // s = '*......'
+        node(0);      // node[0] : len =  0 偶根
+        node(-1);     // node[1] : len = -1 奇根
+        fail[0] = 1;
+    }
+
+    int jump(int u) {
+        while (s[pos - len[u] - 1] != s[pos]) {
+            u = fail[u];
+        }
+        return u;
+    }
+
+    void extend(char c) {
+        s[++pos] = c;
+        int d = c - 'a';
+        int u = jump(las);
+        if (!ch[u][d]) {
+            int v = node(len[u] + 2);
+            fail[v] = ch[jump(fail[u])][d];
+            ch[u][d] = v;
+        }
+        las = ch[u][d];
+        cnt[las]++;
+//        npos[las] = pos;    // 记录最后出现的位置
+    }
+} pam;
+
+char s[PAMN];
+typedef long long ll;
+const ll MOD = 1e9 + 7;
+ll pre[PAMN];
+ll ans[PAMN];
+
+ll fpow(ll a, ll b) {
+    ll res = 1;
+    while (b) {
+        if (b & 1) res = res * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
+    }
+    return res;
 }
 
-inline Point circumcenter(Point p1, Point p2, Point p3) {
-    double a = p1.x - p2.x;
-    double b = p1.y - p2.y;
-    double c = p1.x - p3.x;
-    double d = p1.y - p3.y;
-    double e = (pow2(p1.x) - pow2(p2.x) +
-                pow2(p1.y) - pow2(p2.y)) / 2;
-    double f = (pow2(p1.x) - pow2(p3.x) +
-                pow2(p1.y) - pow2(p3.y)) / 2;
-    return Point((d * e - b * f) /
-                 (a * d - b * c),
-                 (a * f - c * e) /
-                 (a * d - b * c));
+ll subhush(int l, int r) {
+    l--;
+    return (pre[r] + MOD - pre[l] * fpow(19491001, r - l) % MOD) % MOD;
 }
 
+int main() {
 
-void MinCircleCover(vector <Point> &p, Circle &res) {
-    int n = p.size();
-    random_shuffle(p.begin(), p.end());
-    // avoid *sqrt* too much killing your precision.
-    for (int i = 0; i < n; i++) {
-        if (Distance2(p[i], res.c) <= res.r) continue;
-        res.c = p[i];
-        res.r = 0;
-        for (int j = 0; j < i; j++) {
-            if (Distance2(p[j], res.c) <= res.r)continue;
-            res.c = (p[i] + p[j]) / 2;
-            res.r = Distance2(p[j], res.c);
-            for (int k = 0; k < j; k++) {
-                if (Distance2(p[k], res.c) <= res.r)continue;
-                res.c = circumcenter(p[i], p[j], p[k]);
-                res.r = Distance2(p[k], res.c);
+    while (scanf("%s", s + 1) != EOF) {
+        int n = strlen(s + 1);
+        pam.init();
+        for (int i = 1; i <= n; i++) {
+            pam.extend(s[i]);
+            ans[i] = 0;
+            pre[i] = 0;
+        }
+
+        for (int i = 1; i <= n; ++i) {
+            pre[i] = (pre[i - 1] * 19491001 + (s[i] - 'a')) % MOD;
+        }
+
+        for (int i = pam.tot; i > 1; --i) {
+            pam.cnt[pam.fail[i]] += pam.cnt[i];
+        }
+
+        for (int i = 2; i <= pam.tot; ++i) {
+            int r = pam.npos[i];
+            int l = r - pam.len[i] + 1;
+            int len = pam.len[i];
+            int m = (l + r) >> 1;
+            if (len & 1) {
+                if (subhush(l, m) == subhush(m, r)) {
+                    ans[len] += pam.cnt[i];
+                }
+            } else {
+                if (subhush(l, m) == subhush(m + 1, r)) {
+                    ans[len] += pam.cnt[i];
+                }
             }
         }
-    }
-    res.r = sqrt(res.r);
-}
 
-void solve(int kaseId = -1) {
-    int n;
-    cin >> n;
-    vector <Point> p(n);
-    for (auto &pi : p) cin >> pi;
-    Circle circle;
-    MinCircleCover(p, circle);
-    cout << fixed << setprecision(10) << circle.r << endl;
-    cout << circle.c.x << " " << circle.c.y << endl;
+        for (int i = 1; i <= n; ++i) {
+            printf("%lld%c", ans[i], " \n"[i == n]);
+        }
+    }
+
+    return 0;
 }

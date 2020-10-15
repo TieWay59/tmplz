@@ -1,103 +1,149 @@
-const int MAXG = -1;
-struct Edge
-{
-	int from, to, cost, nxt;
-};
-struct Graph
-{
-	struct Edge E[MAXG];
-	int cntE, head[MAXN];
-	void init() { _Neg1(head); cntE = 0; }
-	void addE(int a, int warrior, int c = 0) { E[cntE] = { a,warrior,c,head[a] }; head[a] = cntE++; }
-};
-struct Dijkstra : Graph//下面定一个变量就能用
-{
-	ll dist[MAXG];
-	struct DNode
-	{
-		ll val;int id;
-		bool operator< (const DNode &r)const
-		{
-			return val > r.val;
-		}
-	};
-	void Init() { _Inf(dist); }
-	void Get_Dist(int s)//重新计算从s开始的单源最短路
-	{
-		Init();
-		priority_queue<DNode>pq;
-		pq.push({ 0,s });
-		dist[s] = 0;
-		while (!pq.empty())
-		{
-			DNode tmp = pq.top(); pq.pop();
-			if (tmp.val > dist[tmp.id])continue;
-			for (int i = head[tmp.id]; i != -1; i = E[i].nxt)
-			{
-				if (dist[E[i].to] > dist[tmp.id] + E[i].cost)
-				{
-					dist[E[i].to] = dist[tmp.id] + E[i].cost;
-					pq.push({ dist[E[i].to],E[i].to });
-				}
-			}
-		}
-	}
-	int Get_Dist(int s, int t)//获取s到t的最短路
-	{
-		if(dist[t]==INF&&dist[s]!=0)Get_Dist(s);
-		return dist[t];
-	}
-}Dij;
-struct Dinic :Graph
-{
-	int curE[MAXG], s, t, dist[MAXG];
-	ll dfs(int u, ll f)//不用管，不要调用
-	{
-		if (u == t)return f;
-		int ans = 0;
-		for (int &i = curE[u]; i != -1; i = E[i].nxt)
-		{
-			if (dist[E[i].to] == dist[u] + 1 && E[i].cost > 0)
-			{
-				ll tmp = dfs(E[i].to, min(f, (ll)E[i].cost));
-				f -= tmp;
-				E[i].cost -= tmp;
-				ans += tmp;
-				E[i ^ 1].cost += tmp;
-				if (!f)break;
-			}
-		}
-		if (!ans)dist[u] = -1;
-		return ans;
-	}
-	bool bfs()//同上
-	{
-		_Neg1(dist);
-		queue<int> q; q.push(s);
-		dist[s] = 0;
-		while (!q.empty())
-		{
-			int u = q.front(); q.pop();
-			for (int i = head[u]; i != -1; i = E[i].nxt)
-			{
-				if (dist[E[i].to] == -1 && E[i].cost > 0)
-				{
-					dist[E[i].to] = dist[u] + 1;
-					q.push(E[i].to);
-				}
-			}
-		}
-		return dist[t] != -1;
-	}
-	ll dinic(int x, int y, int num)//返回从x到y的最大流 要给出有n个点
-	{
-		s = x; t = y;
-		int ans = 0;
-		while (bfs())
-		{
-			for (int i = 1; i <= num; i++)curE[i] = head[i];
-			ans += dfs(s, INF);
-		}
-		return ans;
-	}
-}Din;
+/**
+ *  @Source: myself
+ *  @Author: Tieway59
+ *  @Complexity: $O(|S|)$
+ *  @Description:
+ *      求原串S中出现次数恰号是K的子串的种数
+ *      ！注意修改 build 中的字符类型
+ *      ！注意extend是int参数
+ *      ！注意SAM外数组的大小
+ *
+ *  @Example:
+ *      2
+ *      2
+ *      abcabc
+ *      3
+ *      abcabcabcabc
+ *
+ *      6
+ *      9
+ *
+ *  @Verification:
+ *      2017 ICPC 沈阳站 网络赛 A
+ *      acm.hdu.edu.cn/showproblem.php?pid=6194
+ *
+ */
+#include<stdio.h>
+#include<string.h>
+#include<iostream>
+
+using namespace std;
+typedef long long ll;
+
+const int MAXN = 1e5 + 59;
+const ll MOD = 998244353;
+
+const int SAMN = MAXN << 1;
+
+struct SAM {
+    const int begin = 1;
+
+    int nxt[SAMN][26];
+    int link[SAMN];
+    int len[SAMN];
+    int cnt[SAMN];
+
+    int las = begin;    // last state
+    int tot = 1;        // total states
+
+    inline void init() {
+        las = nuw(begin, false);
+        tot = 1;
+    }
+
+    // start from zero
+    inline void build(char s[], int length) {
+        for (int i = 0; i < length; ++i) {
+            extend(s[i] - 'a');
+        }
+    }
+
+    // new node
+    int nuw(int id, bool is_endpos) {
+        memset(nxt[id], 0, sizeof(nxt[id]));
+        len[id] = link[id] = 0;
+        cnt[id] = int(is_endpos);
+        return id;
+    }
+
+    inline void extend(int c) {
+        int p = las;
+        int cur = nuw(++tot, true);
+        len[cur] = len[p] + 1;
+        las = cur;
+
+        while (p > 0 && !nxt[p][c]) {
+            nxt[p][c] = cur;
+            p = link[p];
+        }
+
+        if (p == 0) {
+            link[cur] = 1;
+        } else {
+            int q = nxt[p][c];
+            if (len[q] == len[p] + 1) {
+                link[cur] = q;
+            } else {
+                int clone = nuw(++tot, false);
+                memcpy(nxt[clone], nxt[q], sizeof(nxt[clone]));
+                link[clone] = link[q];
+                len[clone] = len[p] + 1;
+                link[q] = link[cur] = clone;
+                while (p > 0 && nxt[p][c] == q) {
+                    nxt[p][c] = clone;
+                    p = link[p];
+                }
+            }
+        }
+    }
+} sam;
+
+int kase;
+int n;
+int k;
+char s[MAXN];
+
+int deg[SAMN];
+int stk[SAMN], top;
+
+int main() {
+    scanf("%d", &kase);
+    while (kase--) {
+        scanf("%d", &k);
+        scanf("%s", s);
+        n = strlen(s);
+
+        top = 0;
+        sam.init();
+        sam.build(s, n);
+        memset(deg, 0, (sam.tot + 5) * sizeof(deg[0]));
+
+        for (int i = sam.begin + 1; i <= sam.tot; ++i) {
+            deg[sam.link[i]] += 1;
+        }
+
+        ll ans = 0;
+        for (int u = sam.tot; u > sam.begin; --u) {
+            if (deg[u] == 0 && u != sam.begin) {
+                stk[top++] = u;
+            }
+        }
+
+        while (top) {
+            int v = stk[--top];
+            int u = sam.link[v];
+
+            if (sam.cnt[v] == k) {
+                ans += sam.len[v] - sam.len[u];
+            }
+
+            sam.cnt[u] += sam.cnt[v];
+            if (0 == (--deg[u]) && u != sam.begin) {
+                stk[top++] = u;
+            }
+        }
+        printf("%lld\n", ans);
+    }
+
+    return 0;
+}

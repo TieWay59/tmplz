@@ -1,164 +1,142 @@
 /**
  *  @Source: myself
  *  @Author: Tieway59
- *  @Complexity: O(nklogn)
+ *  @Complexity: $O(N)$
  *  @Description:
- *      g.addEdge(u, v, w);
- *      build graph & inverse_graph
+ *      给出两个字符串A，B。
+ *      求A的所有回文串在B中出现次数的和。
  *
- *      g.AstarKSP(inv_g, s, t, kth, ... );
- *      return k-th shortest path length or -1
- *
- *      ! KSP might not be strictly longer than (k-1)SP
- *      ! it's MLE/TLE for large K
- *      ! be aware of int overflow
- *      ! the "cut" is one example for passing skip function.
- *      ! I know this code is too long,
- *        it'll be easier if wrote into single functions.
- *        Since you need two graphs, this graph class works out fine.
+ *      根据回文树的转移dfs序同时遍历两个图。
  *
  *  @Example:
+ *      3
+ *      abacab
+ *      abccab
+ *      faultydogeuniversity
+ *      hasnopalindromeatall
+ *      abbacabbaccab
+ *      youmayexpectedstrongsamplesbutnow
+ *
+ *      Case #1: 12
+ *      Case #2: 20
+ *      Case #3: 18
  *
  *  @Verification:
- *      https://nanti.jisuanke.com/t/A1992 (input k)
- *      http://acm.hdu.edu.cn/showproblem.php?pid=6181 (k = 2)
+ *      2014 ICPC 西安EC G The Problem to Slow Down You
+ *      https://codeforces.com/gym/100548/attachments
  */
 
-using node_t = int;
-using cost_t = long long;
-using pqnd_t = pair<cost_t, node_t>;
+#include <bits/stdc++.h>
 
-class Graph {
-public:
-    int nsize = 0;
-    int esize = 0;
+using namespace std;
+typedef long long ll;
+const int PAMN = 2e5 + 59;
+typedef pair<int, int> pii;
 
-    struct Edge {
-        node_t v;
-        cost_t w;
-        int nx;
-    };
+struct PAM {
+    int tot, las;
+    int ch[PAMN][26];
+    int cnt[PAMN];
+    int len[PAMN];
+    int fail[PAMN];
+//    int npos[PAMN];
 
-    vector<int> head;
-    vector<Edge> edge;
+    int pos;
+    char s[PAMN];
 
-    Graph() {}
-
-    Graph(int n, int m) : nsize(n), esize(m) {
-        head.assign(n, -1);
-        edge.reserve(m);
+    int node(int l) {
+        tot++;
+        memset(ch[tot], 0, sizeof(ch[tot]));
+        len[tot] = l;
+        cnt[tot] = 0;
+        fail[tot] = 0;
+//        npos[tot] = pos;
+        return tot;
     }
 
-    // number from 0
-    inline void addEdge(node_t u, node_t v, cost_t w) {
-        edge.emplace_back((Edge) {v, w, head[u]});
-        head[u] = edge.size() - 1;
+    void init() {
+        tot = -1;
+        las = 0;
+        pos = 0;
+        s[pos] = '*';   // s = '*......'
+        node(0);      // node[0] : len =  0 偶根
+        node(-1);     // node[1] : len = -1 奇根
+        fail[0] = 1;
     }
 
-    static void dijkstra(const Graph &g, const node_t &s, vector<cost_t> &d);
+    int jump(int u) {
+        while (s[pos - len[u] - 1] != s[pos]) {
+            u = fail[u];
+        }
+        return u;
+    }
 
-    cost_t AstarKSP(const Graph &inv_g, node_t s, node_t t, int k, function<const bool(cost_t)> cut);
-};
+    void extend(char c) {
+        s[++pos] = c;
+        int d = c - 'a';
+        int u = jump(las);
+        if (!ch[u][d]) {
+            int v = node(len[u] + 2);
+            fail[v] = ch[jump(fail[u])][d];
+            ch[u][d] = v;
+        }
+        las = ch[u][d];
+        cnt[las]++;
+    }
 
-void Graph::dijkstra(const Graph &g, const node_t &s, vector<cost_t> &d) {
-    d.assign(g.nsize, INF);
-    d[s] = 0;
+    void build(char s[], int length) {
+        for (int i = 0; i < length; ++i) {
+            extend(s[i]);
+        }
+    }
 
-//    using pqnd_t = pair<cost_t, node_t>;
-    priority_queue<pqnd_t, vector<pqnd_t>, greater<pqnd_t> > q;
-    q.emplace(d[s], s);
+    void pushcnt() {
+        for (int i = tot; i > 1; i--) {
+            cnt[fail[i]] += cnt[i];
+        }
+    }
+} pam_a, pam_b;
 
-    node_t u, v;
-    cost_t w, du;
-    while (!q.empty()) {
-        du = q.top().first;
-        u = q.top().second;
-        q.pop();
-        if (du > d[u])continue;
-        for (int i = g.head[u]; i != -1; i = g.edge[i].nx) {
-            v = g.edge[i].v;
-            w = g.edge[i].w;
-            if (du + w < d[v]) {
-                d[v] = du + w;
-                q.emplace(d[v], v);
+char a[PAMN], b[PAMN];
+pii stk[PAMN];
+int top;
+
+int main() {
+    int kase, kaseId = 0;
+    scanf("%d", &kase);
+    while (kase--) {
+        int na, nb;
+        scanf("%s %s", a + 1, b + 1);
+        na = strlen(a + 1);
+        nb = strlen(b + 1);
+
+        pam_a.init();
+        pam_a.build(a + 1, na);
+        pam_a.pushcnt();
+        pam_b.init();
+        pam_b.build(b + 1, nb);
+        pam_b.pushcnt();
+
+        for (int k = 0; k < 26; ++k) {
+            if (pam_a.ch[0][k] > 0 && pam_b.ch[0][k] > 0)
+                stk[top++] = pii{pam_a.ch[0][k], pam_b.ch[0][k]};
+            if (pam_a.ch[1][k] > 0 && pam_b.ch[1][k] > 0)
+                stk[top++] = pii{pam_a.ch[1][k], pam_b.ch[1][k]};
+        }
+
+        ll ans = 0;
+        while (top) {
+            int i = stk[--top].first;
+            int j = stk[top].second;
+
+            ans += pam_a.cnt[i] * 1ll * pam_b.cnt[j];
+
+            for (int k = 0; k < 26; ++k) {
+                if (pam_a.ch[i][k] > 0 && pam_b.ch[j][k] > 0)
+                    stk[top++] = pii{pam_a.ch[i][k], pam_b.ch[j][k]};
             }
         }
+        printf("Case #%d: %lld\n", ++kaseId, ans);
     }
-}
-
-//O(nklogn) : beware of n-circle.
-cost_t Graph::AstarKSP(const Graph &inv_g, node_t s, node_t t, int k,
-                       function<const bool(cost_t)> cut) {
-    vector<cost_t> dis_t;
-    vector<int> vis(nsize, 0);
-    Graph::dijkstra(inv_g, t, dis_t);
-
-    // if(s==t) k++; when the node are not defined as a path.
-    if (dis_t[s] == llINF)return -1;
-
-    auto Astar = [&](pqnd_t x, pqnd_t y) -> bool {
-        return x.first + dis_t[x.second] >
-               y.first + dis_t[y.second];
-    };
-    // BFS-similar :
-    node_t u = s;
-    cost_t dis_s;
-    priority_queue<pqnd_t, vector<pqnd_t>, decltype(Astar)> q(Astar);
-    vis[u] = 1;
-    q.emplace(0, u);
-    while (!q.empty()) {
-        dis_s = q.top().first;
-        u = q.top().second;
-        q.pop();
-
-        if (u == t && vis[u] == k)return dis_s;
-
-        for (int i = head[u]; i != -1; i = edge[i].nx) {
-            node_t v = edge[i].v;
-            cost_t w = edge[i].w;
-
-            if (cut(dis_s + w))continue;
-            if (cut(dis_s + w + dis_t[v]))continue;
-
-            // below is a risky-but-worth skip, take care :
-            // if k == 2, skip vis > k
-            // else skip vis >= k
-            // (proved practically not theoretically. )
-            if (vis[v] >= max(3, k))continue;
-            else vis[v]++;
-
-            q.emplace(dis_s + w, v);
-        }
-    }
-    return -1;
-}
-
-
-void solve(int kaseId = -1) {
-    int n, m;
-    node_t s, t, kth;
-    cost_t limit = 0;
-
-    const auto cut = [&](cost_t cost) -> bool {
-        return cost > limit;
-    };
-
-    while (cin >> n >> m) {
-        cin >> s >> t >> kth >> limit;
-        s--, t--;
-        Graph g(n, m);
-        Graph inv_g(n, m);
-
-        for (ll i = 1, u, v, w; i <= m; ++i) {
-            cin >> u >> v >> w;
-            u--, v--;
-            g.addEdge(u, v, w);
-            inv_g.addEdge(v, u, w);
-        }
-        cost_t res = g.AstarKSP(inv_g, s, t, kth, cut);
-        if (res == -1 || cut(res))
-            cout << "Whitesnake!" << endl;
-        else
-            cout << "yareyaredawa" << endl;
-    }
+    return 0;
 }

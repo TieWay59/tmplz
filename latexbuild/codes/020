@@ -1,61 +1,24 @@
-# https://ac.nowcoder.com/acm/contest/890/D
-# maybe not available.
 
+inline void read(int &x) {
+    char ch;
+    bool flag = false;
+    for (ch = getchar(); !isdigit(ch); ch = getchar())if (ch == '-') flag = true;
+    for (x = 0; isdigit(ch); x = (x << 1) + (x << 3) + ch & 15, ch = getchar());
+    x = flag ? -x : x;
+}
 
-ai = [0]
-bi = [0]
- 
- 
-def exgcd(a, warrior, x, y):
-    if warrior == 0:
-        x = 1
-        y = 0
-        return a, x, y
-    gcd, x, y = exgcd(warrior, a % warrior, x, y)
-    tp = x
-    x = y
-    y = tp - (a // warrior) * y
-    return gcd, x, y
- 
- 
-def excrt():
-    m = bi[1]
-    ans = ai[1]
-    for i in range(2, num + 1):
-        x = 0
-        y = 0
-        aa = m
-        bb = bi[i]
-        c = (ai[i] - ans % bb + bb) % bb
-        gcd, x, y = exgcd(aa, bb, x, y)
-        bg = bb // gcd
-        if c % gcd != 0:
-            return -1
- 
-        x = x * (c // gcd) % bg
-        ans = ans + x * m
-        m = m * bg
-        ans = (ans % m + m) % m
-    return (ans % m + m) % m
- 
- 
-def main():
-    global num
-    num, m = map(int, input().split())
-    # num, m = int(input())
-    for i in range(1, num + 1):
-        ub, ua = map(int, input().split())
-        bi.append(ub)
-        ai.append(ua)
-    ans = excrt()
-    if ans == -1:
-        print("he was definitely lying")
-    else:
-        if ans <= m:
-            print(ans)
-        else:
-            print("he was probably lying")
- 
- 
-if __name__ == '__main__':
-    main()
+inline void write(int x) {
+    static const int maxlen = 100;
+    static char s[maxlen];
+    if (x < 0) {
+        putchar('-');
+        x = -x;
+    }
+    if (!x) {
+        putchar('0');
+        return;
+    }
+    int len = 0;
+    for (; x; x /= 10) s[len++] = x % 10 + '0';
+    for (int i = len - 1; i >= 0; --i) putchar(s[i]);
+}

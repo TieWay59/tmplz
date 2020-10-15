@@ -1,7 +1,7 @@
 /**
  *  @Source: https://loj.ac/submission/566777
  *  @Author: g21gsj
- *  @Complexity: $O(n^{\frac{1}{2})$ 常数多一点
+ *  @Complexity: $O(n^{\frac{1}{2}})$ 常数多一点
  *  @Description:
  *      求素数前缀和的替代方案
  *      稍微慢一些，但是也已经非常快了。
