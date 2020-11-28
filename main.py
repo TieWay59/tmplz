@@ -2,12 +2,29 @@ import os
 import shutil
 
 # path为批量文件的文件夹根目录
-input_root = '.\\chunk2'
+input_root = '.\\codefiles'
 output_root = '.\\latexbuild\\codes'
 tex_output_root = '.\\codes'
 export = []
 
 level = [r'\section', r'\subsection', r'\subsubsection']
+
+
+def filefilter(old_name):
+    suf = old_name.split('.')[-1]
+    if suf.count('c') > 0:
+        return True
+    elif suf.count('py') > 0:
+        return True
+    elif suf.count('j') > 0:
+        return True
+    elif suf.count('txt') > 0:
+        return True
+    elif suf.count('md') > 0:
+        return True
+    else:
+        print("unexcepted ignore:" + old_name)
+        return False
 
 
 def make_section(old_name, step):
@@ -57,12 +74,10 @@ def rename_dfs(p, step):
         if os.path.isdir(old_path):
             make_section(old_name, step)
             rename_dfs(os.path.join(p, old_name), step + 1)
-        else:
-            # if old_name.split('.')[-1].count('ignore') > 0:
-            #     print('ignore: ' + old_name)
-            #     continue
+        elif filefilter(old_name):
             make_section(old_name, step)
             make_input(old_name, os.path.join(tex_output_root, new_name))
+            print(old_path, file_reindex)
             shutil.copyfile(old_path, new_path)
             file_reindex = file_reindex + 1
 

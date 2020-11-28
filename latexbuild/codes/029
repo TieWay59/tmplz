@@ -1,77 +1,97 @@
-#define _debug(x) cerr<<#x<<" = "<<x<<endl
 
-#include <iostream>
-#include <algorithm>
-#include <deque>
 
-using namespace std;
+输入一个可能错误的三角剖分（n阶凸多边形，内部n - 3条对角线）。
+每条边的边权是三种颜色之一。
 
-typedef long long ll;
+校验1：这是一个正确的三角剖分
+校验2：这个三角剖分的每个单元三角形都是异色三角形。
 
-const int INF = 0x3f3f3f3f;
-const int MOD = 998244353;
-const int MAXN = 1e6 + 59;
+如果三角剖分正确，内部每个单元三角形的内角，都对应一条边。
+（反过来，一条对角线对应两个内角，一条轮廓边对应一个内角）
+如果存在连线出错了，必定会产生内部多边形不是三角形的情况。这样内角对应的边会找不到。
+如果每个三角形都是异色三角形，那么每个内角的两个夹角边异色。
 
-int Kase, n, m;
+所以只要枚举内角，检查每个内角，对边是否存在，夹角边是否异色。
 
-int a[MAXN];
-int ans1[MAXN], ans2[MAXN];
-deque<int> qMAX, qMIN;
+把这个几何图形建成无向图图论模型，我们希望每个点的邻接表中的编号都是顺时针或者逆时针的，那么每次枚举邻边就代表这个图形中的内角。
 
-int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+考虑在邻接表排序的时候，把当前编号作为最小值，重新映射所有编号（取模）。这样排序以后就可以自然地从n - 1 枚举下一个是 0 1 2 
+以下是逆时针的排序做法：
+不理解lambda，可以写个比较函数，把i作为全局变量传递。
 
-    cin >> n >> m;
+ for (int i = 0; i < n; ++i) {
+     sort(g[i].begin(), g[i].end(), [&i](edge l, edge r) {
+         return (l.id - i + n) % n < (r.id - i + n) % n;
+     });
+ }
+ 
+ 
+ const int MAXN = 2e5 + 59;
+using pii = pair<int, int>;
 
-    for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+int n;
+char s[MAXN];
+vector<pii> g[MAXN];
+set<pii> has;
+
+void solve(int kaseId = -1) {
+    int _ = 0;
+    cin >> _;
+    cin >> n >> s;
+
+    bool check1 = true;
+    bool check2 = true;
+
+    for (int i = 0; i < n - 3; ++i) {
+        int u, v, c;
+        cin >> u >> v >> c;
+        u--, v--;
+        g[u].emplace_back(v, c);
+        g[v].emplace_back(u, c);
+        has.emplace(u, v);
     }
 
-    for (int i = 1; i <= n; i++) {
-        while (!qMIN.empty() && i - qMIN.front() >= m)
-            qMIN.pop_front();
-        while (!qMAX.empty() && i - qMAX.front() >= m)
-            qMAX.pop_front();
+    for (int i = 0; i < n; ++i) {
+        int u = i;
+        int v = (i + 1) % n;
+        int c = s[i] - '0';
+        g[u].emplace_back(v, c);
+        g[v].emplace_back(u, c);
+    }
 
-        while (!qMIN.empty() && a[qMIN.back()] > a[i])
-            qMIN.pop_back();
+    for (int i = 0; i < n; ++i) {
+        sort(g[i].begin(), g[i].end(), [&i](pii l, pii r) {
+            return (l.first - i + n) % n < (r.first - i + n) % n;
+        });
+    }
 
-        while (!qMAX.empty() && a[qMAX.back()] < a[i])
-            qMAX.pop_back();
+    for (int u = 0; check1 && u < n; ++u) {
+        int len = int(g[u].size());
+        for (int i = 0, j = 1; j < len; ++i, ++j) {
+            int vi = g[u][i].first;
+            int vj = g[u][j].first;
+            int ci = g[u][i].second;
+            int cj = g[u][j].second;
 
-        if (qMIN.empty() || a[qMIN.back()] <= a[i])
-            qMIN.push_back(i);
-
-        if (qMAX.empty() || a[qMAX.back()] >= a[i])
-            qMAX.push_back(i);
-
-        if (i >= m) {
-            ans1[i] = a[qMIN.front()];
-            ans2[i] = a[qMAX.front()];
+            if ((vi + 1) % n != vj &&
+                (vj + 1) % n != vi &&   // 轮廓边必然存在，跳过。
+                has.count(pii{vi, vj}) == 0 &&
+                has.count(pii{vj, vi}) == 0) {
+                check1 = false;
+                break;
+            }
+            
+            if (ci == cj) {
+                check2 = false;
+            }
         }
     }
-    for (int j = m; j <= n; ++j) {
-        cout << ans1[j] << " \n"[j == n];
+
+    if (!check1) {
+        cout << "neispravna triangulacija\n";
+    } else if (!check2) {
+        cout << "neispravno bojenje\n";
+    } else {
+        cout << "tocno\n";
     }
-    for (int j = m; j <= n; ++j) {
-        cout << ans2[j] << " \n"[j == n];
-    }
-    return 0;
 }
-
-/*
-
-
- 2
-2 0
-1 2
-1 1
-
- 3 2
- 1 2 1
- 5 3 1
- 1 5 1
-
-
-*/

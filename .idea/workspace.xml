@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d4ba624f-4b90-4a0c-b2f0-58ce3aad4de2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/pb_ds/common sample.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/stl/unordered_map/1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/stl/unordered_map/lgoj3370.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/stl/unordered_map/lgoj3370.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/stl/unordered_map/lgoj3370.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/k短路/lgoj2483.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/k短路/lgoj4467.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/二分图最大匹配/hungaryO(n(e+m)).cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/二分图最大匹配/hungaryO(n(e+m)).exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/二分图最大匹配/hungaryO(n(e+m)).o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/二分图最大权匹配/kmO(n^3).cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/二分图最大权匹配/kmO(n^3).exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/二分图最大权匹配/kmO(n^3).o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/强联通缩点/lgoj3387.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/强联通缩点/lgoj3387.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/强联通缩点/lgoj3387.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/拓扑排序/lgoj1954.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/最小生成树/boruvka/cf888g.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/最小生成树/boruvka/cf888g.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/最小生成树/boruvka/cf888g.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/最短路/Johnson/lgoj5905.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/图论/最短路/dijkstra/lgoj4779.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/AC自动机/lgoj5357.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/bordertree/lgoj5829.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/bordertree/lgoj5829.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/bordertree/lgoj5829.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/exkmp/exkmp.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/kmp/lgoj3375.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/lyndon/hdoj6761.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/lyndon/lgoj1368.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/lyndon/lgoj6114.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/lyndon/uva719.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/manacher/lgoj3805.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/trie/lgoj3370.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/后缀数组nlogn/suffixarray.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/后缀自动机/lgoj3804.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/后缀自动机/lgoj3804.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/后缀自动机/lgoj3975.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/后缀自动机/lgoj4070.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/后缀自动机/sam(simple).md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/回文自动机/lgoj3649.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/子序列/lgoj5826.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/广义后缀自动机/OvO.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/广义后缀自动机/lgoj3181.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/广义后缀自动机/lgoj3346.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/广义后缀自动机/lgoj4022.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/广义后缀自动机/lgoj6139.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/字符串/最小表示/lgoj1368.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/CF896C.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/CF896C.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/CF896C.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/CF915E.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/CF915E.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/CF915E.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/lgoj4979.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/lgoj4979.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/odt/lgoj4979.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/左偏树/lgoj3377.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/平衡树/fhqtreap/3369.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/平衡树/fhqtreap/3391.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/平衡树/fhqtreap/3960.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/平衡树/fhqtreap/6136.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/树套树/lgoj2617.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/树状数组/区间修改单点查询/lgoj3368.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/树状数组/单点修改区间查询/lgoj3374.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/树状数组/单点修改区间查询/lgoj3374.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/树状数组/单点修改区间查询/lgoj3374.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/笛卡尔树/5854.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/区间加minmax历史最值/uoj170.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/区间加乘求和/lgoj3373.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/区间加取min求和历史最值/lgoj6242.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/区间加求和/lgoj3372.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/线段树合并/lgoj4556.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/线段树合并/lgoj4556.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数据结构/线段树/线段树合并/lgoj4556.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数论/区间lcm/lgoj5655.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数论/多项式/fft&amp;ntt/3803.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/数论/多项式/fwt/fwt.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/模拟退火/UVA10228.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/模拟退火/lgoj4035(unfinished).cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/模拟退火/note.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codefiles/模拟退火/note.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/030" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/031" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/032" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/033" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/034" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/035" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/036" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/037" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/038" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/039" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/040" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/041" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/042" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/043" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/044" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/045" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/046" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/047" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/048" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/049" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/050" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/051" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/052" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/053" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/054" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/055" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/056" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/057" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/058" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/latexbuild/codes/059" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/000" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/000" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/001" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/002" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/002" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/003" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/003" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/004" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/004" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/005" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/005" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/006" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/006" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/007" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/007" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/008" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/008" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/009" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/009" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/010" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/010" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/011" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/011" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/012" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/012" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/013" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/013" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/014" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/014" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/015" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/015" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/016" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/016" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/017" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/017" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/018" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/018" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/019" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/019" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/020" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/020" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/021" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/021" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/022" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/022" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/023" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/023" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/024" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/024" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/025" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/025" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/026" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/026" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/027" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/027" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/028" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/028" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/codes/029" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/codes/029" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latexbuild/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latexbuild/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="v0.1.0-archived" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/TieWay59/tmplz" />
+      </set>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="55bc418b-4276-4c68-be6f-5a5b31115776" />
+  <component name="ProjectId" id="1hY5s7pS1mrWwMatCdAW19QVS2A" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/codefiles" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\tmplz\assets" />
+      <recent name="D:\github\tmplz\assets\example1" />
+      <recent name="D:\github\tmplz\example1" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\github\tmplz\codefiles" />
+      <recent name="D:\github\tmplz\assets" />
+      <recent name="D:\github\tmplz\latexbuild" />
+      <recent name="D:\github\tmplz" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="tmplz" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python37\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4ba624f-4b90-4a0c-b2f0-58ce3aad4de2" name="Default Changelist" comment="" />
+      <created>1600175388752</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600175388752</updated>
+      <workItem from="1600175390892" duration="2806000" />
+      <workItem from="1600178248280" duration="4260000" />
+      <workItem from="1600417003849" duration="5000" />
+      <workItem from="1601024011302" duration="3597000" />
+      <workItem from="1601182400217" duration="8000" />
+      <workItem from="1602675896652" duration="8818000" />
+      <workItem from="1602760514910" duration="716000" />
+      <workItem from="1602864960379" duration="2538000" />
+      <workItem from="1603078988319" duration="38000" />
+    </task>
+    <task id="LOCAL-00001" summary="archive old version">
+      <created>1600175590986</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600175590987</updated>
+    </task>
+    <task id="LOCAL-00002" summary="clear old project">
+      <created>1600175727041</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600175727041</updated>
+    </task>
+    <task id="LOCAL-00003" summary="import new files">
+      <created>1600175789446</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600175789446</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add disc">
+      <created>1600176011500</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600176011500</updated>
+    </task>
+    <task id="LOCAL-00005" summary="new readme.md">
+      <created>1600178282218</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600178282218</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add basic files">
+      <created>1600178470182</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600178470182</updated>
+    </task>
+    <task id="LOCAL-00007" summary="remove out.txt">
+      <created>1600178624183</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600178624183</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update readme.md more details">
+      <created>1600179047068</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600179047068</updated>
+    </task>
+    <task id="LOCAL-00009" summary="修复chapter过度分页的问题&#10;整体文档更加紧凑">
+      <created>1600222570407</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600222570407</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update readme.md">
+      <created>1600224273327</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1600224273327</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update readme.md more detail">
+      <created>1600225647548</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1600225647548</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update all templates">
+      <created>1602677963535</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1602677963535</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update all templates">
+      <created>1602678031932</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1602678031932</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update all templates">
+      <created>1602681571200</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1602681571200</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update all templates">
+      <created>1602760532778</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1602760532778</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="archive old version" />
+    <MESSAGE value="clear old project" />
+    <MESSAGE value="import new files" />
+    <MESSAGE value="add disc" />
+    <MESSAGE value="new readme.md" />
+    <MESSAGE value="add basic files" />
+    <MESSAGE value="remove out.txt" />
+    <MESSAGE value="update readme.md more details" />
+    <MESSAGE value="修复chapter过度分页的问题&#10;整体文档更加紧凑" />
+    <MESSAGE value="update readme.md" />
+    <MESSAGE value="update readme.md more detail" />
+    <MESSAGE value="update all templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="update all templates" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="429" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600178370513">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="429" y="186" key="#com.intellij.execution.impl.EditConfigurationsDialog/62.0.1858.1080@62.0.1858.1080" timestamp="1600178370513" />
+    <state x="717" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602865996463">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state x="717" y="323" key="#com.intellij.fileTypes.FileTypeChooser/85.0.1835.1080@85.0.1835.1080" timestamp="1602865996463" />
+    <state x="523" y="28" key="CommitChangelistDialog2" timestamp="1602760529090">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state x="505" y="28" key="CommitChangelistDialog2/62.0.1858.1080@62.0.1858.1080" timestamp="1600225646616" />
+    <state x="523" y="28" key="CommitChangelistDialog2/85.0.1835.1080@85.0.1835.1080" timestamp="1602760529090" />
+    <state x="720" y="236" key="FileChooserDialogImpl" timestamp="1603079021789">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state x="705" y="236" key="FileChooserDialogImpl/62.0.1858.1080@62.0.1858.1080" timestamp="1600178368424" />
+    <state x="720" y="236" key="FileChooserDialogImpl/85.0.1835.1080@85.0.1835.1080" timestamp="1603079021789" />
+    <state width="1782" height="256" key="GridCell.Tab.0.bottom" timestamp="1602933501734">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state width="1805" height="113" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1601029356564" />
+    <state width="1782" height="256" key="GridCell.Tab.0.bottom/85.0.1835.1080@85.0.1835.1080" timestamp="1602933501734" />
+    <state width="1782" height="256" key="GridCell.Tab.0.center" timestamp="1602933501734">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state width="1805" height="113" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1601029356564" />
+    <state width="1782" height="256" key="GridCell.Tab.0.center/85.0.1835.1080@85.0.1835.1080" timestamp="1602933501734" />
+    <state width="1782" height="256" key="GridCell.Tab.0.left" timestamp="1602933501734">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state width="1805" height="113" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1601029356564" />
+    <state width="1782" height="256" key="GridCell.Tab.0.left/85.0.1835.1080@85.0.1835.1080" timestamp="1602933501734" />
+    <state width="1782" height="256" key="GridCell.Tab.0.right" timestamp="1602933501734">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state width="1805" height="113" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1601029356564" />
+    <state width="1782" height="256" key="GridCell.Tab.0.right/85.0.1835.1080@85.0.1835.1080" timestamp="1602933501734" />
+    <state width="314" height="242" key="ShowFilterAction_Filter_Popup" timestamp="1602678749041">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state width="314" height="242" key="ShowFilterAction_Filter_Popup/85.0.1835.1080@85.0.1835.1080" timestamp="1602678749041" />
+    <state x="488" y="208" key="Vcs.Push.Dialog.v2" timestamp="1602760533258">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state x="470" y="208" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1600225651124" />
+    <state x="488" y="208" key="Vcs.Push.Dialog.v2/85.0.1835.1080@85.0.1835.1080" timestamp="1602760533258" />
+    <state x="736" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600175418206">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="736" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/62.0.1858.1080@62.0.1858.1080" timestamp="1600175418206" />
+    <state x="581" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1602678755622">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state x="581" y="45" width="840" height="1034" key="search.everywhere.popup/85.0.1835.1080@85.0.1835.1080" timestamp="1602678755622" />
+    <state x="719" y="410" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1602675921809">
+      <screen x="85" y="0" width="1835" height="1080" />
+    </state>
+    <state x="719" y="410" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/85.0.1835.1080@85.0.1835.1080" timestamp="1602675921809" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/tmplz$main.coverage" NAME="main Coverage Results" MODIFIED="1602865638899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
